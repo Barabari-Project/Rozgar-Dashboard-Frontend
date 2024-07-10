@@ -15,7 +15,7 @@ const Layout: React.FC = () => {
       const response = await axiosInstance.get(restEndPoints.signOut);
       console.log(response);
     } catch (err: any) {
-      dispatch(setError({ statusCode: err.response.status, message: err.response.data.error,action: Action.SIGNOUT }));
+      dispatch(setError({ statusCode: err.response.status, message: err.response.data.error, action: Action.SIGNOUT }));
     }
   }
   return (
