@@ -1,0 +1,7 @@
+{
+    "signUp": "/auth/sign-up",
+    "signIn": "/auth/sign-in",
+    "getAllCourses": "/courses",
+    "getCourseById": "/courses",
+    "signOut": "/auth/sign-out"
+}

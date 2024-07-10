@@ -7,13 +7,13 @@ const Header = () => {
     <header>
       <div className={styles.logoContainer}>
         <div className={styles.img}>
-          <img src={logo} alt="logo-barabari" />
+          {/* <img src={logo} alt="logo-barabari" /> */}
         </div>
-        <p>Rozgar</p>
+        {/* <p>Rozgar</p> */}
       </div>
       <div className={styles.profileContainer}>
-        <div>T</div>
-        <p>Trisha Das</p>
+        {/* <div>T</div>
+        <p>Trisha Das</p> */}
       </div>
     </header>
   )
