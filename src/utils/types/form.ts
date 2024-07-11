@@ -14,3 +14,8 @@ export interface IAddress {
     city: string;
     pincode: string;
 }
+
+export interface ISignInForm{
+    email: string;
+    password: string;
+}

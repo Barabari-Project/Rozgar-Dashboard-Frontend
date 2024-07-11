@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { toast } from 'react-toastify';
@@ -13,21 +13,23 @@ interface ErrorProps {
 const Error: React.FC<ErrorProps> = ({ children }) => {
     const error: IBackEndError = useSelector((state: RootState) => state.status.error);
     const navigate = useNavigate();
-    console.log(error);
-    if (error) {
-        toast.error(error.message);
-        if( 401==error.statusCode ){
-            navigate('/sign-in')
-        }else if (error.action === Action.SIGNUP) {
-            if (409 == error.statusCode){
-                navigate('/sign-in');
-            }
-        }else if( error.action === Action.SIGNIN ){
-            if( 404==error.statusCode ){
-                navigate('/sign-up');
+
+    useEffect(() => {
+        if (error) {
+            toast.error(error.message);
+            if (401 == error.statusCode) {
+                navigate('/sign-in')
+            } else if (error.action === Action.SIGNUP) {
+                if (409 == error.statusCode) {
+                    navigate('/sign-in');
+                }
+            } else if (error.action === Action.SIGNIN) {
+                if (404 == error.statusCode) {
+                    navigate('/sign-up');
+                }
             }
         }
-    }
+    }, [error])
 
     return <>{children}</>;
 };

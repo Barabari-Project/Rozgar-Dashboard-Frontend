@@ -3,6 +3,7 @@ import Layout from "./Layout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Dashboard from "../pages/dashboard/Dashboard";
 import Signup from "../pages/signUp/SignUp";
+import SignIn from "../pages/signIn/SignIn";
 
 const Route: React.FC = () => {
   const router = createBrowserRouter([
@@ -18,7 +19,7 @@ const Route: React.FC = () => {
           element: <Signup />
         }, {
           path: "/sign-in",
-          element: <Dashboard />
+          element: <SignIn />
         }
       ],
     },
