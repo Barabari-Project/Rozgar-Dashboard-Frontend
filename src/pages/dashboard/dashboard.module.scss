@@ -1,0 +1,65 @@
+@import "../../styles/mixins";
+@import "../../styles/varriables";
+
+.wrapper{
+    display: flex;
+    justify-content: center;
+    .container{
+        @include flex-gap(12px);
+        width: 100%;
+        max-width: 1260px;
+        padding: 20px 0;
+        .rightSide{
+            width: 30%;
+            @include flex-gap(12px);
+            flex-direction: column;
+            .heading{
+                @include font-header
+            }
+            .courseContainer{
+                width: 100%;
+                .courseHead{
+                    @include flex-gap;
+                    justify-content: space-between;
+                    width: 100%;
+                    padding: 10px;
+                    box-shadow: rgba(0, 0, 0, 0.13) 0px 0px 5px 0px, rgba(0, 0, 0, 0.13) 0px 0px 1px 0px;
+                    border-radius: 8px;
+                    .names{
+                        @include flex-gap(8px);
+                        .serialNum{
+                            width: 30px;
+                            height: 30px;
+                            border-radius: 50%;
+                            text-align: center;
+                            padding: 6px 0;
+                            border: 1px solid $other_color;
+                        }
+                    }
+                }
+                ul{
+                    width: 90%;
+                    background-color: #5959591f;
+                    padding: 10px;
+                    margin-left: 20px;
+                    border-bottom-left-radius: 10px;
+                    border-bottom-right-radius: 10px;
+                    li{
+                        list-style: none;
+                        padding: 15px;
+                        border-bottom: 1px solid #59595934;
+                        &:hover{
+                            background-color: #5959591f;
+                            border-radius: 10px;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+    
+        }
+        .leftSide{
+            width: 70%;
+        }
+    }
+}

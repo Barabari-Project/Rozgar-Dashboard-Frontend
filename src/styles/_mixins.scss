@@ -97,3 +97,10 @@
   align-items: center;
   gap: $gap;
 }
+
+@mixin font-header{
+  font-size: 18px;
+  font-weight: 700;
+  white-space: nowrap;
+  text-shadow: 0 0 12px #1d1d1d5e;
+}
