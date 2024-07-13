@@ -14,7 +14,10 @@ import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
 import { setUserDetails } from '../../redux/slices/UserSlice';
 import { useNavigate } from 'react-router-dom';
-// import { setError } from '../../redux/slices/statusSlice';
+import { Link } from 'react-router-dom';
+import Rozgar_Logo from "../../assets/barabari_logo.png";
+import { Phone,BookA, Mail, LandPlot,Lock, MapPin    } from 'lucide-react';
+
 
 const Signup: React.FC = () => {
   const [formData, setFormData] = useState<ISignUpForm>({
@@ -89,11 +92,11 @@ const Signup: React.FC = () => {
   return (
     <Loading>
       <Error>
-        <form onSubmit={handleSubmit}>
+        {/* <form onSubmit={handleSubmit}>
           <div>
             <label>Phone Number:</label>
             <input
-              type="text"
+              type="tel"
               name="phoneNumber"
               value={formData.phoneNumber}
               onChange={handleChange}
@@ -183,7 +186,9 @@ const Signup: React.FC = () => {
           <div>
             <label>Pincode:</label>
             <input
-              type="text"
+              type="number"
+              minLength={6}
+              maxLength={6}
               name="address.pincode"
               value={formData.address.pincode}
               onChange={handleChange}
@@ -195,7 +200,344 @@ const Signup: React.FC = () => {
               Submit
             </button>
           </div>
-        </form>
+        </form> */}
+{/* ---------------------------------------------------------------- */}
+    
+        <section>
+          <div className="flex  items-center justify-center px-4 py-10 sm:px-6 sm:py-12 lg:px-6 lg:py-8 bg-[#FCFCFC]">
+            <div className=" md:mx-auto md:w-full sm:max-w-lg md:max-w-xl lg:max-w-2xl 2xl:max-w-2xl shadow-xl rounded-xl px-4 py-8 bg-white">
+              <div className="mb-2 flex justify-center">
+                <img className='h-14' src={Rozgar_Logo} alt="" />
+              </div>
+              <h2 className="text-center text-2xl font-bold leading-tight text-black">
+                Sign up to create account
+              </h2>
+              
+              <p className='text-center text-[#595959]'>Explore the available courses in detail.</p>
+              {/* Form */}
+              <form onSubmit={handleSubmit} className="mt-8 ">
+                <div className="space-y-5">
+
+                   
+
+                  <div className='flex md:flex-row flex-col gap-2'>
+                  
+
+                  {/* First Name */}
+                  <div className='md:w-1/2'>
+                    <label htmlFor="name" className="text-base font-medium text-gray-900">
+                      {' '}
+                      First Name{' '}
+                    </label>
+                    <div className="mt-2">
+                    <div
+                      className="flex gap-1 rounded-md px-2 border border-gray-300 focus-within:border-blue-500 focus:ring-1 focus-within:ring-1 focus-within:ring-blue-500 focus-within:ring-offset-1"
+                    >
+                      <span className="flex justify-center items-center gap-2">
+                      <BookA />
+                      </span>
+                      <input
+                        className="flex h-10 w-full bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                        type="text"
+                        name="firstName"
+                        value={formData.firstName}
+                        onChange={handleChange}
+                        placeholder='First Name'
+                      ></input>
+                    </div>
+                      
+                    </div>
+                    {formErrors.firstName && <p className='text-red-500'>{formErrors.firstName}</p>}
+                  </div>
+
+                  {/* Last Name */}
+                  <div className='md:w-1/2'>
+                    <label htmlFor="name" className="text-base font-medium text-gray-900">
+                      {' '}
+                      Last Name{' '}
+                    </label>
+                    <div className="mt-2">
+                      <div
+                        className="flex gap-1 rounded-md px-2 border border-gray-300 focus-within:border-blue-500 focus:ring-1 focus-within:ring-1 focus-within:ring-blue-500 focus-within:ring-offset-1"
+                      >
+                        <span className="flex justify-center items-center gap-2">
+                        <BookA />
+                        </span>
+                        <input
+                          className="flex h-10 w-full bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                          type="text"
+                          name="lastName"
+                          value={formData.lastName}
+                          onChange={handleChange}
+                          placeholder='Last Name'
+                        ></input>
+                      </div>
+                    </div>
+                    {formErrors.lastName && <p className='text-red-500'>{formErrors.lastName}</p>}
+                  </div>
+                </div>
+
+                <div className='flex md:flex-row flex-col gap-2'>
+
+                  {/* Email */}
+                  <div className='md:w-1/2'>
+                    <label htmlFor="email" className="text-base font-medium text-gray-900">
+                      {' '}
+                      Email address{' '}
+                    </label>
+                    <div className="mt-2">
+                    <div
+                      className="flex gap-1 rounded-md px-2 border border-gray-300 focus-within:border-blue-500 focus:ring-1 focus-within:ring-1 focus-within:ring-blue-500 focus-within:ring-offset-1"
+                    >
+                      <span className="flex justify-center items-center gap-2">
+                      <Mail />
+                      </span>
+                      <input
+                        className="flex h-10 w-full bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder='Email Address'
+                      ></input>
+                      </div>
+                    </div>
+                    {formErrors.email && <p className='text-red-500'>{formErrors.email}</p>}
+                  </div>
+
+
+                   {/* Phone Number */}
+                   <div className='md:w-1/2'>
+                    <label htmlFor="name" className="text-base font-medium text-gray-900">
+                      {' '}
+                      Mobile Number{' '}
+                    </label>
+                    <div className="mt-2">
+                    <div
+                      className="flex gap-1 rounded-md px-2 border border-gray-300 focus-within:border-blue-500 focus:ring-1 focus-within:ring-1 focus-within:ring-blue-500 focus-within:ring-offset-1"
+                    >
+                      <span className="flex justify-center items-center gap-2">
+                        <Phone />+91
+                      </span>
+                      <input
+                        className="flex h-10 w-full bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                        type="tel"
+                        name="phoneNumber"
+                        value={formData.phoneNumber}
+                        onChange={handleChange}
+                        placeholder='Mobile Number'
+                      />
+                    </div>
+
+                    </div>
+                    {formErrors.phoneNumber && <p className='text-red-500'>{formErrors.phoneNumber}</p>}
+                  </div>  
+                </div>  
+
+                <div className='flex md:flex-row flex-col gap-2'>
+                  {/* Password */}
+                  <div className='md:w-1/2'>
+                    <div className="flex items-center justify-between">
+                      <label htmlFor="password" className="text-base font-medium text-gray-900">
+                        {' '}
+                        Password{' '}
+                      </label>
+                    </div>
+                    <div className="mt-2">
+                    <div
+                      className="flex gap-1 rounded-md px-2 border border-gray-300 focus-within:border-blue-500 focus:ring-1 focus-within:ring-1 focus-within:ring-blue-500 focus-within:ring-offset-1"
+                    >
+                      <span className="flex justify-center items-center gap-2">
+                      <Lock />
+                      </span>
+                      <input
+                        className="flex h-10 w-full bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                        type="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                        placeholder='Password'
+                      ></input>
+                      </div>
+                    </div>
+                    {formErrors.password && <p className='text-red-500 '>{formErrors.password}</p>}
+                  </div>
+
+
+                  {/* Confirm Password */}
+                  <div className='md:w-1/2'>
+                    <div className="flex items-center justify-between">
+                      <label htmlFor="password" className="text-base font-medium text-gray-900">
+                        {' '}
+                        Confirm Password{' '}
+                      </label>
+                    </div>
+                    <div className="mt-2">
+                    <div
+                      className="flex gap-1 rounded-md px-2 border border-gray-300 focus-within:border-blue-500 focus:ring-1 focus-within:ring-1 focus-within:ring-blue-500 focus-within:ring-offset-1"
+                    >
+                      <span className="flex justify-center items-center gap-2">
+                      <Lock />
+                      </span>
+                      <input
+                        className="flex h-10 w-full bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                        type="password"
+                        name="confirmPassword"
+                        value={formData.confirmPassword}
+                        onChange={handleChange}
+                        autoComplete="off"
+                        placeholder='Confirm Password'
+                      ></input>
+                      </div>
+                    </div>
+                    {formErrors.confirmPassword && <p className='text-red-500'>{formErrors.confirmPassword}</p>}
+                  </div>
+                </div>
+                  
+                  
+
+                  {/* Address Line1 */}
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <label htmlFor="password" className="text-base font-medium text-gray-900">
+                        {' '}
+                        Address Line 1{' '}
+                      </label>
+                    </div>
+                    <div className="mt-2">
+                    <div
+                      className="flex gap-1 rounded-md px-2 border border-gray-300 focus-within:border-blue-500 focus:ring-1 focus-within:ring-1 focus-within:ring-blue-500 focus-within:ring-offset-1"
+                    >
+                      <span className="flex justify-center items-center gap-2">
+                      <LandPlot />
+                      </span>
+                      <input
+                        className="flex h-10 w-full bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                        type="text"
+                        name="address.line1"
+                        value={formData.address.line1}
+                        onChange={handleChange}
+                        placeholder='Address Line 1'
+                      ></input>
+                      </div>
+                    </div>
+                    {formErrors.line1 && <p className='text-red-500'>{formErrors.line1}</p>}
+                  </div>
+
+
+                  {/* Address Line 2 */}
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <label htmlFor="password" className="text-base font-medium text-gray-900">
+                        {' '}
+                        Address Line 2{' '}
+                      </label>
+                    </div>
+                    <div className="mt-2">
+                    <div
+                      className="flex gap-1 rounded-md px-2 border border-gray-300 focus-within:border-blue-500 focus:ring-1 focus-within:ring-1 focus-within:ring-blue-500 focus-within:ring-offset-1"
+                    >
+                      <span className="flex justify-center items-center gap-2">
+                      <LandPlot />
+                      </span>
+                      <input
+                        className="flex h-10 w-full bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                        type="text"
+                        name="address.line2"
+                        value={formData.address.line2 ?? undefined}
+                        onChange={handleChange}
+                        placeholder='Address Line 2 (Optional)'
+                      ></input>
+                      </div>
+                    </div>
+                    {formErrors.line2 && <p className='text-red-500'>{formErrors.line2}</p>}
+                  </div>
+
+                  <div className='flex md:flex-row flex-col gap-2'>
+                    {/* City */}
+                  <div className='md:w-1/2'>
+                    <div className="flex items-center justify-between">
+                      <label htmlFor="password" className="text-base font-medium text-gray-900">
+                        {' '}
+                        City{' '}
+                      </label>
+                    </div>
+                    <div className="mt-2">
+                    <div
+                      className="flex gap-1 rounded-md px-2 border border-gray-300 focus-within:border-blue-500 focus:ring-1 focus-within:ring-1 focus-within:ring-blue-500 focus-within:ring-offset-1"
+                    >
+                      <span className="flex justify-center items-center gap-2">
+                      <MapPin />
+                      </span>
+                      <input
+                        className="flex h-10 w-full bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                        type="text"
+                        name="address.city"
+                        value={formData.address.city}
+                        onChange={handleChange}
+                        placeholder='Enter City'
+                      ></input>
+                      </div>
+                    </div>
+                    {formErrors.city && <p className='text-red-500'>{formErrors.city}</p>}
+                  </div>
+                  
+                  
+                  {/* Pincode */}
+                  <div className='md:w-1/2'>
+                    <div className="flex items-center justify-between">
+                      <label htmlFor="password" className="text-base font-medium text-gray-900">
+                        {' '}
+                        Pincode{' '}
+                      </label>
+                    </div>
+                    <div className="mt-2">
+                    <div
+                      className="flex gap-1 rounded-md px-2 border border-gray-300 focus-within:border-blue-500 focus:ring-1 focus-within:ring-1 focus-within:ring-blue-500 focus-within:ring-offset-1"
+                    >
+                      <span className="flex justify-center items-center gap-2">
+                      <MapPin />
+                      </span>
+                      <input
+                        className="flex h-10 w-full bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                        type="text"
+                        name="address.pincode"
+                        value={formData.address.pincode}
+                        onChange={handleChange}
+                        placeholder='Enter Pincode'
+                      ></input>
+                      </div>
+                    </div>
+                    {formErrors.pincode && <p className='text-red-500'>{formErrors.pincode}</p>}
+                  </div>
+                  </div>
+
+
+                  <div>
+                    <button
+                      type="submit" 
+                      className="inline-flex duration-300 w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80 hover:scale-105"
+                    >
+                      Create Account
+                    </button>
+                  </div>
+                </div>
+              </form>
+
+              <p className="mt-2 text-center text-base text-gray-600">
+                Already have an account?{' '}
+                <Link
+                  to="/sign-in"
+                  className="font-medium text-black transition-all duration-200 hover:underline"
+                >
+                  Sign In
+                </Link>
+              </p>
+              
+            </div>
+          </div>
+        </section>
+
       </Error>
     </Loading>
   );
