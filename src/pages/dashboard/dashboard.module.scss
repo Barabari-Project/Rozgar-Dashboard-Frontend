@@ -3,63 +3,125 @@
 
 .wrapper{
     display: flex;
-    justify-content: center;
-    .container{
-        @include flex-gap(12px);
-        width: 100%;
-        max-width: 1260px;
-        padding: 20px 0;
-        .rightSide{
-            width: 30%;
-            @include flex-gap(12px);
-            flex-direction: column;
-            .heading{
-                @include font-header
-            }
-            .courseContainer{
-                width: 100%;
-                .courseHead{
-                    @include flex-gap;
-                    justify-content: space-between;
+    // align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+    .heading{
+        @include font-header
+    }
+    .wrapContainer{
+        @include flex-center;
+        .container{
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            flex-direction: row-reverse;
+            gap: 20px;
+            width: 100%;
+            max-width: 1420px;
+            .rightSide{
+                width: 30%;
+                @include flex-gap(12px);
+                flex-direction: column;
+                .rightContainer{
+                    @include flex-gap(12px);
+                    flex-direction: column;
                     width: 100%;
-                    padding: 10px;
-                    box-shadow: rgba(0, 0, 0, 0.13) 0px 0px 5px 0px, rgba(0, 0, 0, 0.13) 0px 0px 1px 0px;
-                    border-radius: 8px;
-                    .names{
-                        @include flex-gap(8px);
-                        .serialNum{
-                            width: 30px;
-                            height: 30px;
-                            border-radius: 50%;
-                            text-align: center;
-                            padding: 6px 0;
-                            border: 1px solid $other_color;
+                    .courseContainer{
+                        width: 100%;
+                        .courseHead{
+                            @include flex-gap;
+                            justify-content: space-between;
+                            width: 100%;
+                            padding: 10px;
+                            box-shadow: rgba(0, 0, 0, 0.13) 0px 0px 5px 0px, rgba(0, 0, 0, 0.13) 0px 0px 1px 0px;
+                            border-radius: 8px;
+                            .names{
+                                @include flex-gap(8px);
+                                .serialNum{
+                                    width: 30px;
+                                    height: 30px;
+                                    border-radius: 50%;
+                                    text-align: center;
+                                    padding: 6px 0;
+                                    border: 1px solid $other_color;
+                                }
+                            }
                         }
-                    }
-                }
-                ul{
-                    width: 90%;
-                    background-color: #5959591f;
-                    padding: 10px;
-                    margin-left: 20px;
-                    border-bottom-left-radius: 10px;
-                    border-bottom-right-radius: 10px;
-                    li{
-                        list-style: none;
-                        padding: 15px;
-                        border-bottom: 1px solid #59595934;
-                        &:hover{
+                        ul{
+                            width: 100%;
                             background-color: #5959591f;
-                            border-radius: 10px;
-                            cursor: pointer;
+                            padding: 10px;
+                            border-bottom-left-radius: 10px;
+                            border-bottom-right-radius: 10px;
+                            li{
+                                list-style: none;
+                                padding: 15px;
+                                border-bottom: 1px solid $border_color;
+                                &:hover{
+                                    background-color: #5959591f;
+                                    border-radius: 10px;
+                                    cursor: pointer;
+                                }
+                                .modules{
+                                    display: flex;
+                                    flex-direction: column;
+                                    gap: 4px;
+                                    .moduleHead{
+                                        @include flex-gap;
+                                    }
+                                }
+                            }
+                            .selectedModule{
+                                background-color: $background_color;
+                                box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+                                border-radius: 10px;
+                                &:hover{
+                                    background-color: $background_color;
+                                }
+                            }
                         }
                     }
                 }
+                
+        
             }
-    
-        }
-        .leftSide{
-            width: 70%;
+            .leftSide{
+                width: 70%;
+                height: 75vh;
+                border-radius: 10px;
+                border: 1px solid $border_color;
+                .moduleDetails{
+                    .moduleHead{
+                        @include flex-gap;
+                        background-color: lighten($button_color, 20%);
+                        padding: 0 10px;
+                        border-top-left-radius: 10px;
+                        border-top-right-radius: 10px;
+                        p{
+                            font-weight: 700;
+                            width: 100%;
+                        }
+                    }
+                    .moduleBody{
+                        padding: 10px;
+                        li{
+                            list-style: none;
+                            padding: 15px;
+                            border-bottom: 1px solid $border_color;
+                            &:hover{
+                                background-color: #ffcc3338;
+                                border-radius: 10px;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+
+                }
+                
+            }
         }
     }
 }
