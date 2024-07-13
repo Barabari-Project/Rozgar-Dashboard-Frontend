@@ -1,57 +1,39 @@
-import React, { useEffect, useRef, useState } from "react";
-import axios from "axios";
+import React, { FC, useEffect, useRef, useState } from "react";
 import { showErrorToast } from "../../utils/helper/helper";
 import styles from "./dashboard.module.scss";
 import { CaretDown, CheckCircle } from "@phosphor-icons/react";
 
-interface TopicData {
-  _id: string;
-  title: string;
-  url: string;
-}
 
-interface ModuleData {
-  _id: string;
-  number: number;
-  title: string;
-  topics: TopicData[];
-}
+import axiosInstance from '../../utils/axiosInstance';
+import restEndPoints from '../../constants/restEndPoints.json';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCourseDetails } from '../../redux/slices/CourseSlice';
+import { getCourseById } from "../../services/course/getCourseById";
+import { RootState } from "../../redux/store";
+import { ICourseDetails } from "../../utils/types/course";
 
-interface SectionData {
-  _id: string;
-  title: string;
-  number: number;
-  modules: ModuleData[];
-}
-
-interface CourseData {
-  _id: string;
-  title: string;
-  sections: SectionData[];
-}
 
 const Dashboard: React.FC = () => {
-  const [data, setData] = useState<CourseData | null>(null);
+  // const [data, setData] = useState<CourseData | null>(null);
   const [expandedSections, setExpandedSections] = useState<{ [key: string]: boolean }>({});
   const [selectedModule, setSelectedModule] = useState<ModuleData | null>(null);
   const wrapperRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   const listRefs = useRef<{ [key: string]: HTMLUListElement | null }>({});
 
+  // const dispatch = useDispatch();
+  // dispatch(setCourseDetails(response.data));
+
   useEffect(() => {
-    getCourse();
+    const fetchData = async () => {
+      const response = await getCourseById('668fdf1e85fa43238a05f739');
+      console.log(response);
+      // dispatch(setCourseDetails(response.data));
+    }
+    fetchData();
   }, []);
 
-  const getCourse = async () => {
-    try {
-      const res = await axios.get<CourseData>(
-        "http://localhost:3001/courses/668fdf1e85fa43238a05f739"
-      );
-      setData(res.data);
-      console.log("data", res.data);
-    } catch (err) {
-      showErrorToast("An unexpected error occurred");
-    }
-  };
+  const course: ICourseDetails = useSelector((state: RootState) => state.course.course);
+
 
   const toggleExpand = (sectionId: string, moduleId: string) => {
     setExpandedSections(prevState => ({
@@ -74,6 +56,7 @@ const Dashboard: React.FC = () => {
   };
 
   return (
+    // <>hello</>
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <div className={styles.rightSide}>
@@ -113,7 +96,7 @@ const Dashboard: React.FC = () => {
                           gap: "4px",
                         }}>
                           <CheckCircle size={16} color="#324498" weight="fill" />
-                          <p style={{opacity: "0.8", fontSize: "12px"}}>MODULE{' '}{module.number}</p>
+                          <p style={{ opacity: "0.8", fontSize: "12px" }}>MODULE{' '}{module.number}</p>
                         </div>
                         <p>{module.title}</p>
                       </div>
