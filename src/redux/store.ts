@@ -2,11 +2,13 @@
 import { configureStore, Store } from "@reduxjs/toolkit";
 import userReducer from "./slices/UserSlice";
 import statusReducer from "./slices/StatusSlice";
+import courseReducer from "./slices/CourseSlice";
 
 const store: Store = configureStore({
     reducer: {
         user: userReducer,
-        status: statusReducer
+        status: statusReducer,
+        course: courseReducer
     },
 });
 
