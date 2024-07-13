@@ -22,4 +22,21 @@ body{
 a {
   text-decoration: none;
 }
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $other_color; 
+  border-radius: 10px;
+}
+
+::selection {
+  color: $other_color;
+  background-color: $button_color;
+}
 

@@ -15,6 +15,7 @@ const Error: React.FC<ErrorProps> = ({ children }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        console.log(error);
         if (error) {
             toast.error(error.message);
             if (401 == error.statusCode) {
