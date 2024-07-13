@@ -1,13 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { ICourseDetails, IModule } from "../../utils/types/course";
+import { RootState } from "../../redux/store";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import LecturePageTab from "../../utils/enums/LecturePageTab";
+import VideoTab from "./VideoTab";
+import AssignmentTab from "./AssignmentTab";
+import QuestionTab from "./QuestionTab";
 
-function LectureDashboard() {
+const LectureDashboard: React.FC = () => {
 
-    // const x = async () => {
-    //     const response = await fetch('http://localhost:3001/courses/668fdf1e85fa43238a05f739');
-    //     const data = await response.json();
-    //     console.log(data);
-    // }
-    // x();
+  const course: ICourseDetails = useSelector((state: RootState) => state.course.course);
+
+  const { moduleId, sectionId } = useParams();
+
+  const [module, setModule] = useState<IModule | null>(null);
+  const [sectionTitle, setSectionTitle] = useState<string | null>(null);
+  const [tab, setTab] = useState<LecturePageTab>(LecturePageTab.Video);
+
+  useEffect(() => {
+    if (course) {
+      course
+        .sections
+        .filter(section => section._id == sectionId)
+        .forEach(section => {
+          setSectionTitle(section.title);
+          section
+            .modules
+            .filter(module => module._id == moduleId)
+            .forEach(module => setModule(module));
+        })
+    }
+  }, [course, moduleId, sectionId]);
 
   return (
     <>
@@ -22,16 +46,27 @@ function LectureDashboard() {
           <div className="flex items-center w-full h-[40px] mt-2 border-b-2 border-gray-400 overflow-x-auto">
             <div
               className={`px-5 h-full flex items-center border-green-500 border-b-4 hover:cursor-pointer hover:scale-110 duration-300`}
+              onClick={(_) => setTab(LecturePageTab.Video)}
             >
               Lecture
             </div>
-            <div className="px-5 hover:cursor-pointer hover:scale-110 duration-300">
+            <div className="px-5 hover:cursor-pointer hover:scale-110 duration-300"
+              onClick={(_) => setTab(LecturePageTab.Question)}>
               Problems
             </div>
-            <div className="px-5 hover:cursor-pointer hover:scale-110 duration-300">
+            <div className="px-5 hover:cursor-pointer hover:scale-110 duration-300"
+              onClick={(_) => setTab(LecturePageTab.Assignment)}>
               Assignments
             </div>
           </div>
+
+          {
+            tab == LecturePageTab.Video ?
+              <VideoTab sectionTitle={sectionTitle} module={module} /> :
+              tab == LecturePageTab.Assignment ?
+                <AssignmentTab /> :
+                <QuestionTab />
+          }
 
           {/* Video  */}
           <div className="w-full py-4 md:px-5">
@@ -68,7 +103,7 @@ function LectureDashboard() {
 
           {/* Lecture List */}
           <div className="flex gap-4 items-center px-4 py-5 border-grey-300 border-t-[1px] border-b-[1px] hover:bg-[rgb(245,235,235)] hover:cursor-pointer duration-300">
-            
+
             {/* Checkbox */}
             <div className=" flex items-center gap-3">
               <label className="text-white">
@@ -81,7 +116,7 @@ function LectureDashboard() {
 
             {/* Lecture Name */}
             <div className="flex items-center text-sm">
-            Namaste DSA
+              Namaste DSA
             </div>
           </div>
 
