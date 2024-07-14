@@ -6,6 +6,7 @@ import Signup from "../pages/signUp/SignUp";
 import SignIn from "../pages/signIn/SignIn";
 import DashboardMobile from "../pages/dashboard/dashboardMobile/DashboardMobile";
 import useMediaQuery from "../utils/hooks/useMediaQuery";
+import Lecture from '../pages/lecture/Lecture';
 
 const Route: React.FC = () => {
   const isMobile = useMediaQuery(768);
@@ -24,8 +25,11 @@ const Route: React.FC = () => {
         }, {
           path: "/sign-in",
           element: <SignIn />
+        }, {
+          path: "/lecture/:sectionId/:moduleId/:topicId",
+          element: <Lecture />
         }
-      ],
+      ]
     },
   ]);
   return <RouterProvider router={router} />;
