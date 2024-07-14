@@ -4,9 +4,8 @@ interface VideoTabProps {
     module: IModule | null;
 }
 
-const VideoTab: React.FC<VideoTabProps> = ({  module }) => {
-    console.log(module, "Module");
-    
+const VideoTab: React.FC<VideoTabProps> = ({ module }) => {
+    console.log(module);
     return (
         <div className="w-full py-4 md:px-5">
         <iframe

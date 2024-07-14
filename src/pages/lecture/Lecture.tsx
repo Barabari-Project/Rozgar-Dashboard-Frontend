@@ -12,7 +12,7 @@ const LectureDashboard: React.FC = () => {
 
   const course: ICourseDetails = useSelector((state: RootState) => state.course.course);
 
-  const { moduleId, sectionId } = useParams();
+  const { topicId, sectionId, moduleId } = useParams();
 
   const [module, setModule] = useState<IModule | null>(null);
 
@@ -39,8 +39,7 @@ const LectureDashboard: React.FC = () => {
             .forEach(module => setModule(module));
         })
     }
-  }, [course, moduleId, sectionId]);
-  console.log(tab)
+  }, [course, topicId, sectionId, moduleId]);
 
   return (
     <>
@@ -71,8 +70,7 @@ const LectureDashboard: React.FC = () => {
 
           {
             tab == LecturePageTab.Video ?
-              <VideoTab 
-               module={module} /> :
+              <VideoTab module={module} /> :
               tab == LecturePageTab.Assignment ?
                 <AssignmentTab /> :
                 <QuestionTab />
