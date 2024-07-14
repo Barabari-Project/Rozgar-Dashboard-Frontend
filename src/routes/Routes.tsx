@@ -25,7 +25,7 @@ const Route: React.FC = () => {
           path: "/lecture/:moduleId/:topicId",
           element: <Lecture />
         }
-      ],
+      ]
     },
   ]);
   return <RouterProvider router={router} />;
