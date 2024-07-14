@@ -17,7 +17,7 @@ const Route: React.FC = () => {
       element: <Layout />,
       children: [
         {
-          path: "/dashboard",
+          path: "/",
           element: isMobile ? <DashboardMobile /> : <Dashboard />,
         }, {
           path: "/sign-up",

@@ -72,7 +72,7 @@ const Signup: React.FC = () => {
         toast.success(response.data.message);
         Cookies.set('token', response.data.token);
         dispatch(setUserDetails({ ...response.data.user }));
-        navigate('/dashboard');
+        navigate('/');
       } catch (error: any) {
         dispatch(setError({
           statusCode: error.response.status,

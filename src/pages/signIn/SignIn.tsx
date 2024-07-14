@@ -46,7 +46,7 @@ const SignIn: React.FC = () => {
                 toast.success(response.data.message);
                 Cookies.set('token', response.data.token);
                 dispatch(setUserDetails({ ...response.data.user }));
-                navigate('/dashboard');
+                navigate('/');
             } catch (error: any) {
                 if (error.response) {
                     dispatch(setError({
