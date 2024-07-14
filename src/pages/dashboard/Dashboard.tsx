@@ -40,7 +40,7 @@ const Dashboard: FC = () => {
         dispatch(setLoading(false));
       }
     }
-    fetchData();
+    course==null && fetchData();
   }, []);
 
   const course: ICourseDetails = useSelector((state: RootState) => state.course.course);
@@ -164,7 +164,7 @@ const Dashboard: FC = () => {
                     </div>
                     <ul className={styles.moduleBody}>
                       {selectedModule.topics.map((topic: ITopic) => (
-                        <Link to={`/learn/${selectedModule._id}/${topic._id}`}>
+                        <Link to={`/lecture/${selectedModule._id}/${topic._id}`}>
                           <li key={topic._id}>{topic.title}</li>
                         </Link>
                       ))}
