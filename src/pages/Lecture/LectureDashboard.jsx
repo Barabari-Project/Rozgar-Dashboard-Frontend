@@ -2,12 +2,6 @@ import React, { useState } from "react";
 
 function LectureDashboard() {
 
-    // const x = async () => {
-    //     const response = await fetch('http://localhost:3001/courses/668fdf1e85fa43238a05f739');
-    //     const data = await response.json();
-    //     console.log(data);
-    // }
-    // x();
 
   return (
     <>

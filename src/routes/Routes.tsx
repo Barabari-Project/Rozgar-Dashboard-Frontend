@@ -22,7 +22,8 @@ const Route: React.FC = () => {
           path: "/sign-in",
           element: <SignIn />
         },{
-          path: "/lecture/:moduleId/:topicId",
+          // path: "/lecture/:moduleId/:topicId",
+          path: "/lecture",
           element: <LectureDashboard />
         }
       ],
