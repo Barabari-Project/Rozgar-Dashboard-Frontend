@@ -35,6 +35,7 @@ const Dashboard: FC = () => {
       const response = await axiosInstance(`${restEndPoints.getCourseById}/${courseId}`);
       dispatch(setCourseDetails(response.data));
     } catch (error: any) {
+      console.log(error);
       dispatch(setError({
         statusCode: error.response.status,
         message: error.response.data.error,
