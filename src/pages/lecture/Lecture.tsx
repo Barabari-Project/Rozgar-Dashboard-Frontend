@@ -12,12 +12,13 @@ const LectureDashboard: React.FC = () => {
 
   const course: ICourseDetails = useSelector((state: RootState) => state.course.course);
 
-  const { moduleId, sectionId } = useParams();
+  const { sectionId, moduleId } = useParams();
 
   const [module, setModule] = useState<IModule | null>(null);
   const [sectionTitle, setSectionTitle] = useState<string | null>(null);
   const [tab, setTab] = useState<LecturePageTab>(LecturePageTab.Video);
-
+  console.log(sectionTitle);
+  console.log(module);
   useEffect(() => {
     if (course) {
       course
@@ -31,7 +32,7 @@ const LectureDashboard: React.FC = () => {
             .forEach(module => setModule(module));
         })
     }
-  }, [course, moduleId, sectionId]);
+  }, [course, sectionId, moduleId]);
 
   return (
     <>
