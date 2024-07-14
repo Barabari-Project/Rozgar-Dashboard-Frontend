@@ -16,7 +16,6 @@ import { setUserDetails } from '../../redux/slices/UserSlice';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Rozgar_Logo from "../../assets/barabari_logo.png";
-// import { setError } from '../../redux/slices/statusSlice';
 import { Phone,BookA, Mail, LandPlot,Lock, MapPin    } from 'lucide-react';
 
 

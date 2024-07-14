@@ -2,9 +2,9 @@ import React from "react";
 import Layout from "./Layout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Dashboard from "../pages/dashboard/Dashboard";
-import Signup from "../pages/SignUp/SignUp";
+import Signup from "../pages/signUp/SignUp";
 import SignIn from "../pages/signIn/SignIn";
-import LectureDashboard from '../pages/Lecture/LectureDashboard';
+import Lecture from '../pages/lecture/Lecture';
 
 const Route: React.FC = () => {
   const router = createBrowserRouter([
@@ -21,10 +21,9 @@ const Route: React.FC = () => {
         }, {
           path: "/sign-in",
           element: <SignIn />
-        },{
-          // path: "/lecture/:moduleId/:topicId",
-          path: "/lecture",
-          element: <LectureDashboard />
+        }, {
+          path: "/lecture/:moduleId/:topicId",
+          element: <Lecture />
         }
       ],
     },
