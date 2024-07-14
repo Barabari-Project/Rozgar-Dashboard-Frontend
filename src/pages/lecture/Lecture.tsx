@@ -46,16 +46,16 @@ const LectureDashboard: React.FC = () => {
           <div className="flex items-center w-full h-[40px] mt-2 border-b-2 border-gray-400 overflow-x-auto">
             <div
               className={`px-5 h-full flex items-center border-green-500 border-b-4 hover:cursor-pointer hover:scale-110 duration-300`}
-              onClick={(_) => setTab(LecturePageTab.Video)}
+              onClick={() => setTab(LecturePageTab.Video)}
             >
               Lecture
             </div>
             <div className="px-5 hover:cursor-pointer hover:scale-110 duration-300"
-              onClick={(_) => setTab(LecturePageTab.Question)}>
+              onClick={() => setTab(LecturePageTab.Question)}>
               Problems
             </div>
             <div className="px-5 hover:cursor-pointer hover:scale-110 duration-300"
-              onClick={(_) => setTab(LecturePageTab.Assignment)}>
+              onClick={() => setTab(LecturePageTab.Assignment)}>
               Assignments
             </div>
           </div>
@@ -75,9 +75,9 @@ const LectureDashboard: React.FC = () => {
               // width="full" height="315"
               src="https://www.youtube.com/embed/fN74Ate46Z8?si=bNkrleFc44ltVE0t"
               title="YouTube video player"
-              frameborder="0"
+              frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
+              referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
             ></iframe>
           </div>
