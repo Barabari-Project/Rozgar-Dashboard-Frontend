@@ -17,6 +17,7 @@ import Error from "../../components/error/Error";
 const Dashboard: FC = () => {
   const [expandedSections, setExpandedSections] = useState<{ [key: string]: boolean }>({});
   const [selectedModule, setSelectedModule] = useState<IModule | null>(null);
+  const [sectionId, setSectionId] = useState<string | null>(null);
   const wrapperRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   const listRefs = useRef<{ [key: string]: HTMLUListElement | null }>({});
 
@@ -40,7 +41,7 @@ const Dashboard: FC = () => {
         dispatch(setLoading(false));
       }
     }
-    course==null && fetchData();
+    course == null && fetchData();
   }, []);
 
   const course: ICourseDetails = useSelector((state: RootState) => state.course.course);
@@ -52,6 +53,7 @@ const Dashboard: FC = () => {
 
       setExpandedSections({ [firstSection._id]: true });
       setSelectedModule(firstModule || null);
+      setSectionId(firstSection._id);
 
       if (
         wrapperRefs.current[firstSection._id] &&
@@ -79,9 +81,11 @@ const Dashboard: FC = () => {
     }
   };
 
-  const handleModuleClick = (module: IModule) => {
+  const handleModuleClick = (module: IModule, sectionId: string) => {
     setSelectedModule(module);
+    setSectionId(sectionId);
   };
+
   return (
     <Loading>
       <Error>
@@ -127,7 +131,7 @@ const Dashboard: FC = () => {
                             {section.modules.map((module) => (
                               <li
                                 key={module._id}
-                                onClick={() => handleModuleClick(module)}
+                                onClick={() => handleModuleClick(module, section._id)}
                                 className={
                                   selectedModule?._id === module._id
                                     ? styles.selectedModule
@@ -164,7 +168,7 @@ const Dashboard: FC = () => {
                     </div>
                     <ul className={styles.moduleBody}>
                       {selectedModule.topics.map((topic: ITopic) => (
-                        <Link to={`/lecture/${}/${selectedModule._id}/${topic._id}`}>
+                        <Link to={`/lecture/${sectionId}/${selectedModule._id}/${topic._id}`}>
                           <li key={topic._id}>{topic.title}</li>
                         </Link>
                       ))}
