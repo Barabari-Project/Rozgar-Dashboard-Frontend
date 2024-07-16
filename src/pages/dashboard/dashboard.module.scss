@@ -113,18 +113,37 @@
                     
                     .moduleBody{
                         padding: 10px;
-                        a{
-                            color: $other_color;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+
+                            
                             li{
                                 list-style: none;
+                                color: $other_color;
                                 padding: 15px;
-                                border-bottom: 1px solid $border_color;
+                                border: 1px solid $border_color;
+                                border-radius: 10px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
                                 &:hover{
                                     background-color: #ffcc3338;
-                                    border-radius: 10px;
                                     cursor: pointer;
                                 }
-                            }
+                                a{
+                                    &:hover{
+                                        text-decoration: underline;
+                                    }
+                                }
+                                p{
+                                    span{
+                                        font-size: 11px;
+                                        color: #e6af0b
+                                    }
+                                }
+                                
+                            
                         }
                         
                     }

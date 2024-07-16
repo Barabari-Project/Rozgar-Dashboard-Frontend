@@ -8,6 +8,7 @@ header {
   box-shadow: #63636333 0px 2px 6px 0px;
   padding: 6px 16px;
   background-color: $background_color;
+  height: 60px;
   .logoContainer {
     @include flex-gap;
     .img {
