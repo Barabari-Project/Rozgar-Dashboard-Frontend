@@ -168,9 +168,12 @@ const Dashboard: FC = () => {
                     </div>
                     <ul className={styles.moduleBody}>
                       {selectedModule.topics.map((topic: ITopic) => (
-                        <Link to={`/lecture/${sectionId}/${selectedModule._id}/${topic._id}`}>
-                          <li key={topic._id}>{topic.title}</li>
-                        </Link>
+                        <>
+                          <li key={topic._id}>
+                            <p>{topic.title} <span> • Completed </span></p>
+                            <Link to={`/lecture/${sectionId}/${selectedModule._id}/${topic._id}`} className={styles.openClass}>Open class</Link>
+                          </li>
+                        </>
                       ))}
                     </ul>
                   </div>
