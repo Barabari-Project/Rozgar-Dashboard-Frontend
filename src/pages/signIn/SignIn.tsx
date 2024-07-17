@@ -35,30 +35,35 @@ const SignIn: React.FC = () => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: value
+      [name]: value,
     }));
-  }
+  };
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const tempErrors: IValidationErrors = validateSignInForm(formData);
     if (Object.keys(tempErrors).length === 0) {
       setFormErrors({});
-      dispatch(setLoading(true))
+      dispatch(setLoading(true));
       try {
-        const response = await axiosInstance.post(restEndPoints.signIn, formData);
+        const response = await axiosInstance.post(
+          restEndPoints.signIn,
+          formData
+        );
         toast.success(response.data.message);
-        Cookies.set('token', response.data.token);
+        Cookies.set("token", response.data.token);
         dispatch(setUserDetails({ ...response.data.user }));
-        navigate('/');
+        navigate("/dashboard");
       } catch (error: any) {
         if (error.response) {
-          dispatch(setError({
-            statusCode: error.response.status,
-            message: error.response.data.error,
-            action: Action.SIGNIN
-          }));
+          dispatch(
+            setError({
+              statusCode: error.response.status,
+              message: error.response.data.error,
+              action: Action.SIGNIN,
+            })
+          );
         } else {
-          alert('Server is Down');
+          alert("Server is Down");
         }
       } finally {
         dispatch(setLoading(false));

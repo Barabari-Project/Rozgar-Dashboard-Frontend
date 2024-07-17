@@ -1,6 +1,5 @@
 import styles from './header.module.scss';
 import logo from '../../assets/barabari_logo.png'
-import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
