@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "./Layout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Dashboard from "../pages/dashboard/Dashboard";
-import Signup from "../pages/signUp/SignUp";
+import Signup from "../pages/SignUp/SignUp";
 import SignIn from "../pages/signIn/SignIn";
 import Lecture from '../pages/lecture/Lecture';
 
