@@ -47,4 +47,27 @@ header {
         }
     }
   }
+  .btnContainer{
+    @include flex-gap(8px);
+    .signUp{
+      border-radius: 6px;
+      border: 2px solid $other_color;
+      padding: 4px 12px;
+      color: $other_color;
+      &:hover{
+        background-color: $other_color;
+        color: white
+      }
+    }
+    .signIn{
+      border-radius: 6px;
+      padding: 6px 12px;
+      background-color: lighten($other_color, 50%);
+      color: $other_color;
+      &:hover{
+        background-color: $other_color;
+        color: white;
+      }
+    }
+  }
 }

@@ -10,9 +10,15 @@ const Header = () => {
         </div>
         <p>Rozgar</p>
       </div>
-      <div className={styles.profileContainer}>
+      {/* <div className={styles.profileContainer}>
         <div>UN</div>
         <p>User Name</p>
+      </div> */}
+      <div className={styles.btnContainer}>
+
+          <button className={styles.signUp}>Sign Up</button>
+          <button className={styles.signIn}>Sign In</button>
+
       </div>
     </header>
   )
