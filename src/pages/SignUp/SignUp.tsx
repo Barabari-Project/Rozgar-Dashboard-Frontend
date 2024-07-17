@@ -204,8 +204,13 @@ const Signup: React.FC = () => {
 {/* ---------------------------------------------------------------- */}
     
         <section>
-          <div className="flex  items-center justify-center px-4 py-10 sm:px-6 sm:py-12 lg:px-6 lg:py-8 bg-[#FCFCFC]">
-            <div className=" md:mx-auto md:w-full sm:max-w-lg md:max-w-xl lg:max-w-2xl 2xl:max-w-2xl shadow-xl rounded-xl px-4 py-8 bg-white">
+        {/* <div className="grid grid-cols-1 lg:grid-cols-2"> */}
+
+
+
+{/* left */}
+          <div className="flex mt-5  items-center justify-center px-4 py-10 sm:px-6 sm:py-12 lg:px-6 lg:py-8 bg-white">
+            <div className=" md:mx-auto md:w-full sm:max-w-lg md:max-w-xl lg:max-w-2xl 2xl:max-w-2xl rounded-xl px-4 py-2 bg-white">
               <div className="mb-2 flex justify-center">
                 <img className='h-14' src={Rozgar_Logo} alt="" />
               </div>
@@ -213,7 +218,7 @@ const Signup: React.FC = () => {
                 Sign up to create account
               </h2>
               
-              <p className='text-center text-[#595959]'>Explore the available courses in detail.</p>
+              {/* <p className='text-center text-[#595959]'>Explore the available courses in detail.</p> */}
               {/* Form */}
               <form onSubmit={handleSubmit} className="mt-8 ">
                 <div className="space-y-5">
@@ -227,7 +232,7 @@ const Signup: React.FC = () => {
                   <div className='md:w-1/2'>
                     <label htmlFor="name" className="text-base font-medium text-gray-900">
                       {' '}
-                      First Name{' '}
+                      Full Name{' '}
                     </label>
                     <div className="mt-2">
                     <div
@@ -254,7 +259,7 @@ const Signup: React.FC = () => {
                   <div className='md:w-1/2'>
                     <label htmlFor="name" className="text-base font-medium text-gray-900">
                       {' '}
-                      Last Name{' '}
+                      Organization{' '}
                     </label>
                     <div className="mt-2">
                       <div
@@ -396,8 +401,66 @@ const Signup: React.FC = () => {
                   
                   
 
+                  {/* university and degree */}
+                  <div className='flex md:flex-row flex-col gap-2'>
+
+{/* Email */}
+<div className='md:w-1/2'>
+  <label htmlFor="email" className="text-base font-medium text-gray-900">
+    {' '}
+    University{' '}
+  </label>
+  <div className="mt-2">
+  <div
+    className="flex gap-1 rounded-md px-2 border border-gray-300 focus-within:border-blue-500 focus:ring-1 focus-within:ring-1 focus-within:ring-blue-500 focus-within:ring-offset-1"
+  >
+    <span className="flex justify-center items-center gap-2">
+    <Mail />
+    </span>
+    <input
+      className="flex h-10 w-full bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+      type="email"
+      name="email"
+      value={formData.email}
+      onChange={handleChange}
+      placeholder='Email Address'
+    ></input>
+    </div>
+  </div>
+  {formErrors.email && <p className='text-red-500'>{formErrors.email}</p>}
+</div>
+
+
+ {/* Phone Number */}
+ <div className='md:w-1/2'>
+  <label htmlFor="name" className="text-base font-medium text-gray-900">
+    {' '}
+    Degree{' '}
+  </label>
+  <div className="mt-2">
+  <div
+    className="flex gap-1 rounded-md px-2 border border-gray-300 focus-within:border-blue-500 focus:ring-1 focus-within:ring-1 focus-within:ring-blue-500 focus-within:ring-offset-1"
+  >
+    <span className="flex justify-center items-center gap-2">
+      <Phone />+91
+    </span>
+    <input
+      className="flex h-10 w-full bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+      type="tel"
+      name="phoneNumber"
+      value={formData.phoneNumber}
+      onChange={handleChange}
+      placeholder='Mobile Number'
+    />
+  </div>
+
+  </div>
+  {formErrors.phoneNumber && <p className='text-red-500'>{formErrors.phoneNumber}</p>}
+</div>  
+</div>  
+
                   {/* Address Line1 */}
-                  <div>
+                  {/* <div>
                     <div className="flex items-center justify-between">
                       <label htmlFor="password" className="text-base font-medium text-gray-900">
                         {' '}
@@ -422,11 +485,11 @@ const Signup: React.FC = () => {
                       </div>
                     </div>
                     {formErrors.line1 && <p className='text-red-500'>{formErrors.line1}</p>}
-                  </div>
+                  </div> */}
 
 
                   {/* Address Line 2 */}
-                  <div>
+                  {/* <div>
                     <div className="flex items-center justify-between">
                       <label htmlFor="password" className="text-base font-medium text-gray-900">
                         {' '}
@@ -451,10 +514,10 @@ const Signup: React.FC = () => {
                       </div>
                     </div>
                     {formErrors.line2 && <p className='text-red-500'>{formErrors.line2}</p>}
-                  </div>
+                  </div> */}
 
-                  <div className='flex md:flex-row flex-col gap-2'>
                     {/* City */}
+                  {/* <div className='flex md:flex-row flex-col gap-2'>
                   <div className='md:w-1/2'>
                     <div className="flex items-center justify-between">
                       <label htmlFor="password" className="text-base font-medium text-gray-900">
@@ -482,8 +545,8 @@ const Signup: React.FC = () => {
                     {formErrors.city && <p className='text-red-500'>{formErrors.city}</p>}
                   </div>
                   
+                 
                   
-                  {/* Pincode */}
                   <div className='md:w-1/2'>
                     <div className="flex items-center justify-between">
                       <label htmlFor="password" className="text-base font-medium text-gray-900">
@@ -510,7 +573,7 @@ const Signup: React.FC = () => {
                     </div>
                     {formErrors.pincode && <p className='text-red-500'>{formErrors.pincode}</p>}
                   </div>
-                  </div>
+                  </div> */}
 
 
                   <div>
@@ -536,6 +599,16 @@ const Signup: React.FC = () => {
               
             </div>
           </div>
+
+          {/* right */}
+          {/* <div className="h-full w-full flex justify-center items-center ">
+              <img
+                className="mx-auto h-full w-full rounded-md object-cover"
+                src="https://images.unsplash.com/photo-1630673245362-f69d2b93880e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
+                alt=""
+              />
+            </div> */}
+          {/* </div> */}
         </section>
 
       </Error>
