@@ -16,6 +16,6 @@ export interface IAddress {
 }
 
 export interface ISignInForm{
-    email: string;
+    phoneNumber: string;
     password: string;
 }

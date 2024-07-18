@@ -3,7 +3,6 @@
 
 .wrapper{
     display: flex;
-    // align-items: flex-start;
     flex-direction: column;
     gap: 20px;
     padding: 20px;
@@ -38,6 +37,7 @@
                             padding: 10px;
                             box-shadow: rgba(0, 0, 0, 0.13) 0px 0px 5px 0px, rgba(0, 0, 0, 0.13) 0px 0px 1px 0px;
                             border-radius: 8px;
+                            cursor: pointer;
                             .names{
                                 @include flex-gap(8px);
                                 .serialNum{
@@ -85,8 +85,9 @@
                         }
                     }
                 }
-                
-        
+                @include sm-max {
+                    width: 100%;
+                }
             }
             .leftSide{
                 width: 70%;
@@ -94,33 +95,66 @@
                 border-radius: 10px;
                 border: 1px solid $border_color;
                 .moduleDetails{
-                    .moduleHead{
+                    .moduleWrap{
                         @include flex-gap;
+                        justify-content: space-between;
                         background-color: lighten($button_color, 20%);
                         padding: 0 10px;
-                        border-top-left-radius: 10px;
-                        border-top-right-radius: 10px;
-                        p{
-                            font-weight: 700;
-                            width: 100%;
-                        }
-                    }
-                    .moduleBody{
-                        padding: 10px;
-                        li{
-                            list-style: none;
-                            padding: 15px;
-                            border-bottom: 1px solid $border_color;
-                            &:hover{
-                                background-color: #ffcc3338;
-                                border-radius: 10px;
-                                cursor: pointer;
+                            border-top-left-radius: 10px;
+                            border-top-right-radius: 10px;
+                        .moduleHead{
+                            @include flex-gap;
+                            p{
+                                font-weight: 700;
+                                width: 100%;
                             }
                         }
                     }
+                    
+                    .moduleBody{
+                        padding: 10px;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+
+                            
+                            li{
+                                list-style: none;
+                                color: $other_color;
+                                padding: 15px;
+                                border: 1px solid $border_color;
+                                border-radius: 10px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+                                &:hover{
+                                    background-color: #ffcc3338;
+                                    cursor: pointer;
+                                }
+                                a{
+                                    &:hover{
+                                        text-decoration: underline;
+                                    }
+                                }
+                                p{
+                                    span{
+                                        font-size: 11px;
+                                        color: #e6af0b
+                                    }
+                                }
+                                
+                            
+                        }
+                        
+                    }
 
                 }
-                
+                @include sm-max {
+                    width: 100%;
+                }
+            }
+            @include sm-max {
+                flex-direction: column;
             }
         }
     }

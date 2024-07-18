@@ -16,6 +16,7 @@ import Error from "../../components/error/Error";
 import Rozgar_Logo from "../../assets/barabari_logo.png";
 import { Link } from "react-router-dom";
 import { Mail, Lock } from "lucide-react";
+import { HOME } from "../../constants/routesEndpoints";
 
 const myStyle = {
   background: "radial-gradient(circle, rgba(181,189,227,1) 0%, rgba(50,68,152,1) 40%)",
@@ -26,7 +27,7 @@ const SignIn: React.FC = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState<ISignInForm>({
-    email: "",
+    phoneNumber: "",
     password: "",
   });
   const [formErrors, setFormErrors] = useState<IValidationErrors>({});
@@ -52,7 +53,7 @@ const SignIn: React.FC = () => {
         toast.success(response.data.message);
         Cookies.set("token", response.data.token);
         dispatch(setUserDetails({ ...response.data.user }));
-        navigate("/dashboard");
+        navigate(HOME);
       } catch (error: any) {
         if (error.response) {
           dispatch(
@@ -141,15 +142,15 @@ const SignIn: React.FC = () => {
                           <input
                             className="flex h-10 w-full bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                             type="email"
-                            name="email"
+                            name="phoneNumber"
                             placeholder="Email"
-                            value={formData.email}
+                            value={formData.phoneNumber}
                             onChange={handleChange}
                           ></input>
                         </div>
-                        {formErrors.email && (
+                        {formErrors.phoenNumber && (
                           <p className="text-red-400 mt-1 duration-500">
-                            {formErrors.email}
+                            {formErrors.phoenNumber}
                           </p>
                         )}
                       </div>

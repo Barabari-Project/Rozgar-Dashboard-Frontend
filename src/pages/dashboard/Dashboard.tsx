@@ -20,31 +20,31 @@ const Dashboard: FC = () => {
   const [sectionId, setSectionId] = useState<string | null>(null);
   const wrapperRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   const listRefs = useRef<{ [key: string]: HTMLUListElement | null }>({});
+  const course: ICourseDetails = useSelector((state: RootState) => state.course.course);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchData = async () => {
-      const courseId = '66918ca9c063073770507559';
-      try {
-        dispatch(setLoading(true));
-        const response = await axiosInstance(`${restEndPoints.getCourseById}/${courseId}`);
-        dispatch(setCourseDetails(response.data));
-      } catch (error: any) {
-        console.log(error);
-        dispatch(setError({
-          statusCode: error.response.status,
-          message: error.response.data.error,
-          action: Action.GET_COURSE_BY_ID
-        }));
-      } finally {
-        dispatch(setLoading(false));
-      }
-    }
     course == null && fetchData();
   }, []);
 
-  const course: ICourseDetails = useSelector((state: RootState) => state.course.course);
+  const fetchData = async () => {
+    const courseId = '66918ca9c063073770507559';
+    try {
+      dispatch(setLoading(true));
+      const response = await axiosInstance(`${restEndPoints.getCourseById}/${courseId}`);
+      dispatch(setCourseDetails(response.data));
+    } catch (error: any) {
+      console.log(error);
+      dispatch(setError({
+        statusCode: error.response.status,
+        message: error.response.data.error,
+        action: Action.GET_COURSE_BY_ID
+      }));
+    } finally {
+      dispatch(setLoading(false));
+    }
+  }
 
   useEffect(() => {
     if (course) {
@@ -90,7 +90,7 @@ const Dashboard: FC = () => {
     <Loading>
       <Error>
         <div className={styles.wrapper}>
-          <p className={styles.heading}>Full Stack Web Development Program</p>
+          <p className={styles.heading}>{course?.title}</p>
           <div className={styles.wrapContainer}>
             <div className={styles.container}>
               <div className={styles.rightSide}>
@@ -98,7 +98,7 @@ const Dashboard: FC = () => {
                   {course &&
                     course.sections.map((section) => (
                       <div className={styles.courseContainer} key={section._id}>
-                        <div className={styles.courseHead}>
+                        <div className={styles.courseHead} onClick={() => toggleExpand(section._id)}>
                           <div className={styles.names}>
                             <p className={styles.serialNum}>{section.number}</p>
                             <p>{section.title}</p>
@@ -113,7 +113,6 @@ const Dashboard: FC = () => {
                                 }`,
                               transition: "transform 0.3s ease",
                             }}
-                            onClick={() => toggleExpand(section._id)}
                           />
                         </div>
                         <div
@@ -162,15 +161,20 @@ const Dashboard: FC = () => {
               <div className={styles.leftSide}>
                 {selectedModule && (
                   <div className={styles.moduleDetails}>
-                    <div className={styles.moduleHead}>
-                      <Code size={28} color="#324498" weight="duotone" />
-                      <p>{selectedModule.title}</p>
+                    <div className={styles.moduleWrap}>
+                      <div className={styles.moduleHead}>
+                        <Code size={28} color="#324498" weight="duotone" />
+                        <p>{selectedModule.title}</p>
+                      </div>
                     </div>
                     <ul className={styles.moduleBody}>
                       {selectedModule.topics.map((topic: ITopic) => (
-                        <Link to={`/lecture/${sectionId}/${selectedModule._id}/${topic._id}`}>
-                          <li key={topic._id}>{topic.title}</li>
-                        </Link>
+                        <>
+                          <li key={topic._id}>
+                            <p>{topic.title} <span> • Completed </span></p>
+                            <Link to={`/lecture/${sectionId}/${selectedModule._id}/${topic._id}`} className={styles.openClass}>Open class</Link>
+                          </li>
+                        </>
                       ))}
                     </ul>
                   </div>
