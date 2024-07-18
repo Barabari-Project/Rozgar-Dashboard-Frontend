@@ -212,11 +212,11 @@ const SignIn: React.FC = () => {
                 <div className="mt-3 space-y-3">
                   <button
                     type="button"
-                    className="relative inline-flex w-full items-center justify-center rounded-md border border-gray-400 bg-white px-3.5 py-2.5 font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:text-black focus:bg-gray-100 focus:text-black focus:outline-none"
+                    className="relative bg-[#FFCB33] inline-flex w-full items-center justify-center rounded-md border border-gray-400 bg-white px-3.5 py-2.5 font-semibold text-gray-700 transition-all hover:scale-105 duration-500 hover:text-black focus:bg-gray-100 focus:text-black focus:outline-none"
                   >
                     <span className="mr-2 inline-block">
                       <svg
-                        className="h-6 w-6 text-rose-500"
+                        className="h-6 w-6 text-black "
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                         fill="currentColor"
