@@ -18,7 +18,7 @@ import { Link } from "react-router-dom";
 import { Mail, Lock } from "lucide-react";
 
 const myStyle = {
-  background: "radial-gradient(circle, #b7c3f9, #22358f)",
+  background: "radial-gradient(circle, rgba(181,189,227,1) 0%, rgba(50,68,152,1) 40%)",
 };
 
 const SignIn: React.FC = () => {
