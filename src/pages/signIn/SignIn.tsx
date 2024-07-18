@@ -27,7 +27,7 @@ const SignIn: React.FC = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState<ISignInForm>({
-    email: "",
+    phoneNumber: "",
     password: "",
   });
   const [formErrors, setFormErrors] = useState<IValidationErrors>({});
@@ -142,15 +142,15 @@ const SignIn: React.FC = () => {
                           <input
                             className="flex h-10 w-full bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                             type="email"
-                            name="email"
+                            name="phoneNumber"
                             placeholder="Email"
-                            value={formData.email}
+                            value={formData.phoneNumber}
                             onChange={handleChange}
                           ></input>
                         </div>
-                        {formErrors.email && (
+                        {formErrors.phoenNumber && (
                           <p className="text-red-400 mt-1 duration-500">
-                            {formErrors.email}
+                            {formErrors.phoenNumber}
                           </p>
                         )}
                       </div>
