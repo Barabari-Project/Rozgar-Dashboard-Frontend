@@ -77,11 +77,11 @@ const SignIn: React.FC = () => {
     <Loading>
       <Error>
         <section>
-          <div className="grid grid-cols-1 lg:grid-cols-2 mt-8 mb-8  shadow-xl bg-white">
+          <div className="grid grid-cols-1 lg:grid-cols-2 ">
             {/* left */}
             <div
               style={myStyle}
-              className=" h-full text-white w-full hidden lg:flex flex-col  justify-start items-center px-10 py-16"
+              className=" h-full text-white w-full hidden lg:flex flex-col justify-start items-center px-10 py-12"
             >
               {/* <img
                 className="mx-auto h-full w-full rounded-md object-cover p-5"
@@ -105,10 +105,10 @@ const SignIn: React.FC = () => {
             </div>
 
             {/* right */}
-            <div className="flex mt-5 items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-14 ">
-              <div className="xl:mx-auto xl:w-full xl:max-w-md 2xl:max-w-lg rounded-xl px-6 py-8 bg-white">
+            <div className="flex items-center justify-center px-4 py-2 sm:px-6 sm:py-4 lg:px-8 lg:py-10 ">
+              <div className="xl:mx-auto xl:w-full xl:max-w-md 2xl:max-w-lg rounded-xl px-6 py-8 ">
                 <div className="mb-2 flex justify-center">
-                  <img className="h-14" src={Rozgar_Logo} alt="" />
+                  <img className="h-14" src={Rozgar_Logo} alt="Rozgar" />
                 </div>
                 <h2 className="text-center text-2xl font-bold leading-tight text-black">
                   Sign in to Rozgar
