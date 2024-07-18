@@ -20,8 +20,7 @@ const LectureDashboard: React.FC = () => {
   const [tab, setTab] = useState<LecturePageTab>(LecturePageTab.Video);
 
   const [videoUrl, setVideoUrl] = useState<string>("");
-  
-  console.log(course, "course")
+
   useEffect(() => {
     if (course) {
       course
@@ -76,7 +75,7 @@ const LectureDashboard: React.FC = () => {
               <VideoTab
                 videoUrl={videoUrl}
                 module={module} /> :
-                tab == LecturePageTab.Assignment ?
+              tab == LecturePageTab.Assignment ?
                 <AssignmentTab /> :
                 <QuestionTab />
           }
@@ -92,26 +91,26 @@ const LectureDashboard: React.FC = () => {
 
         {/* right */}
         <div id="Right" className="w-full sticky top-0 lg:w-1/4 bg-white rounded-xl shadow-lg overflow-hidden overflow-y-auto">
-          
+
           {/* Module Heading */}
           <div className="flex gap-4 items-center px-4 pt-3 text-md text-ellipsis xl:pt-5 pb-3 hover:bg-[rgb(245,235,235)] shadow-md
           hover:cursor-pointer duration-300">
             <span className="text-md bg-slate-200 rounded-full flex justify-center items-center w-[35px] h-[35px]">
-            {module?.number || "1"}
+              {module?.number || "1"}
             </span>
             <span className="font-bold ">{module?.title || "Module"}</span>
           </div>
 
           {/* Lecture List */}
-          {module?.topics.map((lecture)=>(
+          {module?.topics.map((lecture) => (
             <div
-            onClick={
-              ()=>{
-                setTab(LecturePageTab.Video)
-                setVideoUrl(lecture.url);
+              onClick={
+                () => {
+                  setTab(LecturePageTab.Video)
+                  setVideoUrl(lecture.url);
+                }
               }
-            }
-            key={lecture._id} className="flex gap-4 items-center px-4 py-5 border-grey-300 border-t-[1px] border-b-[1px] hover:bg-[#ffecb3] hover:cursor-pointer duration-300">
+              key={lecture._id} className="flex gap-4 items-center px-4 py-5 border-grey-300 border-t-[1px] border-b-[1px] hover:bg-[#ffecb3] hover:cursor-pointer duration-300">
               <div className="flex items-center gap-3">
                 <label className="text-white">
                   <input
@@ -130,7 +129,7 @@ const LectureDashboard: React.FC = () => {
 
             </div>
           ))}
-          
+
 
         </div>
       </div>

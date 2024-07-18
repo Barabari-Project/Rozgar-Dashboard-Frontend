@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { IBackEndError } from '../../utils/types/error';
 import { Action } from '../../enums/actionEnum';
+import { SIGNIN } from '../../constants/routesEndpoints';
 
 interface ErrorProps {
     children: React.ReactNode;
@@ -19,10 +20,10 @@ const Error: React.FC<ErrorProps> = ({ children }) => {
         if (error) {
             toast.error(error.message);
             if (401 == error.statusCode) {
-                navigate('/sign-in')
+                navigate(SIGNIN)
             } else if (error.action === Action.SIGNUP) {
                 if (409 == error.statusCode) {
-                    navigate('/sign-in');
+                    navigate(SIGNIN);
                 }
             } else if (error.action === Action.SIGNIN) {
                 if (404 == error.statusCode) {

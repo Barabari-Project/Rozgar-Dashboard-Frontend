@@ -16,6 +16,7 @@ import Error from "../../components/error/Error";
 import Rozgar_Logo from "../../assets/barabari_logo.png";
 import { Link } from "react-router-dom";
 import { Mail, Lock } from "lucide-react";
+import { HOME } from "../../constants/routesEndpoints";
 
 const myStyle = {
   background: "radial-gradient(circle, #b7c3f9, #22358f)",
@@ -52,7 +53,7 @@ const SignIn: React.FC = () => {
         toast.success(response.data.message);
         Cookies.set("token", response.data.token);
         dispatch(setUserDetails({ ...response.data.user }));
-        navigate("/dashboard");
+        navigate(HOME);
       } catch (error: any) {
         if (error.response) {
           dispatch(
