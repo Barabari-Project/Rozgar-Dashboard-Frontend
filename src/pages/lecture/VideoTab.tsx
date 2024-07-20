@@ -1,11 +1,10 @@
-import { IModule } from "../../utils/types/course";
+// import { IModule } from "../../utils/types/course";
 
 interface VideoTabProps {
-    lecture: any ;
-    module: IModule | null;
+    lecture: any
 }
 
-const VideoTab: React.FC<VideoTabProps> = ({ lecture, module }) => {
+const VideoTab: React.FC<VideoTabProps> = ({ lecture }) => {
     
     console.log(lecture, "VideoTab lecture"); //abc
     

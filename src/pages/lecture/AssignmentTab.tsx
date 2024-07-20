@@ -1,6 +1,9 @@
 
 
-const AssignmentTab: React.FC = () => {
+const AssignmentTab: React.FC = ({ lecture}) => {
+
+    console.log(lecture, "AssignmentTab lecture");
+    
     return (
         <>
             <p>Assignment</p>
