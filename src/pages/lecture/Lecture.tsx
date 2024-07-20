@@ -95,12 +95,12 @@ const LectureDashboard: React.FC = () => {
           }
 
           <div id="separator" className="my-4 text-black border-[1.5px] border-grey-400"></div>
-          <div className="">
+          {/* <div className="">
             <h2 className="text-2xl">Content</h2>
             <a href="#" target="_blank" className="text-blue-500">
               Link
             </a>
-          </div>
+          </div> */}
         </div>
 
         {/* right */}
