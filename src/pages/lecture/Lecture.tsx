@@ -83,7 +83,7 @@ const LectureDashboard: React.FC = () => {
               Lecture
             </div>
 
-            
+
             <div
               className={`${
                 tab === LecturePageTab.Question
