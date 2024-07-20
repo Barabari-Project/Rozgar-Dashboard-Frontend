@@ -21,6 +21,8 @@ const LectureDashboard: React.FC = () => {
 
   const [videoUrl, setVideoUrl] = useState<string>("");
 
+  const [lecture, setLecture] = useState<any>(null);
+
   useEffect(() => {
     if (course) {
       course
@@ -32,16 +34,28 @@ const LectureDashboard: React.FC = () => {
             .filter(module => module._id == moduleId)
             .forEach(module => {
               setModule(module);
-              setVideoUrl(module.topics[0]?.url || ""); //this is causing issue we have to fix it
+              // setLecture(module.topics[0]);
+              // setVideoUrl(module.topics[0]?.url || ""); //this is causing issue we have to fix it
             });
 
         })
     }
   }, [course, topicId, sectionId, moduleId]);
 
+  useEffect(() => {
+    if(!lecture){
+      if (module) {
+        setLecture(module.topics[0]);
+        setVideoUrl(module.topics[0]?.url);
+      }
+    }
+  }, [module]);
+
   console.log(module, "Module Lecture Page");
 
-  console.log(videoUrl, "Video URL");
+  console.log(lecture, "Lecture")
+
+  // console.log(videoUrl, "VideoUrl")
 
   return (
     <>
@@ -73,11 +87,11 @@ const LectureDashboard: React.FC = () => {
           {
             tab == LecturePageTab.Video ?
               <VideoTab
-                videoUrl={videoUrl}
+              lecture={lecture}
                 module={module} /> :
               tab == LecturePageTab.Assignment ?
                 <AssignmentTab /> :
-                <QuestionTab />
+                <QuestionTab lecture={lecture} />
           }
 
           <div id="separator" className="my-4 text-black border-[1.5px] border-grey-400"></div>
