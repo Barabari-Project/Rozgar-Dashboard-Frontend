@@ -2,7 +2,7 @@
 
 const QuestionTab: React.FC = ({ lecture }) => {
 
-    console.log("QuestionTab", lecture)
+    // console.log("QuestionTab", lecture)
 
     return (
         <>
@@ -14,11 +14,11 @@ const QuestionTab: React.FC = ({ lecture }) => {
                 {
                     lecture?.questions?.map(
                         (question, index) => 
-                    <div key={question?.id} className="w-full bg-white h-[55px] flex justify-between items-center rounded-xl md:px-4 px-1 md:pr-5 hover:shadow-xl duration-500  hover:translate-y-[-5px]">
+                   question.title.includes('Question Title')  && <div key={question?.id} className="w-full bg-white h-[55px] flex justify-between items-center rounded-xl md:px-4 px-1 md:pr-5 hover:shadow-xl duration-500  hover:translate-y-[-5px]">
 
                     {/* left part */}
                      <div className="flex h-full items-center max-w-3/4 w-3/4 overflow-hidden gap-3 pl-2">
-                        <span>{index + 1}.</span>
+                        <span>{question.number}.</span>
                          <label className="text-white">
                          <input
                              className="dark:border-white-400/20 dark:scale-100 transition-all duration-500 ease-in-out dark:hover:scale-110 dark:checked:scale-100 w-5 h-5 mt-1

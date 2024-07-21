@@ -123,7 +123,7 @@ const LectureDashboard: React.FC = () => {
         {/* right */}
         <div
           id="Right"
-          className="w-full sticky top-0 lg:w-1/4 bg-white rounded-xl shadow-lg overflow-hidden overflow-y-auto"
+          className="w-full sticky top-0 lg:w-1/4 bg-white rounded-xl shadow-lg overflow-hidden overflow-scroll overflow-y-auto "
         >
           {/* Module Heading */}
           <div className="flex gap-4 items-center px-4 pt-3 text-md text-ellipsis xl:pt-5 pb-3 hover:bg-[rgb(245,235,235)] shadow-md hover:cursor-pointer duration-300">
