@@ -8,6 +8,7 @@ import VideoTab from "./VideoTab";
 import AssignmentTab from "./AssignmentTab";
 import QuestionTab from "./QuestionTab";
 import "./lecture.css";
+import Modal from "./Modal";
 
 const LectureDashboard: React.FC = () => {
   const course: ICourseDetails = useSelector(
@@ -19,6 +20,8 @@ const LectureDashboard: React.FC = () => {
   const [videoUrl, setVideoUrl] = useState<string>("");
   const [lecture, setLecture] = useState<any>(null);
   const [activeLecture, setActiveLecture] = useState<any>(null);
+
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     if (course) {
@@ -55,13 +58,16 @@ const LectureDashboard: React.FC = () => {
     }
   }, [module, lecture]);
 
+  
+
   return (
-    <>
-      <div className="flex relative lg:flex-row flex-col gap-5 py-6 px-6 bg-[#eceeef] w-full">
+    <div className="relative ">
+    {openModal && <Modal setOpenModal={setOpenModal} />}
+      <div className="flex relative lg:flex-row flex-col gap-5 p-2 md:py-6 md:px-6 bg-[#eceeef] w-full">
         {/* left */}
         <div
           id="left"
-          className="py-7 px-1 sm:px-2 md:px-4 lg:px-5 w-full lg:w-3/4 bg-white rounded-xl shadow-lg overflow-hidden"
+          className="py-7 px-1 sm:px-2 md:px-4 lg:px-5 w-full lg:w-3/4 bg-white rounded-xl shadow-lg overflow-y-auto overflow-scroll"
         >
           <h1 className="border-l-8 text-[#324498] font-semibold text-xl font-semifold border-[#FFCB33] bg-white px-4 py-1">
             {module?.title}
@@ -109,21 +115,18 @@ const LectureDashboard: React.FC = () => {
           {tab === LecturePageTab.Video ? (
             <VideoTab lecture={lecture} />
           ) : tab === LecturePageTab.Assignment ? (
-            <AssignmentTab lecture={lecture} />
+            <AssignmentTab lecture={lecture} setOpenModal={setOpenModal} />
           ) : (
-            <QuestionTab lecture={lecture} />
+            <QuestionTab lecture={lecture} setOpenModal={setOpenModal} />
           )}
 
-          <div
-            id="separator"
-            className="my-4 text-black border-[1.5px] border-grey-400"
-          ></div>
+          
         </div>
 
         {/* right */}
         <div
           id="Right"
-          className="w-full sticky top-0 lg:w-1/4 bg-white rounded-xl shadow-lg overflow-hidden overflow-scroll overflow-y-auto "
+          className="w-full lg:w-1/4 bg-white rounded-xl shadow-lg "
         >
           {/* Module Heading */}
           <div className="flex gap-4 items-center px-4 pt-3 text-md text-ellipsis xl:pt-5 pb-3 hover:bg-[rgb(245,235,235)] shadow-md hover:cursor-pointer duration-300">
@@ -134,7 +137,8 @@ const LectureDashboard: React.FC = () => {
           </div>
 
           {/* Lecture List */}
-          {module?.topics.map((lecture, index) => (
+         <div className="flex flex-col max-h-[80vh] overflow-scroll overflow-y-auto overflow-x-hidden">
+         {module?.topics.map((lecture, index) => (
             <div
               onClick={() => {
                 setTab(LecturePageTab.Video);
@@ -158,9 +162,10 @@ const LectureDashboard: React.FC = () => {
               <div className="flex items-center text-sm">{lecture?.title}</div>
             </div>
           ))}
+          </div> 
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
