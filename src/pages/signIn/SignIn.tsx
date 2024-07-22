@@ -48,9 +48,10 @@ const SignIn: React.FC = () => {
       try {
         const response = await axiosInstance.post(
           restEndPoints.signIn,
-          formData
+          { user: formData }
         );
         toast.success(response.data.message);
+        console.log(response.data);
         Cookies.set("token", response.data.token);
         dispatch(setUserDetails({ ...response.data.user }));
         navigate(HOME);
@@ -132,7 +133,7 @@ const SignIn: React.FC = () => {
                         className="text-base font-medium text-gray-900"
                       >
                         {" "}
-                        Email address{" "}
+                        Phone Number{" "}
                       </label>
                       <div className="mt-2">
                         <div className="flex gap-1 rounded-md px-2 border border-gray-300 focus-within:border-blue-500 focus:ring-1 focus-within:ring-1 focus-within:ring-blue-500 focus-within:ring-offset-1">
@@ -141,7 +142,7 @@ const SignIn: React.FC = () => {
                           </span>
                           <input
                             className="flex h-10 w-full bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
-                            type="email"
+                            type="tel"
                             name="phoneNumber"
                             placeholder="Email"
                             value={formData.phoneNumber}

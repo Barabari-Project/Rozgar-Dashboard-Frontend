@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { IBackEndError } from '../../utils/types/error';
 import { Action } from '../../enums/actionEnum';
 import { SIGNIN } from '../../constants/routesEndpoints';
+import { clearError } from '../../redux/slices/StatusSlice';
 
 interface ErrorProps {
     children: React.ReactNode;
@@ -14,6 +15,7 @@ interface ErrorProps {
 const Error: React.FC<ErrorProps> = ({ children }) => {
     const error: IBackEndError = useSelector((state: RootState) => state.status.error);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         console.log(error);
@@ -30,6 +32,7 @@ const Error: React.FC<ErrorProps> = ({ children }) => {
                     navigate('/sign-up');
                 }
             }
+            dispatch(clearError());
         }
     }, [error])
 
