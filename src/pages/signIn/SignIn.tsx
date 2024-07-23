@@ -41,7 +41,8 @@ const SignIn: React.FC = () => {
   };
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const tempErrors: IValidationErrors = validateSignInForm(formData);
+    // const tempErrors: IValidationErrors = validateSignInForm(formData);
+    const tempErrors=[]
     if (Object.keys(tempErrors).length === 0) {
       setFormErrors({});
       dispatch(setLoading(true));
@@ -51,10 +52,10 @@ const SignIn: React.FC = () => {
           { user: formData }
         );
         toast.success(response.data.message);
-        console.log(response.data);
         Cookies.set("token", response.data.token);
         dispatch(setUserDetails({ ...response.data.user }));
         navigate(HOME);
+        console.log(response)
       } catch (error: any) {
         if (error.response) {
           dispatch(

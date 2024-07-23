@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { FC, useEffect, useState, useRef } from "react";
 import styles from "./dashboardMobile.module.scss";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,7 +17,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
 
-function SampleNextArrow(props) {
+function SampleNextArrow(props:any) {
   const { className, style, onClick } = props;
   return (
     <div
@@ -32,7 +33,7 @@ function SampleNextArrow(props) {
   );
 }
 
-function SamplePrevArrow(props) {
+function SamplePrevArrow(props:any) {
   const { className, style, onClick } = props;
   return (
     <div
@@ -78,7 +79,7 @@ const DashboardMobile: FC = () => {
   }, []);
 
   const fetchData = async () => {
-    const courseId = "66918ca9c063073770507559";
+    const courseId = "669bbc0b820a72940b3831bb";
     try {
       dispatch(setLoading(true));
       const response = await axiosInstance(

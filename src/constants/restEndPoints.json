@@ -3,5 +3,6 @@
     "signIn": "/auth/sign-in",
     "getAllCourses": "/courses",
     "getCourseById": "/courses",
-    "signOut": "/auth/sign-out"
+    "signOut": "/auth/sign-out",
+    "profileUpdate":"/profile/update"
 }

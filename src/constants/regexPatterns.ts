@@ -4,3 +4,4 @@ export const passwordRegex = /^.{4,9}$/;
 export const pincodeRegex = /^\d{6}$/;
 export const phoneRegex = /^\d{10}$/;
 export const addressRegex = /^[a-zA-Z ]{2,50}$/;
+export const string50CharRegex = /^[a-zA-Z0-9\s]{0,50}$/;
