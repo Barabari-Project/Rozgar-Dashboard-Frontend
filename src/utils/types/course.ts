@@ -33,4 +33,5 @@ export interface ICourseDetails {
     _id: string;
     title: string;
     sections: ISection[];
+    
 }
