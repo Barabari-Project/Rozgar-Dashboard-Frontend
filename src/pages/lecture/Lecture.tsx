@@ -42,15 +42,6 @@ const LectureDashboard: React.FC = () => {
     }
   }, [course, topicId, sectionId, moduleId]);
 
-  // useEffect(() => {
-  //   if (!lecture && module) {
-  //     const initialLecture = module.topics[0];
-  //     setActiveLecture(initialLecture._id);
-  //     setLecture(initialLecture);
-  //     setVideoUrl(initialLecture.url);
-  //   }
-  // }, [module, lecture]);
-
   return (
     <div className="relative ">
       {openModal && <Modal setOpenModal={setOpenModal} />}
