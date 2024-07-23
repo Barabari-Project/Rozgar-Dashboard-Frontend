@@ -4,7 +4,7 @@ import { ISignInForm } from "../types/form";
 import errorMessages from "../../constants/validationErrorMessages.json";
 
 export const validateSignInForm = (formData: ISignInForm): IValidationErrors => {
-    let tempErrors: IValidationErrors = {};
+    const tempErrors: IValidationErrors = {};
     if (!phoneRegex.test(formData.phoneNumber)) {
         tempErrors.phoneNumber = errorMessages.phoneNumber;
     }

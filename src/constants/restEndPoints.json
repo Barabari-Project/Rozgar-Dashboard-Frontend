@@ -4,6 +4,7 @@
     "getAllCourses": "/courses",
     "getCourseById": "/courses",
     "signOut": "/auth/sign-out",
+    "profileUpdate":"/profile/update",
     "submitQuestion": "/submit/question",
     "submitTopic": "/submit/topic",
     "getAllSubmittedQuestions": "/submit/question"

@@ -1,0 +1,10 @@
+@import "../../styles/breakpoints";
+@import "../../styles/mixins";
+
+.labelWrap{
+    display: flex;
+    @include sm-max {
+        flex-direction: column;
+        gap: 0;
+    }
+}

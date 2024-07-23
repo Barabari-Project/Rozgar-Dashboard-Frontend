@@ -7,7 +7,8 @@ import SignIn from "../pages/signIn/SignIn";
 import DashboardMobile from "../pages/dashboard/dashboardMobile/DashboardMobile";
 import useMediaQuery from "../utils/hooks/useMediaQuery";
 import Lecture from '../pages/lecture/Lecture';
-import { HOME, SIGNIN, SIGNUP } from "../constants/routesEndpoints";
+import { HOME, SIGNIN, SIGNUP, PROFILE } from "../constants/routesEndpoints";
+import Profile from "../pages/profile/Profile";
 
 const Route: React.FC = () => {
   const isMobile = useMediaQuery(768);
@@ -29,6 +30,9 @@ const Route: React.FC = () => {
         }, {
           path: "/lecture/:sectionId/:moduleId/:topicId",
           element: <Lecture />
+        }, {
+          path: PROFILE,
+          element: <Profile />
         }
       ]
     },

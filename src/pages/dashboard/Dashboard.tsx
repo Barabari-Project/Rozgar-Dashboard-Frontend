@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FC, useEffect, useRef, useState } from "react";
 import styles from "./dashboard.module.scss";
 import { CaretDown, CheckCircle, Code } from "@phosphor-icons/react";

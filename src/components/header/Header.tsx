@@ -13,10 +13,10 @@ const Header = () => {
         </div>
         <p>Rozgar</p>
       </div>
-      {/* <div className={styles.profileContainer}>
+      <div className={styles.profileContainer} onClick={() => navigate("/profile")}>
         <div>UN</div>
         <p>User Name</p>
-      </div> */}
+      </div>
       <div className={styles.btnContainer}>
 
         <button className={styles.signUp} onClick={() => navigate(SIGNUP)}>Sign Up</button>
