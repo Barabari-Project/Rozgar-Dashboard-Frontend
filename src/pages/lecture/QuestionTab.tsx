@@ -1,35 +1,41 @@
-import axiosInstance from "../../utils/axiosInstance";
-import restEndPoints from "../../constants/restEndPoints.json";
-import { toast } from 'react-toastify';
-import { setError } from "../../redux/slices/StatusSlice";
-import { Action } from "../../enums/actionEnum";
-import { useDispatch } from "react-redux";
+// import axiosInstance from "../../utils/axiosInstance";
+// import restEndPoints from "../../constants/restEndPoints.json";
+// import { toast } from 'react-toastify';
+// import { setError } from "../../redux/slices/StatusSlice";
+// import { Action } from "../../enums/actionEnum";
+// import { useDispatch } from "react-redux";
+import { ITopic } from "../../utils/types/course";
 
-const QuestionTab: React.FC = ({ lecture, setOpenModal }) => {
-  const dispatch = useDispatch();
-  // console.log("QuestionTab", lecture)
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const data = {
-      questionId: "66918c98c0630737705074e5",
-      link: "https://github.com/drumil"
-    }
-    // => loading on the submit button should be added 
-    // => when loading is on input field should be disabled
-    // => after sucessfull response from backend popup should not be visible
-    // => if error then popup will be as it is
-    // put validation on link that size should not be more than 500 chars
-    try {
-      const response = await axiosInstance.post(restEndPoints.submitQuestion, data);
-      toast.success(response.data.message);
-    } catch (error) {
-      dispatch(setError({
-        statusCode: error.response.status,
-        message: error.response.data.error,
-        action: Action.SUBMIT_QUESTION
-      }));
-    }
-  }
+interface QuestionTabProps {
+  topic: ITopic | null;
+  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const QuestionTab: React.FC<QuestionTabProps> = ({ topic, setOpenModal }) => {
+  // const dispatch = useDispatch();
+
+  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   const data = {
+  //     questionId: "66918c98c0630737705074e5",
+  //     link: "https://github.com/drumil"
+  //   }
+  //   // => loading on the submit button should be added 
+  //   // => when loading is on input field should be disabled
+  //   // => after sucessfull response from backend popup should not be visible
+  //   // => if error then popup will be as it is
+  //   // put validation on link that size should not be more than 500 chars
+  //   try {
+  //     const response = await axiosInstance.post(restEndPoints.submitQuestion, data);
+  //     toast.success(response.data.message);
+  //   } catch (error: any) {
+  //     dispatch(setError({
+  //       statusCode: error.response.status,
+  //       message: error.response.data.error,
+  //       action: Action.SUBMIT_QUESTION
+  //     }));
+  //   }
+  // }
   return (
     <>
       <div className="bg-[#E6EBF0] p-1 md:p-5 m-1 md:m-3 rounded-xl">
@@ -39,11 +45,11 @@ const QuestionTab: React.FC = ({ lecture, setOpenModal }) => {
 
         <br />
         <div className="w-full flex flex-col gap-4  ">
-          {lecture?.questions?.map(
-            (question, index) =>
+          {topic?.questions?.map(
+            (question) =>
               question.title.includes("Question Title") && (
                 <div
-                  key={question?.id}
+                  key={question._id}
                   className="w-full bg-white h-fit min-h-[100px] md:min-h-[55px] flex flex-col md:flex-row justify-evenly md:justify-between items-start md:items-center rounded-xl md:px-4 px-1 md:pr-5 hover:shadow-xl duration-500  hover:translate-y-[-5px]"
                 >
                   {/* left part */}

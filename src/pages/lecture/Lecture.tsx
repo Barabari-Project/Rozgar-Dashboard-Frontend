@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ICourseDetails, IModule } from "../../utils/types/course";
+import { ICourseDetails, IModule, ITopic } from "../../utils/types/course";
 import { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -14,12 +14,13 @@ const LectureDashboard: React.FC = () => {
   const course: ICourseDetails = useSelector(
     (state: RootState) => state.course.course
   );
+
   const { topicId, sectionId, moduleId } = useParams();
+
   const [module, setModule] = useState<IModule | null>(null);
   const [tab, setTab] = useState<LecturePageTab>(LecturePageTab.Video);
-  const [videoUrl, setVideoUrl] = useState<string>("");
-  const [lecture, setLecture] = useState<any>(null);
-  const [activeLecture, setActiveLecture] = useState<any>(null);
+
+  const [activeTopic, setActiveTopic] = useState<ITopic | null>(null);
 
   const [openModal, setOpenModal] = useState(false);
 
@@ -35,34 +36,24 @@ const LectureDashboard: React.FC = () => {
       if (selectedModule) {
         setModule(selectedModule);
 
-        if (!lecture) {
-          const initialLecture =
-            selectedModule.topics.find((topic) => topic._id === topicId) ||
-            selectedModule.topics[0];
-          if (initialLecture) {
-            setLecture(initialLecture);
-            setVideoUrl(initialLecture.url);
-            setActiveLecture(initialLecture._id);
-          }
-        }
+        const topic = selectedModule.topics.find((topic) => topic._id === topicId);
+        setActiveTopic(topic ?? null);
       }
     }
-  }, [course, topicId, sectionId, moduleId, lecture]);
+  }, [course, topicId, sectionId, moduleId]);
 
-  useEffect(() => {
-    if (!lecture && module) {
-      const initialLecture = module.topics[0];
-      setActiveLecture(initialLecture._id);
-      setLecture(initialLecture);
-      setVideoUrl(initialLecture.url);
-    }
-  }, [module, lecture]);
-
-  
+  // useEffect(() => {
+  //   if (!lecture && module) {
+  //     const initialLecture = module.topics[0];
+  //     setActiveLecture(initialLecture._id);
+  //     setLecture(initialLecture);
+  //     setVideoUrl(initialLecture.url);
+  //   }
+  // }, [module, lecture]);
 
   return (
     <div className="relative ">
-    {openModal && <Modal setOpenModal={setOpenModal} />}
+      {openModal && <Modal setOpenModal={setOpenModal} />}
       <div className="flex relative lg:flex-row flex-col gap-5 p-2 md:py-6 md:px-6 bg-[#eceeef] w-full">
         {/* left */}
         <div
@@ -79,11 +70,10 @@ const LectureDashboard: React.FC = () => {
             className="tab-container flex items-center w-full h-[40px] mt-2 pb-1 border-b-2 border-gray-400"
           >
             <div
-              className={`${
-                tab === LecturePageTab.Video
-                  ? "bg-[#fee496]"
-                  : ""
-              } px-5 h-full flex items-center hover:cursor-pointer duration-500 rounded-xl`}
+              className={`${tab === LecturePageTab.Video
+                ? "bg-[#fee496]"
+                : ""
+                } px-5 h-full flex items-center hover:cursor-pointer duration-500 rounded-xl`}
               onClick={() => setTab(LecturePageTab.Video)}
             >
               Lecture
@@ -91,21 +81,19 @@ const LectureDashboard: React.FC = () => {
 
 
             <div
-              className={`${
-                tab === LecturePageTab.Question
-                  ? "bg-[#fee496]"
-                  : ""
-              } px-5 h-full flex items-center hover:cursor-pointer duration-500 rounded-xl`}
+              className={`${tab === LecturePageTab.Question
+                ? "bg-[#fee496]"
+                : ""
+                } px-5 h-full flex items-center hover:cursor-pointer duration-500 rounded-xl`}
               onClick={() => setTab(LecturePageTab.Question)}
             >
               Problems
             </div>
             <div
-              className={`${
-                tab === LecturePageTab.Assignment
-                  ? "bg-[#fee496]"
-                  : ""
-              } px-5 h-full flex items-center hover:cursor-pointer duration-500 rounded-xl`}
+              className={`${tab === LecturePageTab.Assignment
+                ? "bg-[#fee496]"
+                : ""
+                } px-5 h-full flex items-center hover:cursor-pointer duration-500 rounded-xl`}
               onClick={() => setTab(LecturePageTab.Assignment)}
             >
               Assignments
@@ -113,14 +101,13 @@ const LectureDashboard: React.FC = () => {
           </div>
 
           {tab === LecturePageTab.Video ? (
-            <VideoTab lecture={lecture} />
+            <VideoTab topic={activeTopic} />
           ) : tab === LecturePageTab.Assignment ? (
-            <AssignmentTab lecture={lecture} setOpenModal={setOpenModal} />
+            <AssignmentTab topic={activeTopic} setOpenModal={setOpenModal} />
           ) : (
-            <QuestionTab lecture={lecture} setOpenModal={setOpenModal} />
+            <QuestionTab topic={activeTopic} setOpenModal={setOpenModal} />
           )}
 
-          
         </div>
 
         {/* right */}
@@ -137,32 +124,29 @@ const LectureDashboard: React.FC = () => {
           </div>
 
           {/* Lecture List */}
-         <div className="flex flex-col max-h-[80vh] overflow-scroll overflow-y-auto overflow-x-hidden">
-         {module?.topics.map((lecture, index) => (
-            <div
-              onClick={() => {
-                setTab(LecturePageTab.Video);
-                setVideoUrl(lecture.url);
-                setLecture(lecture);
-                setActiveLecture(lecture._id);
-              }}
-              key={lecture._id}
-              className={`${
-                lecture._id === activeLecture ? "bg-[#ffecb3]" : ""
-              } flex gap-4 items-center px-4 py-5 border-grey-300 border-t-[1px] border-b-[1px] hover:bg-[#ffecb3] hover:cursor-pointer duration-300`}
-            >
-              <div className="flex items-center gap-3">
-                <label className="text-white">
-                  <input
-                    className="dark:border-white-400/20 dark:scale-100 transition-all duration-500 ease-in-out dark:hover:scale-110 dark:checked:scale-100 w-5 h-5 marked:bg-[#FFCB33] dark:checked:bg-[#FFCB33]"
-                    type="checkbox"
-                  />
-                </label>
+          <div className="flex flex-col max-h-[80vh] overflow-scroll overflow-y-auto overflow-x-hidden">
+            {module?.topics.map((topic) => (
+              <div
+                onClick={() => {
+                  setTab(LecturePageTab.Video);
+                  setActiveTopic(topic);
+                }}
+                key={topic._id}
+                className={`${topic._id === activeTopic?._id ? "bg-[#ffecb3]" : ""
+                  } flex gap-4 items-center px-4 py-5 border-grey-300 border-t-[1px] border-b-[1px] hover:bg-[#ffecb3] hover:cursor-pointer duration-300`}
+              >
+                <div className="flex items-center gap-3">
+                  <label className="text-white">
+                    <input
+                      className="dark:border-white-400/20 dark:scale-100 transition-all duration-500 ease-in-out dark:hover:scale-110 dark:checked:scale-100 w-5 h-5 marked:bg-[#FFCB33] dark:checked:bg-[#FFCB33]"
+                      type="checkbox"
+                    />
+                  </label>
+                </div>
+                <div className="flex items-center text-sm">{topic.title}</div>
               </div>
-              <div className="flex items-center text-sm">{lecture?.title}</div>
-            </div>
-          ))}
-          </div> 
+            ))}
+          </div>
         </div>
       </div>
     </div>
