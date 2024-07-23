@@ -43,13 +43,14 @@ const LectureDashboard: React.FC = () => {
   }, [course, topicId, sectionId, moduleId]);
 
   return (
-    <div className="relative ">
+    <div className="relative">
       {openModal && <Modal setOpenModal={setOpenModal} />}
       <div className="flex relative lg:flex-row flex-col gap-5 p-2 md:py-6 md:px-6 bg-[#eceeef] w-full">
+       
         {/* left */}
         <div
           id="left"
-          className="py-7 px-1 sm:px-2 md:px-4 lg:px-5 w-full lg:w-3/4 bg-white rounded-xl shadow-lg overflow-y-auto overflow-scroll"
+          className="max-h-fit py-7 px-1 sm:px-2 md:px-4 lg:px-5 w-full lg:w-3/4 bg-white rounded-xl shadow-lg overflow-y-auto overflow-scroll"
         >
           <h1 className="border-l-8 text-[#324498] font-semibold text-xl font-semifold border-[#FFCB33] bg-white px-4 py-1">
             {module?.title}
@@ -91,6 +92,7 @@ const LectureDashboard: React.FC = () => {
             </div>
           </div>
 
+          <div className=" overflow-scroll overflow-y-auto">
           {tab === LecturePageTab.Video ? (
             <VideoTab topic={activeTopic} />
           ) : tab === LecturePageTab.Assignment ? (
@@ -98,13 +100,14 @@ const LectureDashboard: React.FC = () => {
           ) : (
             <QuestionTab topic={activeTopic} setOpenModal={setOpenModal} />
           )}
+          </div>
 
         </div>
 
         {/* right */}
         <div
           id="Right"
-          className="w-full lg:w-1/4 bg-white rounded-xl shadow-lg "
+          className="w-full max-h-[100vh] overflow-scroll pb-1 lg:w-1/4 bg-white rounded-xl shadow-lg"
         >
           {/* Module Heading */}
           <div className="flex gap-4 items-center px-4 pt-3 text-md text-ellipsis xl:pt-5 pb-3 hover:bg-[rgb(245,235,235)] shadow-md hover:cursor-pointer duration-300">
@@ -115,7 +118,7 @@ const LectureDashboard: React.FC = () => {
           </div>
 
           {/* Lecture List */}
-          <div className="flex flex-col max-h-[80vh] overflow-scroll overflow-y-auto overflow-x-hidden">
+          <div className="flex flex-col overflow-hidden">
             {module?.topics.map((topic) => (
               <div
                 onClick={() => {
