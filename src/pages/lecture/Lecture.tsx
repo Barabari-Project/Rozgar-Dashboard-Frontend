@@ -92,7 +92,7 @@ const LectureDashboard: React.FC = () => {
             </div>
           </div>
 
-          <div className="max-h-[88%] border-black border overflow-scroll overflow-y-auto">
+          <div className="max-h-[88%] overflow-scroll overflow-y-auto">
           {tab === LecturePageTab.Video ? (
             <VideoTab topic={activeTopic} />
           ) : tab === LecturePageTab.Assignment ? (
