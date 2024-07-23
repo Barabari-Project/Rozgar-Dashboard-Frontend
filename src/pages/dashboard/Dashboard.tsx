@@ -46,6 +46,25 @@ const Dashboard: FC = () => {
     }
   }
 
+  // this is for the submission page
+  const fetchData1 = async () => {
+    // const courseId = '669bbc0b820a72940b3831bb';
+    try {
+      dispatch(setLoading(true));
+      const response = await axiosInstance(`${restEndPoints.getAllSubmittedQuestions}`);
+      // set submission in one state.
+    } catch (error: any) {
+      console.log(error);
+      dispatch(setError({
+        statusCode: error.response.status,
+        message: error.response.data.error,
+        action: Action.GET_ALL_SUBMITTED_QUESTIONS
+      }));
+    } finally {
+      dispatch(setLoading(false));
+    }
+  }
+
   useEffect(() => {
     if (course) {
       const firstSection = course.sections[0];

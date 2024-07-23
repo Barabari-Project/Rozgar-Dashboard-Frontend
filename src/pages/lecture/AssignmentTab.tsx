@@ -1,5 +1,35 @@
+import axiosInstance from "../../utils/axiosInstance";
+import restEndPoints from "../../constants/restEndPoints.json";
+import { toast } from 'react-toastify';
+import { setError } from "../../redux/slices/StatusSlice";
+import { Action } from "../../enums/actionEnum";
+import { useDispatch } from "react-redux";
+
 const AssignmentTab: React.FC = ({ lecture, setOpenModal }) => {
   // console.log(lecture, "AssignmentTab lecture");
+  const dispatch = useDispatch();
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const data = {
+      questionId: "66918c98c0630737705074e5",
+      link: "https://github.com/drumil"
+    }
+    // => loading on the submit button should be added 
+    // => when loading is on input field should be disabled
+    // => after sucessfull response from backend popup should not be visible
+    // => if error then popup will be as it is
+    // put validation on link that size should not be more than 500 chars
+    try {
+      const response = await axiosInstance.post(restEndPoints.submitQuestion, data);
+      toast.success(response.data.message);
+    } catch (error) {
+      dispatch(setError({
+        statusCode: error.response.status,
+        message: error.response.data.error,
+        action: Action.SUBMIT_QUESTION
+      }));
+    }
+  }
 
   return (
     <>
@@ -48,13 +78,13 @@ const AssignmentTab: React.FC = ({ lecture, setOpenModal }) => {
                       </button>
                     </a>
 
-                    <button 
+                    <button
                       onClick={
                         () => {
-                        setOpenModal(true)
-                         console.log("openModal", true)
+                          setOpenModal(true)
+                          console.log("openModal", true)
                         }
-                    }
+                      }
                       className="bg-yellow-950 text-[#FFCB33] border border-yellow-400 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group">
                       <span className="bg-[#FFCB33] shadow-yellow-400 absolute -top-[150%] left-0 inline-flex w-80 h-[5px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
                       Submission

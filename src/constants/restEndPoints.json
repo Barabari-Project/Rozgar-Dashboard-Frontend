@@ -3,5 +3,8 @@
     "signIn": "/auth/sign-in",
     "getAllCourses": "/courses",
     "getCourseById": "/courses",
-    "signOut": "/auth/sign-out"
+    "signOut": "/auth/sign-out",
+    "submitQuestion": "/submit/question",
+    "submitTopic": "/submit/topic",
+    "getAllSubmittedQuestions": "/submit/question"
 }
