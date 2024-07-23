@@ -50,7 +50,7 @@ const LectureDashboard: React.FC = () => {
         {/* left */}
         <div
           id="left"
-          className="max-h-fit py-7 px-1 sm:px-2 md:px-4 lg:px-5 w-full lg:w-3/4 bg-white rounded-xl shadow-lg overflow-y-auto overflow-scroll"
+          className="lg:max-h-[100vh] pt-7 pb-4 px-1 sm:px-2 md:px-4 lg:px-5 w-full lg:w-3/4 bg-white rounded-xl shadow-lg"
         >
           <h1 className="border-l-8 text-[#324498] font-semibold text-xl font-semifold border-[#FFCB33] bg-white px-4 py-1">
             {module?.title}
@@ -59,7 +59,7 @@ const LectureDashboard: React.FC = () => {
           {/* tab */}
           <div
             id="tabs"
-            className="tab-container flex items-center w-full h-[40px] mt-2 pb-1 border-b-2 border-gray-400"
+            className="tab-container flex items-center w-full h-[40px] mt-2 pb-1 border-b-2 rounded-xl border-gray-400"
           >
             <div
               className={`${tab === LecturePageTab.Video
@@ -92,7 +92,7 @@ const LectureDashboard: React.FC = () => {
             </div>
           </div>
 
-          <div className=" overflow-scroll overflow-y-auto">
+          <div className="max-h-[88%] border-black border overflow-scroll overflow-y-auto">
           {tab === LecturePageTab.Video ? (
             <VideoTab topic={activeTopic} />
           ) : tab === LecturePageTab.Assignment ? (
@@ -107,7 +107,7 @@ const LectureDashboard: React.FC = () => {
         {/* right */}
         <div
           id="Right"
-          className="w-full max-h-[100vh] overflow-scroll pb-1 lg:w-1/4 bg-white rounded-xl shadow-lg"
+          className="w-full max-h-[100vh] overflow-hidden lg:w-1/4 bg-white rounded-xl shadow-lg"
         >
           {/* Module Heading */}
           <div className="flex gap-4 items-center px-4 pt-3 text-md text-ellipsis xl:pt-5 pb-3 hover:bg-[rgb(245,235,235)] shadow-md hover:cursor-pointer duration-300">
@@ -118,7 +118,7 @@ const LectureDashboard: React.FC = () => {
           </div>
 
           {/* Lecture List */}
-          <div className="flex flex-col overflow-hidden">
+          <div className="flex flex-col overflow-scroll max-h-[93%]">
             {module?.topics.map((topic) => (
               <div
                 onClick={() => {
