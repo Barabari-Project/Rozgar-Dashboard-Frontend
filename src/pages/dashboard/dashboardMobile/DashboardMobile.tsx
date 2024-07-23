@@ -78,7 +78,7 @@ const DashboardMobile: FC = () => {
   }, []);
 
   const fetchData = async () => {
-    const courseId = "66918ca9c063073770507559";
+    const courseId = "669bbc0b820a72940b3831bb";
     try {
       dispatch(setLoading(true));
       const response = await axiosInstance(
