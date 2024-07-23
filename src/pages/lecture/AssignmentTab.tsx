@@ -51,7 +51,7 @@ const AssignmentTab: React.FC<AssignmentTabProps> = ({ topic, setOpenModal }) =>
               question.title.includes("Assignment Title") && (
                 <div
                   key={question._id}
-                  className="w-full bg-white h-fit min-h-[100px] md:min-h-[55px] flex flex-col md:flex-row justify-evenly md:justify-between items-start md:items-center rounded-xl md:px-4 px-1 md:pr-5 hover:shadow-xl duration-500  hover:translate-y-[-5px]"
+                  className="w-full bg-white h-fit min-h-fit py-2 flex flex-col md:flex-row justify-evenly md:justify-between items-start md:items-center rounded-xl md:px-4 px-1 md:pr-5 hover:shadow-xl duration-500  hover:translate-y-[-5px]"
                 >
                   {/* left part */}
                   <div className="flex h-full items-center max-w-full w-full md:max-w-3/4 md:w-3/4 overflow-hidden gap-3 pl-2">
