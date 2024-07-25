@@ -8,5 +8,9 @@
     "line1": "Line1 must be 2 to 50 characters if provided.",
     "line2": "Line2 must be 2 to 50 characters if provided.",
     "city": "City must be 2 to 50 characters if provided.",
-    "pincode": "Pincode must be 6 digits."
+    "university": "University name must be 2 to 50 letters.",
+    "degree":  "Degree must be 2 to 50 letters.",
+    "region" : "Region must be 2 to 50 letters.",
+    "gender": "Gender must be 2 to 50 letters.",
+    "organisationName": "Organisation name must be 2 to 50 letters."
 }
