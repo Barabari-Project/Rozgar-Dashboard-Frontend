@@ -35,14 +35,12 @@ const Modal: React.FC<ModalProps> = ({ link, setLink, setOpenModal, selectedQues
       return;
     }
 
-    setDisabled(true)
+    setDisabled(true);
 
     const data = {
       questionId: selectedQuestion?._id,
       link: link
     }
-
-    console.log(data);
 
     try {
       const response = await axiosInstance.post(restEndPoints.submitQuestion, data);
@@ -56,9 +54,9 @@ const Modal: React.FC<ModalProps> = ({ link, setLink, setOpenModal, selectedQues
       }));
     }
 
-    setDisabled(false)
-    setOpenModal(false)
-    setLink("")
+    setDisabled(false);
+    setOpenModal(false);
+    setLink("");
   }
 
   useEffect(() => {
@@ -119,9 +117,6 @@ const Modal: React.FC<ModalProps> = ({ link, setLink, setOpenModal, selectedQues
 
           </span>
         </div>
-
-
-
       </div>
     </div>
   );
