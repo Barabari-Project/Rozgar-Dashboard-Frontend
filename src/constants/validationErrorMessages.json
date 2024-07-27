@@ -8,5 +8,8 @@
     "line1": "Line1 must be 2 to 50 characters if provided.",
     "line2": "Line2 must be 2 to 50 characters if provided.",
     "city": "City must be 2 to 50 characters if provided.",
-    "pincode": "Pincode must be 6 digits."
+    "pincode": "Pincode must be 6 digits.",
+    "largeLink" : "Link should not have more than 500 characters.",
+    "invalidLink" : "Link is invalid!"
+
 }

@@ -4,30 +4,45 @@
 // import { setError } from "../../redux/slices/StatusSlice";
 // import { Action } from "../../enums/actionEnum";
 // import { useDispatch } from "react-redux";
-import { ITopic } from "../../utils/types/course";
+import { ITopic, IAssignmentLink, IQuestion } from "../../utils/types/course";
+import Modal from "./Modal";
+import {useState} from 'react'
 
 interface AssignmentTabProps {
   topic: ITopic | null;
+  // setOpenModal: (value: boolean) => void;
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+  link : IAssignmentLink
+  selectedQuestion : IQuestion
 }
 
-const AssignmentTab: React.FC<AssignmentTabProps> = ({ topic, setOpenModal }) => {
-  
+
+const AssignmentTab: React.FC<AssignmentTabProps> = ({ topic }) => {
+
+  const [openModal, setOpenModal] = useState<boolean>(false);
+  const [link, setLink] = useState<string>("")
+  const [selectedQuestion, setSelectedQuestion] = useState<IQuestion | null>(null);
+
+  // console.log(topic)
+
   // const dispatch = useDispatch();
   // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   console.log("event", e)
   //   e.preventDefault();
+
   //   const data = {
   //     questionId: "66918c98c0630737705074e5",
-  //     link: "https://github.com/drumil"
+  //     link:link // "https://github.com/drumil" // user input link
   //   }
-  //   // => loading on the submit button should be added 
-  //   // => when loading is on input field should be disabled
-  //   // => after sucessfull response from backend popup should not be visible
-  //   // => if error then popup will be as it is
-  //   // put validation on link that size should not be more than 500 chars
+  // //  => loading on the submit button should be added 
+  // //  => when loading is on input field should be disabled
+  // //  => after sucessfull response from backend popup should not be visible
+  // //  => if error then popup will be as it is
+  //  put validation on link that size should not be more than 500 chars
   //   try {
   //     const response = await axiosInstance.post(restEndPoints.submitQuestion, data);
   //     toast.success(response.data.message);
+  //     console.log(data)
   //   } catch (error) {
   //     dispatch(setError({
   //       statusCode: error.response.status,
@@ -36,9 +51,10 @@ const AssignmentTab: React.FC<AssignmentTabProps> = ({ topic, setOpenModal }) =>
   //     }));
   //   }
   // }
-
+ 
   return (
     <>
+    {openModal && <Modal link={link} setLink={setLink} setOpenModal={setOpenModal} selectedQuestion={selectedQuestion} />}
       <div className="bg-[#E6EBF0] p-1 md:p-5 m-1 md:m-3 rounded-xl">
         <h1 className="text-start text-lg font-semibold text-[#324498] px-2 md:p-0">
           Assignment Tab
@@ -87,8 +103,8 @@ const AssignmentTab: React.FC<AssignmentTabProps> = ({ topic, setOpenModal }) =>
                     <button
                       onClick={
                         () => {
-                          setOpenModal(true)
-                          console.log("openModal", true)
+                          setOpenModal(true);
+                          setSelectedQuestion(question);
                         }
                       }
                       className="bg-yellow-950 text-[#FFCB33] border border-yellow-400 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group">

@@ -4,14 +4,23 @@
 // import { setError } from "../../redux/slices/StatusSlice";
 // import { Action } from "../../enums/actionEnum";
 // import { useDispatch } from "react-redux";
-import { ITopic } from "../../utils/types/course";
+import { useState } from "react";
+import { ITopic, IAssignmentLink, IQuestion } from "../../utils/types/course";
+import Modal from "./Modal";
 
 interface QuestionTabProps {
   topic: ITopic | null;
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+  link : IAssignmentLink | null;
+  selectedQuestion: IQuestion | null;
 }
 
-const QuestionTab: React.FC<QuestionTabProps> = ({ topic, setOpenModal }) => {
+const QuestionTab: React.FC<QuestionTabProps> = ({ topic }) => {
+
+  const [openModal, setOpenModal] = useState<boolean>(false);
+  const [link, setLink] = useState<string>("")
+  const [selectedQuestion, setSelectedQuestion] = useState<IQuestion | null>(null);
+  
   // const dispatch = useDispatch();
 
   // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -23,7 +32,7 @@ const QuestionTab: React.FC<QuestionTabProps> = ({ topic, setOpenModal }) => {
   //   // => loading on the submit button should be added 
   //   // => when loading is on input field should be disabled
   //   // => after sucessfull response from backend popup should not be visible
-  //   // => if error then popup will be as it is
+  //   // => if error then popup will be as it is //which popup toast or modal
   //   // put validation on link that size should not be more than 500 chars
   //   try {
   //     const response = await axiosInstance.post(restEndPoints.submitQuestion, data);
@@ -38,6 +47,7 @@ const QuestionTab: React.FC<QuestionTabProps> = ({ topic, setOpenModal }) => {
   // }
   return (
     <>
+    {openModal && <Modal link={link} setLink={setLink} setOpenModal={setOpenModal} selectedQuestion={selectedQuestion} />}
       <div className="bg-[#E6EBF0] p-1 md:p-5 m-1 md:m-3 rounded-xl">
         <h1 className="text-start text-lg font-semibold text-[#324498] px-2 md:p-0">
           Question Tab
@@ -87,7 +97,7 @@ const QuestionTab: React.FC<QuestionTabProps> = ({ topic, setOpenModal }) => {
                       onClick={
                         () => {
                           setOpenModal(true)
-                          console.log("openModal", true)
+                          setSelectedQuestion(question);
                         }
                       }
                       className="bg-yellow-950 text-[#FFCB33] border border-yellow-400 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group">

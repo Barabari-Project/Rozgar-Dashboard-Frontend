@@ -33,5 +33,8 @@ export interface ICourseDetails {
     _id: string;
     title: string;
     sections: ISection[];
-    
+}
+
+export interface IAssignmentLink {
+    link : string
 }

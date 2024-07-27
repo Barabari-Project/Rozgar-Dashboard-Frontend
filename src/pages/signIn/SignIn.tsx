@@ -78,7 +78,7 @@ const SignIn: React.FC = () => {
   return (
     <Loading>
       <Error>
-        <section>
+        <section  style={{ height: 'calc(100vh - 60px)' }} className="flex items-center justify-center -z-10">
           <div style={{boxShadow: "0px 0px 15px #97a5e6"}} className="grid grid-cols-1 lg:grid-cols-2 m-5 rounded-2xl lg:overflow-hidden lg:shadow-xl">
             {/* left */}
             <div
