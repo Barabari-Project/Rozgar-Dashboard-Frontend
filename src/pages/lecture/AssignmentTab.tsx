@@ -1,9 +1,4 @@
-// import axiosInstance from "../../utils/axiosInstance";
-// import restEndPoints from "../../constants/restEndPoints.json";
-// import { toast } from 'react-toastify';
-// import { setError } from "../../redux/slices/StatusSlice";
-// import { Action } from "../../enums/actionEnum";
-// import { useDispatch } from "react-redux";
+
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { ITopic, IAssignmentLink, IQuestion } from "../../utils/types/course";
@@ -14,7 +9,6 @@ import QuestionType from "../../utils/enums/QuestionType";
 
 interface AssignmentTabProps {
   topic: ITopic | null;
-  // setOpenModal: (value: boolean) => void;
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
   link: IAssignmentLink
   selectedQuestion: IQuestion

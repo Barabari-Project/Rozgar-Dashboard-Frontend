@@ -1,9 +1,13 @@
 import React from 'react'
+import { ITopic } from "../../utils/types/course";
 
+interface NotesTabProps {
+  topic: ITopic | null
+}
 
-function NotesTab( { topic }) {
+const NotesTab: React.FC<NotesTabProps> = ( { topic })=> {
   return (
-    <div  className="bg-[#E6EBF0] p-1 md:p-5 m-1 md:m-3 rounded-xl">
+    <div className="bg-[#E6EBF0] p-1 md:p-5 m-1 md:m-3 rounded-xl">
         <h1 className="text-start text-lg font-semibold text-[#324498] px-2 md:p-0">
         Notes Tab
         </h1>   
