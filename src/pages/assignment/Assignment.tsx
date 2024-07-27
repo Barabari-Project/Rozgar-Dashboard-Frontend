@@ -1,5 +1,5 @@
 // src/components/Assignment.tsx
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 
@@ -10,8 +10,14 @@ const Assignment: React.FC<AssignmentProps> = () => {
     const [selectValue, setSelectValue] = useState<string>("Assignment")
   console.log("user", user)
 
+  useEffect(() => {
+    // const questions = user.submissions.map(item)=>item.question == "question"
+    // const assignment = user.submissions.map(item)=>item.assignment == "assignment"
+    
+  }, [selectValue])
+
   return (
-    <div className="flex items-center justify-center h-[90vh] w-full p-8 bg-[#ECEEEF]">
+    <div style={{ height: 'calc(100vh - 60px)' }} className="flex items-center justify-center w-full p-8 bg-[#ECEEEF]">
       <div className="rounded-xl shadow-xl bg-white flex flex-col p-5 w-full h-full">
         {/* <h1 className="text-[#324498] text-xl font-semibold">Assignment</h1> */}
         <div className="relative group rounded-lg w-64 bg-gray-50 overflow-hidden before:absolute before:w-12 before:h-12 before:content[''] before:right-0 before:bg-violet-500 before:rounded-full before:blur-lg before:[box-shadow:-60px_20px_10px_10px_#F9B0B9]">
@@ -23,7 +29,7 @@ const Assignment: React.FC<AssignmentProps> = () => {
             viewBox="0 0 100 100"
             preserveAspectRatio="xMidYMid meet"
             height="100"
-            className="w-8 h-8 absolute right-0 -rotate-45 stroke-pink-300 top-1.5 group-hover:rotate-0 duration-300"
+            className="w-8 h-8 absolute right-0 -rotate-45 stroke-[#324498] top-1.5 group-hover:rotate-0 duration-300"
           >
             <path
               stroke-width="4"
@@ -36,7 +42,7 @@ const Assignment: React.FC<AssignmentProps> = () => {
           </svg>
           <select 
           onChange={(e)=>{setSelectValue(e.target.value);console.log(selectValue)}}
-          className="appearance-none hover:placeholder-shown:bg-emerald-500 relative text-pink-400 bg-transparent ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-violet-700 text-sm font-bold rounded-lg focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5">
+          className="appearance-none hover:placeholder-shown:bg-emerald-500 relative text-[#324498] bg-transparent ring-0 outline-none border border-neutral-500 placeholder-violet-700 text-sm font-bold rounded-lg focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5">
             <option>Questions</option>
             <option>Assignment</option>
             
@@ -77,12 +83,6 @@ const Assignment: React.FC<AssignmentProps> = () => {
                 </a>
 
                 <button
-                  //   onClick={
-                  //     () => {
-                  //       setOpenModal(true);
-                  //       setSelectedQuestion(question);
-                  //     }
-                  //   }
                   className="bg-yellow-950 text-[#FFCB33] border border-yellow-400 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group"
                 >
                   <span className="bg-[#FFCB33] shadow-yellow-400 absolute -top-[150%] left-0 inline-flex w-80 h-[5px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
