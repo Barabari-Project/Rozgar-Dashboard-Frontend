@@ -9,6 +9,8 @@ import useMediaQuery from "../utils/hooks/useMediaQuery";
 import Lecture from '../pages/lecture/Lecture';
 import { HOME, SIGNIN, SIGNUP, PROFILE } from "../constants/routesEndpoints";
 import Profile from "../pages/profile/Profile";
+import ProtectedRoute from "../components/ProtectedRoute";
+import RestrictedRoute from "../components/RestrictedRoute";
 
 const Route: React.FC = () => {
   const isMobile = useMediaQuery(768);
@@ -20,19 +22,19 @@ const Route: React.FC = () => {
       children: [
         {
           path: HOME,
-          element: isMobile ? <DashboardMobile /> : <Dashboard />,
+          element: <ProtectedRoute>{isMobile ? <DashboardMobile /> : <Dashboard />}</ProtectedRoute>,
         }, {
           path: SIGNUP,
-          element: <Signup />
+          element: <RestrictedRoute> <Signup /> </RestrictedRoute>,
         }, {
           path: SIGNIN,
-          element: <SignIn />
+          element: <RestrictedRoute> <SignIn /> </RestrictedRoute>,
         }, {
           path: "/lecture/:sectionId/:moduleId/:topicId",
-          element: <Lecture />
+          element: <ProtectedRoute> <Lecture /> </ProtectedRoute>
         }, {
           path: PROFILE,
-          element: <Profile />
+          element: <ProtectedRoute> <Profile /></ProtectedRoute>
         }
       ]
     },

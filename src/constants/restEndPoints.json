@@ -1,10 +1,11 @@
 {
     "signUp": "/auth/sign-up",
+    "auth": "/auth",
     "signIn": "/auth/sign-in",
     "getAllCourses": "/courses",
     "getCourseById": "/courses",
     "signOut": "/auth/sign-out",
-    "profileUpdate":"/profile/update",
+    "profileUpdate": "/profile/update",
     "submitQuestion": "/submit/question",
     "submitTopic": "/submit/topic",
     "getAllSubmittedQuestions": "/submit/question"

@@ -6,4 +6,5 @@ export enum Action {
     PROFILE = "proileUpdate",
     GET_ALL_SUBMITTED_QUESTIONS = 'getAllSubmittedQuestions',
     SUBMIT_QUESTION = 'submitQuestion',
+    AUTH = 'auth'
 }
