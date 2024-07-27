@@ -11,6 +11,7 @@ import { HOME, SIGNIN, SIGNUP, PROFILE } from "../constants/routesEndpoints";
 import Profile from "../pages/profile/Profile";
 import ProtectedRoute from "../components/ProtectedRoute";
 import RestrictedRoute from "../components/RestrictedRoute";
+import Assignment from "../pages/assignment/Assignment";
 
 const Route: React.FC = () => {
   const isMobile = useMediaQuery(768);
@@ -25,7 +26,7 @@ const Route: React.FC = () => {
           element: <ProtectedRoute>{isMobile ? <DashboardMobile /> : <Dashboard />}</ProtectedRoute>,
         }, {
           path: SIGNUP,
-          element: <RestrictedRoute> <Signup /> </RestrictedRoute>,
+          element: <RestrictedRoute> <Assignment /> </RestrictedRoute>,
         }, {
           path: SIGNIN,
           element: <RestrictedRoute> <SignIn /> </RestrictedRoute>,

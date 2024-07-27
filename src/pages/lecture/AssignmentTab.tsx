@@ -8,6 +8,9 @@ import { ITopic, IAssignmentLink, IQuestion } from "../../utils/types/course";
 import Modal from "./Modal";
 import {useState} from 'react'
 
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
+
 interface AssignmentTabProps {
   topic: ITopic | null;
   // setOpenModal: (value: boolean) => void;
@@ -18,7 +21,8 @@ interface AssignmentTabProps {
 
 
 const AssignmentTab: React.FC<AssignmentTabProps> = ({ topic }) => {
-
+  const user = useSelector((state: RootState) => state.user);
+console.log("user",user)
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [link, setLink] = useState<string>("")
   const [selectedQuestion, setSelectedQuestion] = useState<IQuestion | null>(null);
