@@ -17,10 +17,10 @@ const Assignment: React.FC<AssignmentProps> = () => {
   }, [selectValue])
 
   return (
-    <div style={{ height: 'calc(100vh - 60px)' }} className="flex items-center justify-center w-full p-8 bg-[#ECEEEF]">
-      <div className="rounded-xl shadow-xl bg-white flex flex-col p-5 w-full h-full">
+    <div style={{ height: 'calc(100vh - 60px)' }} className="flex items-center justify-center w-full p-2 md:p-5 lg:p-8 bg-[#ECEEEF]">
+      <div className="rounded-xl shadow-xl bg-white flex flex-col px-1 py-5 md:p-5 w-full h-full">
         {/* <h1 className="text-[#324498] text-xl font-semibold">Assignment</h1> */}
-        <div className="relative group rounded-lg w-64 bg-gray-50 overflow-hidden before:absolute before:w-12 before:h-12 before:content[''] before:right-0 before:bg-violet-500 before:rounded-full before:blur-lg before:[box-shadow:-60px_20px_10px_10px_#F9B0B9]">
+        <div className="relative group rounded-lg w-64 bg-gray-50 overflow-hidden before:absolute before:w-12 before:h-12 before:content[''] before:right-0 before:bg-violet-500 before:rounded-full before:blur-lg before:[box-shadow:-60px_20px_10px_10px_#F9B0B9] mx-auto lg:mx-0">
           <svg
             y="0"
             xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +53,7 @@ const Assignment: React.FC<AssignmentProps> = () => {
 
         <hr />
         <br />
-        <br />
+        
         <div className="rounded-xl bg-white w-full flex flex-col gap-4">
           {user?.submissions?.map((question: any, index) => (
             <div

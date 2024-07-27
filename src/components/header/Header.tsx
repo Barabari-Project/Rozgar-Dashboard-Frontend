@@ -18,7 +18,7 @@ const Header = () => {
         <p>User Name</p>
       </div>
       <div className={styles.btnContainer}>
-        <span onClick={()=>navigate(ASSIGNMENT)}>assignment</span>
+        {/* <span onClick={()=>navigate(ASSIGNMENT)}>assignment</span> */}
         <button className={styles.signUp} onClick={() => navigate(SIGNUP)}>Sign Up</button>
         <button className={styles.signIn} onClick={()=> navigate(SIGNIN)}>Sign In</button>
 
