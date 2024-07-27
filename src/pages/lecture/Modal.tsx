@@ -19,7 +19,7 @@ interface ModalProps {
   selectedQuestion: IQuestion
 } // need to be check
 
-function Modal({ link , setLink, setOpenModal, selectedQuestion }) {
+const Modal: React.FC<ModalProps> = ({ link , setLink, setOpenModal, selectedQuestion }) => {
 
   // const [isValidLink, setIsValidLink] = useState<boolean>(true);
     const [isDisabled, setDisabled] = useState<boolean>(false)
