@@ -9,6 +9,7 @@ const axiosInstance = axios.create({
 
 // Request interceptor to add the JWT token to the Authorization header
 axiosInstance.interceptors.request.use((config) => {
+    console.log(import.meta.env.VITE_BACKEND_BASE_URL)
     const token = Cookies.get('token'); // Assuming you store the token in localStorage
     if (token) {
         config.headers.Authorization = `Bearer ${token}`;
