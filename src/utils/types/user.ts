@@ -1,8 +1,15 @@
 import { Gender } from "../enums/Gender";
+import { IQuestion } from "./course";
 
 export interface UserSubmission {
   question: string;
   link: string;
+}
+
+export interface UserSubmissionWithQuestion{
+  link: string;
+  id: string;
+  question: IQuestion
 }
 
 export interface User {
