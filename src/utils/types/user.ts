@@ -17,8 +17,8 @@ export interface User {
   university?: string;
   degree?: string;
   organization?: string;
-  topics?: string[];
-  submissions?: UserSubmission[];
+  topics: string[];
+  submissions: UserSubmission[];
   createdAtIST: string;
   updatedAtIST: string;
 }

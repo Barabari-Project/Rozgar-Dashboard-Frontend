@@ -4,12 +4,14 @@ import axiosInstance from "../../utils/axiosInstance";
 import restEndPoints from "../../constants/restEndPoints.json";
 import { setError } from "../../redux/slices/StatusSlice";
 import { Action } from "../../enums/actionEnum";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from 'react-toastify';
 import { IValidationErrors } from "../../utils/types/error";
 // import validationErrorMessages from  '../../constants/validationErrorMessages.json'
 import { validateLectureQuestionAssignmentLink } from "../../utils/validations/validateLectureQuestionAssignmentLink";
 import { Loader } from './Loader';
+import { RootState } from "../../redux/store";
+import { setUserDetails, updateUserSubmission } from "../../redux/slices/UserSlice";
 
 
 interface ModalProps {
@@ -22,7 +24,8 @@ interface ModalProps {
 const Modal: React.FC<ModalProps> = ({ link, setLink, setOpenModal, selectedQuestion }) => {
 
   // const [isValidLink, setIsValidLink] = useState<boolean>(true);
-  const [isDisabled, setDisabled] = useState<boolean>(false)
+  const [isDisabled, setDisabled] = useState<boolean>(false);
+  const { user } = useSelector((state: RootState) => state.user);
 
   const dispatch = useDispatch();
   const handleSubmitClick = async () => {
@@ -44,6 +47,10 @@ const Modal: React.FC<ModalProps> = ({ link, setLink, setOpenModal, selectedQues
 
     try {
       const response = await axiosInstance.post(restEndPoints.submitQuestion, data);
+      dispatch(updateUserSubmission({ questionId: response.data.submission.question, link:response.data.submission.link }));
+
+      dispatch(setUserDetails({ ...user }));
+      console.log(response);
       toast.success(response.data.message);
     }
     catch (error: any) {
