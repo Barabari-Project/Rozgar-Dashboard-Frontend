@@ -219,7 +219,9 @@ const Profile: FC = () => {
                 />
                 {formErrors.region && <p className='text-red-500'>{formErrors.region}</p>}
               </div>
-              <div className={styles.labelWrap}>
+              
+            </div>
+            <div className={styles.labelWrap}>
                 <div className="w-full px-3">
                   <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 mt-2">
                     Gender
@@ -241,7 +243,6 @@ const Profile: FC = () => {
                   {formErrors.gender && <p className='text-red-500'>{formErrors.gender}</p>}
                 </div>
               </div>
-            </div>
             <div className={styles.labelWrap}>
               <div className="w-full md:w-1/2 px-3 md:mb-0">
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 mt-2">
