@@ -42,7 +42,7 @@ const Assignment: React.FC<AssignmentProps> = () => {
       <Error>
         <div style={{ height: 'calc(100vh - 60px)' }} className="flex items-center justify-center w-full p-2 md:p-5 lg:p-8 bg-[#ECEEEF] ">
           <div className="rounded-xl shadow-xl bg-white flex flex-col px-1 py-5 md:p-5 w-full  h-full">
-            <div className="min-h-fit relative group rounded-lg w-64 bg-gray-50 overflow-hidden before:absolute before:w-12 before:h-12 min-h-[41.4px] before:content[''] before:right-0 before:bg-violet-500 before:rounded-full before:blur-lg before:[box-shadow:-60px_20px_10px_10px_#F9B0B9] mx-auto lg:mx-0">
+            <div className=" relative group rounded-lg w-64 bg-gray-50 overflow-hidden before:absolute before:w-12 before:h-12 min-h-[41.4px] before:content[''] before:right-0 before:bg-violet-500 before:rounded-full before:blur-lg before:[box-shadow:-60px_20px_10px_10px_#F9B0B9] mx-auto lg:mx-0">
               <svg
                 y="0"
                 xmlns="http://www.w3.org/2000/svg"
@@ -87,19 +87,19 @@ const Assignment: React.FC<AssignmentProps> = () => {
                 return selectValue == submission.question.type && (
                   <div
                     key={submission.id}
-                    className="w-full bg-[#E6EBF0] h-fit min-h-fit py-2 flex flex-col md:flex-row justify-evenly md:justify-between items-start md:items-center rounded-xl md:px-4 px-1 md:pr-5 hover:shadow-xl duration-500  hover:translate-y-[-5px]"
+                    className="w-full bg-[#E6EBF0] h-fit min-h-fit py-2 flex flex-col md:flex-row justify-evenly md:justify-between items-start md:items-center gap-2 md:gap-0 rounded-xl md:px-4 px-1 md:pr-5 hover:shadow-xl duration-500 hover:translate-y-[-5px]"
                   >
                     {/* left part */}
-                    <div className="flex h-full items-center max-w-full w-full md:max-w-3/4 md:w-3/4 overflow-hidden gap-3 pl-2">
+                    <div className="flex h-full items-start  max-w-full w-full md:max-w-3/4 md:w-3/4  gap-3 pl-2  min-h-fit">
                       <span>{index + 1}.</span>
                       <a
                         style={{ textOverflow: "ellipsis" }}
                         href="#"
                         target="_blank"
-                        className="hover:text-[#324498] "
+                        className="hover:text-[#324498]  "
                       >
-                        {/* {submission?.question.title} */}
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit voluptatibus illo maiores quaerat itaque illum, voluptas, quis quae ipsa earum quas. Rerum, labore deleniti molestias laborum eius dolorum veritatis animi impedit voluptas, dicta adipisci rem amet error quis alias, doloremque porro? Consequatur aspernatur quaerat error aliquid repellat, nemo officia incidunt.
+                        {submission?.question.title}
+                         
                       </a>
                     </div>
 
