@@ -15,6 +15,9 @@ import { Action } from "../../enums/actionEnum";
 import { setUserDetails } from "../../redux/slices/UserSlice";
 import { validateProfileForm } from "../../utils/validations/validateProfileForm";
 import { IValidationErrors } from "../../utils/types/error";
+import { Link } from "react-router-dom";
+import { ASSIGNMENT } from "../../constants/routesEndpoints";
+import { Gender } from "../../utils/enums/Gender";
 
 const Profile: FC = () => {
   const { user } = useSelector((state: RootState) => state.user);
@@ -23,11 +26,11 @@ const Profile: FC = () => {
   const [data, setData] = useState<User>(user);
   const initials = `${user.firstName?.charAt(0) || ''}${user.lastName?.charAt(0) || ''}`.toUpperCase();
   const dispatch = useDispatch();
-
+  console.log(user);
   const handleEdit = async () => {
     setEditClicked(false);
     const tempErrors: IValidationErrors = validateProfileForm(user);
-   
+
     const _body = {
       firstName: data.firstName,
       lastName: data.lastName,
@@ -40,13 +43,14 @@ const Profile: FC = () => {
       organisationName: data.organization,
     };
 
-    if (Object.keys(tempErrors).length === 0){
+    if (Object.keys(tempErrors).length === 0) {
       dispatch(setLoading(true));
       try {
         dispatch(setLoading(true));
         const res = await axiosInstance.post(`${restEndPoints.profileUpdate}`, {
           user: _body,
         });
+        console.log(res);
         dispatch(setUserDetails({ ...res.data }));
       } catch (err: any) {
         dispatch(
@@ -59,10 +63,10 @@ const Profile: FC = () => {
       } finally {
         dispatch(setLoading(false));
       }
-    }else {
+    } else {
       setFormErrors(tempErrors);
     }
-    
+
   };
 
   const handleFieldChange = (field: keyof User, value: string) => {
@@ -107,9 +111,9 @@ const Profile: FC = () => {
             </div>
             <div className="flex-1 flex flex-col items-center lg:items-end justify-end px-8 mt-2">
               <div className="flex items-center space-x-4 mt-2">
-                <button className="flex items-center bg-[#324498] hover:bg-[#293779] text-gray-100 px-4 py-2 rounded text-sm space-x-2 transition duration-100">
+                <Link to={ASSIGNMENT} className="flex items-center bg-[#324498] hover:bg-[#293779] text-gray-100 px-4 py-2 rounded text-sm space-x-2 transition duration-100">
                   View Submission
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -148,9 +152,8 @@ const Profile: FC = () => {
                   Email ID
                 </label>
                 <input
-                  className={`appearance-none block w-full ${
-                    editClicked ? "" : "bg-gray-200"
-                  } text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white`}
+                  className={`appearance-none block w-full ${editClicked ? "" : "bg-gray-200"
+                    } text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white`}
                   type="text"
                   placeholder="abc@gmail.com"
                   disabled={!editClicked}
@@ -222,9 +225,8 @@ const Profile: FC = () => {
                     Gender
                   </label>
                   <select
-                    className={`appearance-none block w-full ${
-                      editClicked ? "" : "bg-gray-200"
-                    } text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white`}
+                    className={`appearance-none block w-full ${editClicked ? "" : "bg-gray-200"
+                      } text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white`}
                     disabled={!editClicked}
                     value={data.gender}
                     onChange={(e) =>
@@ -232,9 +234,9 @@ const Profile: FC = () => {
                     }
                   >
                     <option value="">Select Gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="others">Others</option>
+                    <option value={Gender.Male}>Male</option>
+                    <option value={Gender.Female}>Female</option>
+                    <option value={Gender.Other}>Others</option>
                   </select>
                   {formErrors.gender && <p className='text-red-500'>{formErrors.gender}</p>}
                 </div>
@@ -246,9 +248,8 @@ const Profile: FC = () => {
                   Organisation Name
                 </label>
                 <input
-                  className={`appearance-none block w-full ${
-                    editClicked ? "" : "bg-gray-200"
-                  } text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white`}
+                  className={`appearance-none block w-full ${editClicked ? "" : "bg-gray-200"
+                    } text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white`}
                   type="text"
                   placeholder="ABC company"
                   disabled={!editClicked}

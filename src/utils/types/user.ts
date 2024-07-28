@@ -19,7 +19,7 @@ export interface User {
   email: string;
   phoneNumber: string;
   password: string;
-  gender: Gender;
+  gender?: Gender;
   region?: string;
   university?: string;
   degree?: string;

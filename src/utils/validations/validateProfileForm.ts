@@ -1,11 +1,11 @@
 import { emailRegex, nameRegex, string50CharRegex, phoneRegex } from "../../constants/regexPatterns";
 import { IValidationErrors } from "../types/error";
-import { IUser } from "../types/user";
+import { User } from "../types/user";
 import errorMessages from "../../constants/validationErrorMessages.json";
 
-export const validateProfileForm = (data: IUser): IValidationErrors => {
+export const validateProfileForm = (data: User): IValidationErrors => {
     const tempErrors: IValidationErrors = {};
-    
+
     if (!phoneRegex.test(data.phoneNumber)) {
         tempErrors.phoneNumber = errorMessages.phoneNumber;
     }
@@ -18,20 +18,20 @@ export const validateProfileForm = (data: IUser): IValidationErrors => {
     if (!emailRegex.test(data.email)) {
         tempErrors.email = errorMessages.email;
     }
-    if(!string50CharRegex.test(data.university)){
+    if (!string50CharRegex.test(data.university ?? '')) {
         tempErrors.university = errorMessages.university;
     }
-    if(!string50CharRegex.test(data.degree)){
+    if (!string50CharRegex.test(data.degree ?? '')) {
         tempErrors.degree = errorMessages.degree;
     }
-    if(!string50CharRegex.test(data.region)){
+    if (!string50CharRegex.test(data.region ?? '')) {
         tempErrors.region = errorMessages.region;
     }
-    if(!string50CharRegex.test(data.gender)){
+    if (!string50CharRegex.test(data.gender ?? '')) {
         tempErrors.gender = errorMessages.gender;
     }
-    if(!string50CharRegex.test(data.organisationName)){
-        tempErrors.organisationName = errorMessages.organisationName;
+    if (!string50CharRegex.test(data.organization ?? '')) {
+        tempErrors.organization = errorMessages.organization;
     }
 
     return tempErrors;
