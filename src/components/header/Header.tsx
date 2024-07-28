@@ -1,7 +1,7 @@
 import styles from './header.module.scss';
 import logo from '../../assets/barabari_logo.png'
 import { useNavigate } from 'react-router-dom';
-import { SIGNIN, SIGNUP } from '../../constants/routesEndpoints';
+import { SIGNIN } from '../../constants/routesEndpoints';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -19,8 +19,8 @@ const Header = () => {
       </div>
       <div className={styles.btnContainer}>
 
-        <button className={styles.signUp} onClick={() => navigate(SIGNUP)}>Sign Up</button>
-        <button className={styles.signIn} onClick={()=> navigate(SIGNIN)}>Sign In</button>
+        {/* <button className={styles.signUp} onClick={() => navigate(SIGNUP)}>Sign Up</button> */}
+        <button className={styles.signIn} onClick={() => navigate(SIGNIN)}>Sign In</button>
 
       </div>
     </header>
