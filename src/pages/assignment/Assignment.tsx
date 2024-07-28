@@ -3,17 +3,17 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 
-interface AssignmentProps {}
+interface AssignmentProps { }
 
 const Assignment: React.FC<AssignmentProps> = () => {
   const user = useSelector((state: RootState) => state.user.user);
-    const [selectValue, setSelectValue] = useState<string>("Assignment")
+  const [selectValue, setSelectValue] = useState<string>("Assignment")
   console.log("user", user)
-
+  
   useEffect(() => {
     // const questions = user.submissions.map(item)=>item.question == "question"
     // const assignment = user.submissions.map(item)=>item.assignment == "assignment"
-    
+
   }, [selectValue])
 
   return (
@@ -40,22 +40,22 @@ const Assignment: React.FC<AssignmentProps> = () => {
               className="svg-stroke-primary"
             ></path>
           </svg>
-          <select 
-          onChange={(e)=>{setSelectValue(e.target.value);console.log(selectValue)}}
-          className="appearance-none hover:placeholder-shown:bg-emerald-500 relative text-[#324498] bg-transparent ring-0 outline-none border border-neutral-500 placeholder-violet-700 text-sm font-bold rounded-lg focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5">
+          <select
+            onChange={(e) => { setSelectValue(e.target.value); console.log(selectValue) }}
+            className="appearance-none hover:placeholder-shown:bg-emerald-500 relative text-[#324498] bg-transparent ring-0 outline-none border border-neutral-500 placeholder-violet-700 text-sm font-bold rounded-lg focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5">
             <option>Questions</option>
             <option>Assignment</option>
-            
+
           </select>
-          
+
         </div>
         <br />
 
         <hr />
         <br />
-        
+
         <div className="rounded-xl bg-white w-full flex flex-col gap-4">
-          {user?.submissions?.map((question: any, index) => (
+          {user?.submissions?.map((question: any, index: number) => (
             <div
               key={question._id}
               className="w-full bg-[#E6EBF0] h-fit min-h-fit py-2 flex flex-col md:flex-row justify-evenly md:justify-between items-start md:items-center rounded-xl md:px-4 px-1 md:pr-5 hover:shadow-xl duration-500  hover:translate-y-[-5px]"
