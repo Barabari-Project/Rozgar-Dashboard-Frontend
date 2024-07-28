@@ -78,7 +78,7 @@ const SignIn: React.FC = () => {
   return (
     <Loading>
       <Error>
-        <section  style={{ height: 'calc(100vh - 60px)' }} className="flex items-center justify-center -z-10">
+        <section  style={{ height: 'calc(100vh - 60px)' }} className="flex items-center justify-center overflow-y-auto ">
           <div style={{boxShadow: "0px 0px 15px #97a5e6"}} className="grid grid-cols-1 lg:grid-cols-2 m-5 rounded-2xl lg:overflow-hidden lg:shadow-xl">
             {/* left */}
             <div
@@ -107,8 +107,8 @@ const SignIn: React.FC = () => {
             </div>
 
             {/* right */}
-            <div className="flex items-center justify-center px-4 py-2 sm:px-6 sm:py-4 lg:px-8 lg:py-10 ">
-              <div className="xl:mx-auto xl:w-full xl:max-w-md 2xl:max-w-lg rounded-xl px-6 py-8 ">
+            <div className="flex items-center justify-center px-4 py-1 sm:px-6 sm:py-4 lg:px-8 lg:py-10 ">
+              <div className="xl:mx-auto xl:w-full xl:max-w-md 2xl:max-w-lg rounded-xl px-6 py-6 md:py-8 ">
                 <div className="mb-2 flex justify-center">
                   <img className="h-14" src={Rozgar_Logo} alt="Rozgar" />
                 </div>
@@ -125,7 +125,7 @@ const SignIn: React.FC = () => {
                     Create a free account
                   </Link>
                 </p>
-                <form onSubmit={handleSubmit} className="mt-8">
+                <form onSubmit={handleSubmit} className="sm:mt-6 md:mt-8">
                   <div className="space-y-5">
                     <div>
                       <label
