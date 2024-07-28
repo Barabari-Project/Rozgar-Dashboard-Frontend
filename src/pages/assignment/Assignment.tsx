@@ -40,9 +40,9 @@ const Assignment: React.FC<AssignmentProps> = () => {
   return (
     <Loading>
       <Error>
-        <div style={{ height: 'calc(100vh - 60px)' }} className="flex items-center justify-center w-full p-2 md:p-5 lg:p-8 bg-[#ECEEEF]">
-          <div className="rounded-xl shadow-xl bg-white flex flex-col px-1 py-5 md:p-5 w-full h-full">
-            <div className="min-h-fit relative group rounded-lg w-64 bg-gray-50 overflow-hidden before:absolute before:w-12 before:h-12 before:content[''] before:right-0 before:bg-violet-500 before:rounded-full before:blur-lg before:[box-shadow:-60px_20px_10px_10px_#F9B0B9] mx-auto lg:mx-0">
+        <div style={{ height: 'calc(100vh - 60px)' }} className="flex items-center justify-center w-full p-2 md:p-5 lg:p-8 bg-[#ECEEEF] ">
+          <div className="rounded-xl shadow-xl bg-white flex flex-col px-1 py-5 md:p-5 w-full  h-full">
+            <div className="min-h-fit relative group rounded-lg w-64 bg-gray-50 overflow-hidden before:absolute before:w-12 before:h-12 min-h-[41.4px] before:content[''] before:right-0 before:bg-violet-500 before:rounded-full before:blur-lg before:[box-shadow:-60px_20px_10px_10px_#F9B0B9] mx-auto lg:mx-0">
               <svg
                 y="0"
                 xmlns="http://www.w3.org/2000/svg"
@@ -76,12 +76,13 @@ const Assignment: React.FC<AssignmentProps> = () => {
               </select>
 
             </div>
+
             <br />
 
             <hr />
             <br />
 
-            <div className="rounded-xl bg-white w-full flex flex-col gap-4">
+            <div className="rounded-xl bg-white w-full flex flex-col gap-4  overflow-y-scroll">
               {submissionList.map((submission: UserSubmissionWithQuestion, index: number) => {
                 return selectValue == submission.question.type && (
                   <div
@@ -97,12 +98,13 @@ const Assignment: React.FC<AssignmentProps> = () => {
                         target="_blank"
                         className="hover:text-[#324498] "
                       >
-                        {submission?.question.title}
+                        {/* {submission?.question.title} */}
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit voluptatibus illo maiores quaerat itaque illum, voluptas, quis quae ipsa earum quas. Rerum, labore deleniti molestias laborum eius dolorum veritatis animi impedit voluptas, dicta adipisci rem amet error quis alias, doloremque porro? Consequatur aspernatur quaerat error aliquid repellat, nemo officia incidunt.
                       </a>
                     </div>
 
                     {/* right part */}
-                    <div className="flex h-full pl-3 md:pl-0 items-center gap-3">
+                    <div className="flex h-full pl-3 md:pl-0 items-center gap-3 mx-auto md:mx-0">
                       <a href={submission?.question.url} target="_blank" className="">
                         <button className="bg-[#324498] text-[#a7b4ee] border border-[#7087f0] border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group">
                           <span className="bg-[#324498] shadow-[#7087f0] absolute -top-[150%] left-0 inline-flex w-80 h-[5px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
