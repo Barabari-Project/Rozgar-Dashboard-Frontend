@@ -11,10 +11,11 @@ import NotesTab from "./NotesTab";
 import "./lecture.css";
 
 const LectureDashboard: React.FC = () => {
+
   const course: ICourseDetails = useSelector(
     (state: RootState) => state.course.course
   );
-  
+
   const { topicId, sectionId, moduleId } = useParams();
 
   const [module, setModule] = useState<IModule | null>(null);

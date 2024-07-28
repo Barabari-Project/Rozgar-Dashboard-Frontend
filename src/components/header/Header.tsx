@@ -18,10 +18,8 @@ const Header = () => {
         <p>User Name</p>
       </div>
       <div className={styles.btnContainer}>
-
         {/* <button className={styles.signUp} onClick={() => navigate(SIGNUP)}>Sign Up</button> */}
         <button className={styles.signIn} onClick={() => navigate(SIGNIN)}>Sign In</button>
-
       </div>
     </header>
   )
