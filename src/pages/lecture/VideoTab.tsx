@@ -5,11 +5,11 @@ interface VideoTabProps {
 }
 
 const VideoTab: React.FC<VideoTabProps> = ({ topic }) => {
-  console.log(topic);
+  // console.log(topic);
   return (
-    <div id="VideoDiv" className="w-full py-4 md:px-5">
+    <div id="VideoDiv" className="w-full flex justify-center py-4 md:px-5">
       <iframe
-        className="rounded-xl w-full aspect-[16/9]"
+        className="rounded-xl w-[98%] mx-auto aspect-[16/9] shadow-xl"
         // src={topic?.url}
         src="https://www.youtube.com/embed/6nv3qy3oNkc?si=KMZ9nqDLNavw6jIl"
         title="YouTube video player"

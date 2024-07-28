@@ -27,7 +27,7 @@ const Error: React.FC<ErrorProps> = ({ children }) => {
                 if (409 == error.statusCode) {
                     navigate(SIGNIN);
                 }
-            } else if (error.action === Action.SIGNIN) {
+            } else if (error.action === Action.SIGNIN || error.action === Action.AUTH) {
                 if (404 == error.statusCode) {
                     navigate('/sign-up');
                 }

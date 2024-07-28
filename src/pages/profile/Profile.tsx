@@ -7,7 +7,7 @@ import { FloppyDisk, PencilSimpleLine } from "@phosphor-icons/react";
 import styles from "./profile.module.scss";
 import Loading from "../../components/loading/Loading";
 import Error from "../../components/error/Error";
-import { IUser } from "../../utils/types/user";
+import { User } from "../../utils/types/user";
 import axiosInstance from "../../utils/axiosInstance";
 import restEndPoints from "../../constants/restEndPoints.json";
 import { setError, setLoading } from "../../redux/slices/StatusSlice";
@@ -19,11 +19,9 @@ import { IValidationErrors } from "../../utils/types/error";
 const Profile: FC = () => {
   const { user } = useSelector((state: RootState) => state.user);
   const [editClicked, setEditClicked] = useState<boolean>(false);
-  const [data, setData] = useState<IUser>(user);
   const [formErrors, setFormErrors] = useState<IValidationErrors>({});
-  const initials = `${user.firstName?.charAt(0) || ""}${
-    user.lastName?.charAt(0) || ""
-  }`.toUpperCase();
+  const [data, setData] = useState<User>(user);
+  const initials = `${user.firstName?.charAt(0) || ''}${user.lastName?.charAt(0) || ''}`.toUpperCase();
   const dispatch = useDispatch();
 
   const handleEdit = async () => {
@@ -39,7 +37,7 @@ const Profile: FC = () => {
       degree: data.degree,
       region: data.region,
       gender: data.gender,
-      organisationName: data.organisationName,
+      organisationName: data.organization,
     };
 
     if (Object.keys(tempErrors).length === 0){
@@ -67,15 +65,15 @@ const Profile: FC = () => {
     
   };
 
-  const handleFieldChange = (field: keyof IUser, value: string) => {
+  const handleFieldChange = (field: keyof User, value: string) => {
     setData((prevData) => ({ ...prevData, [field]: value }));
   };
 
   return (
     <Loading>
       <Error>
-        <div className="p-4 flex flex-col gap-4 ">
-          <div className="bg-white rounded-lg shadow-xl pb-8 ">
+        <div className="bg-gray-200 p-8 flex flex-col gap-4">
+          <div className="bg-white rounded-lg shadow-xl pb-8">
             <div className="w-full h-[250px]">
               <img
                 src="https://vojislavd.com/ta-template-demo/assets/img/profile-background.jpg"
@@ -83,17 +81,12 @@ const Profile: FC = () => {
               />
             </div>
             <div className="flex flex-col items-center -mt-20">
-              <div className="w-40 h-40 border-4 border-white rounded-full bg-[#324498] text-center text-[68px] text-slate-100 py-6">
-                {initials}
-              </div>
+              <div className="w-40 h-40 border-4 border-white rounded-full bg-[#324498] text-center text-[68px] text-slate-100 py-6">{initials}</div>
               <div className="flex items-center space-x-2 mt-2">
                 <p className="text-xl capitalize">
-                  {user?.firstName} {user?.lastName}
+                  {user?.firstName || "Drumil"} {user?.lastName || "akenia"}
                 </p>
-                <span
-                  className="bg-[#324498] rounded-full p-1"
-                  title="Verified"
-                >
+                <span className="bg-[#324498] rounded-full p-1" title="Verified">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="text-gray-100 h-2.5 w-2.5"
@@ -110,7 +103,7 @@ const Profile: FC = () => {
                   </svg>
                 </span>
               </div>
-              <p className="text-gray-700">Phone No.: {user?.phoneNumber}</p>
+              <p className="text-gray-700">Phone No.: {user?.phoneNumber || 123123}</p>
             </div>
             <div className="flex-1 flex flex-col items-center lg:items-end justify-end px-8 mt-2">
               <div className="flex items-center space-x-4 mt-2">
@@ -127,36 +120,26 @@ const Profile: FC = () => {
                   First Name
                 </label>
                 <input
-                  className={`appearance-none block w-full ${
-                    editClicked ? "" : "bg-gray-200"
-                  } text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white`}
+                  className={`appearance-none block w-full ${editClicked ? "" : "bg-gray-200"} text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white`}
                   type="text"
                   placeholder="Jane"
                   disabled={!editClicked}
                   value={data.firstName}
-                  onChange={(e) =>
-                    handleFieldChange("firstName", e.target.value)
-                  }
+                  onChange={(e) => handleFieldChange("firstName", e.target.value)}
                 />
-                {formErrors.firstName && <p className='text-red-500'>{formErrors.firstName}</p>}
               </div>
               <div className="w-full md:w-1/2 px-3">
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 mt-2">
                   Last Name
                 </label>
                 <input
-                  className={`appearance-none block w-full ${
-                    editClicked ? "" : "bg-gray-200"
-                  } text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white`}
+                  className={`appearance-none block w-full ${editClicked ? "" : "bg-gray-200"} text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white`}
                   type="text"
                   placeholder="Doe"
                   disabled={!editClicked}
                   value={data.lastName}
-                  onChange={(e) =>
-                    handleFieldChange("lastName", e.target.value)
-                  }
+                  onChange={(e) => handleFieldChange("lastName", e.target.value)}
                 />
-                {formErrors.lastName && <p className='text-red-500'>{formErrors.lastName}</p>}
               </div>
             </div>
             <div className={styles.labelWrap}>
@@ -181,18 +164,13 @@ const Profile: FC = () => {
                   Phone Number
                 </label>
                 <input
-                  className={`appearance-none block w-full ${
-                    editClicked ? "" : "bg-gray-200"
-                  } text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white`}
+                  className={`appearance-none block w-full ${editClicked ? "" : "bg-gray-200"} text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white`}
                   type="text"
                   placeholder="+91 1231231231"
                   disabled={!editClicked}
                   value={data.phoneNumber}
-                  onChange={(e) =>
-                    handleFieldChange("phoneNumber", e.target.value)
-                  }
+                  onChange={(e) => handleFieldChange("phoneNumber", e.target.value)}
                 />
-                {formErrors.phoneNumber && <p className='text-red-500'>{formErrors.phoneNumber}</p>}
               </div>
             </div>
             <div className={styles.labelWrap}>
@@ -201,34 +179,26 @@ const Profile: FC = () => {
                   University Name
                 </label>
                 <input
-                  className={`appearance-none block w-full ${
-                    editClicked ? "" : "bg-gray-200"
-                  } text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white`}
+                  className={`appearance-none block w-full ${editClicked ? "" : "bg-gray-200"} text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white`}
                   type="text"
                   placeholder="ABC university"
                   disabled={!editClicked}
                   value={data.university}
-                  onChange={(e) =>
-                    handleFieldChange("university", e.target.value)
-                  }
+                  onChange={(e) => handleFieldChange("university", e.target.value)}
                 />
-                {formErrors.university && <p className='text-red-500'>{formErrors.university}</p>}
               </div>
               <div className="w-full md:w-1/2 px-3">
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 mt-2">
                   Degree
                 </label>
                 <input
-                  className={`appearance-none block w-full ${
-                    editClicked ? "" : "bg-gray-200"
-                  } text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white`}
+                  className={`appearance-none block w-full ${editClicked ? "" : "bg-gray-200"} text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white`}
                   type="text"
                   placeholder="B.tech"
                   disabled={!editClicked}
                   value={data.degree}
                   onChange={(e) => handleFieldChange("degree", e.target.value)}
                 />
-                {formErrors.degree && <p className='text-red-500'>{formErrors.degree}</p>}
               </div>
             </div>
             <div className={styles.labelWrap}>
@@ -237,9 +207,7 @@ const Profile: FC = () => {
                   Region
                 </label>
                 <input
-                  className={`appearance-none block w-full ${
-                    editClicked ? "" : "bg-gray-200"
-                  } text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white`}
+                  className={`appearance-none block w-full ${editClicked ? "" : "bg-gray-200"} text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white`}
                   type="text"
                   placeholder="Hindu, Muslim, Christan etc..."
                   disabled={!editClicked}
@@ -284,9 +252,9 @@ const Profile: FC = () => {
                   type="text"
                   placeholder="ABC company"
                   disabled={!editClicked}
-                  value={data.organisationName}
+                  value={data.organization}
                   onChange={(e) =>
-                    handleFieldChange("organisationName", e.target.value)
+                    handleFieldChange("organization", e.target.value)
                   }
                 />
                 {formErrors.organisationName && <p className='text-red-500'>{formErrors.organisationName}</p>}

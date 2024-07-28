@@ -2,13 +2,15 @@ import React from "react";
 import Layout from "./Layout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Dashboard from "../pages/dashboard/Dashboard";
-import Signup from "../pages/SignUp/SignUp";
 import SignIn from "../pages/signIn/SignIn";
 import DashboardMobile from "../pages/dashboard/dashboardMobile/DashboardMobile";
 import useMediaQuery from "../utils/hooks/useMediaQuery";
 import Lecture from '../pages/lecture/Lecture';
-import { HOME, SIGNIN, SIGNUP, PROFILE } from "../constants/routesEndpoints";
+import { HOME, SIGNIN, PROFILE, ASSIGNMENT } from "../constants/routesEndpoints";
 import Profile from "../pages/profile/Profile";
+import ProtectedRoute from "../components/ProtectedRoute";
+import RestrictedRoute from "../components/RestrictedRoute";
+import Assignment from "../pages/assignment/Assignment";
 
 const Route: React.FC = () => {
   const isMobile = useMediaQuery(768);
@@ -20,20 +22,21 @@ const Route: React.FC = () => {
       children: [
         {
           path: HOME,
-          element: isMobile ? <DashboardMobile /> : <Dashboard />,
-        }, {
-          path: SIGNUP,
-          element: <Signup />
+          element: <ProtectedRoute>{isMobile ? <DashboardMobile /> : <Dashboard />}</ProtectedRoute>,
         }, {
           path: SIGNIN,
-          element: <SignIn />
+          element: <RestrictedRoute> <SignIn /> </RestrictedRoute>,
         }, {
           path: "/lecture/:sectionId/:moduleId/:topicId",
-          element: <Lecture />
+          element: <ProtectedRoute> <Lecture /> </ProtectedRoute>
         }, {
           path: PROFILE,
-          element: <Profile />
+          element: <ProtectedRoute> <Profile /></ProtectedRoute>
+        }, {
+          path: ASSIGNMENT,
+          element: <ProtectedRoute> <Assignment /></ProtectedRoute>
         }
+
       ]
     },
   ]);
