@@ -42,7 +42,7 @@ const Assignment: React.FC<AssignmentProps> = () => {
       <Error>
         <div style={{ height: 'calc(100vh - 60px)' }} className="flex items-center justify-center w-full p-2 md:p-5 lg:p-8 bg-[#ECEEEF] ">
           <div className="rounded-xl shadow-xl bg-white flex flex-col px-1 py-5 md:p-5 w-full  h-full">
-            <div className=" relative group rounded-lg w-64 bg-gray-50 overflow-hidden before:absolute before:w-12 before:h-12 min-h-[41.4px] before:content[''] before:right-0 before:bg-violet-500 before:rounded-full before:blur-lg before:[box-shadow:-60px_20px_10px_10px_#F9B0B9] mx-auto lg:mx-0">
+            <div className=" relative group rounded-lg w-64 bg-gray-50 overflow-hidden before:absolute before:w-12 before:h-12 min-h-[41.4px] before:content[''] before:right-0 before:bg-[#324498] before:rounded-full before:blur-lg before:[box-shadow:-60px_20px_10px_10px_#FFCB33] mx-auto lg:mx-0">
               <svg
                 y="0"
                 xmlns="http://www.w3.org/2000/svg"
@@ -69,7 +69,7 @@ const Assignment: React.FC<AssignmentProps> = () => {
                   else
                     setSelectValue(QuestionType.Assignment);
                 }}
-                className="appearance-none hover:placeholder-shown:bg-emerald-500 relative text-[#324498] bg-transparent ring-0 outline-none border border-neutral-500 placeholder-violet-700 text-sm font-bold rounded-lg focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5">
+                className="appearance-none hover:placeholder-shown:bg-emerald-500 relative text-[#324498] bg-transparent ring-0 outline-none border border-[#FFCB33] placeholder-[#324498] text-sm font-bold rounded-lg focus:ring-[#324498] focus:border-[#324498] block w-full p-2.5">
                 <option value={QuestionType.Question}>Questions</option>
                 <option value={QuestionType.Assignment}>Assignment</option>
 
