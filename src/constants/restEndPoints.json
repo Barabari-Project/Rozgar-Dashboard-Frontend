@@ -8,5 +8,6 @@
     "profileUpdate": "/profile/update",
     "submitQuestion": "/submit/question",
     "submitTopic": "/submit/topic",
-    "getAllSubmittedQuestions": "/submit/question"
+    "getAllSubmittedQuestions": "/submit/question",
+    "signout": "/auth/sign-out"
 }
