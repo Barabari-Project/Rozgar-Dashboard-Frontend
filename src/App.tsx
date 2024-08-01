@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
-import Route from './routes/Routes';
-import axiosInstance from './utils/axiosInstance';
+import React, { useEffect } from "react";
+import Route from "./routes/Routes";
+import axiosInstance from "./utils/axiosInstance";
 import resetEndPoints from "./constants/restEndPoints.json";
-import { useDispatch } from 'react-redux';
-import { setUserDetails } from './redux/slices/UserSlice';
+import { useDispatch } from "react-redux";
+import { setUserDetails } from "./redux/slices/UserSlice";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -13,7 +13,8 @@ const App: React.FC = () => {
       try {
         const response = await axiosInstance.get(`${resetEndPoints.auth}`);
         dispatch(setUserDetails({ ...response.data.user }));
-      } catch (error: any) {
+      } catch (error) {
+        console.error(error);
       }
     };
     auth();
