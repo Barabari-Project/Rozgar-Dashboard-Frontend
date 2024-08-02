@@ -40,9 +40,9 @@ const Assignment: React.FC<AssignmentProps> = () => {
   return (
     <Loading>
       <Error>
-        <div style={{ height: 'calc(100vh - 60px)' }} className="flex items-center justify-center w-full p-2 md:p-5 lg:p-8 bg-[#ECEEEF]">
-          <div className="rounded-xl shadow-xl bg-white flex flex-col px-1 py-5 md:p-5 w-full h-full">
-            <div className="min-h-fit relative group rounded-lg w-64 bg-gray-50 overflow-hidden before:absolute before:w-12 before:h-12 before:content[''] before:right-0 before:bg-violet-500 before:rounded-full before:blur-lg before:[box-shadow:-60px_20px_10px_10px_#F9B0B9] mx-auto lg:mx-0">
+        <div style={{ height: 'calc(100vh - 60px)' }} className="flex items-center justify-center w-full p-2 md:p-5 lg:p-8 bg-[#ECEEEF] ">
+          <div className="rounded-xl shadow-xl bg-white flex flex-col px-1 py-5 md:p-5 w-full  h-full">
+            <div className=" relative group rounded-lg w-64 bg-gray-50 overflow-hidden before:absolute before:w-12 before:h-12 min-h-[41.4px] before:content[''] before:right-0 before:bg-[#324498] before:rounded-full before:blur-lg before:[box-shadow:-60px_20px_10px_10px_#FFCB33] mx-auto lg:mx-0">
               <svg
                 y="0"
                 xmlns="http://www.w3.org/2000/svg"
@@ -69,40 +69,42 @@ const Assignment: React.FC<AssignmentProps> = () => {
                   else
                     setSelectValue(QuestionType.Assignment);
                 }}
-                className="appearance-none hover:placeholder-shown:bg-emerald-500 relative text-[#324498] bg-transparent ring-0 outline-none border border-neutral-500 placeholder-violet-700 text-sm font-bold rounded-lg focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5">
+                className="appearance-none hover:placeholder-shown:bg-emerald-500 relative text-[#324498] bg-transparent ring-0 outline-none border border-[#FFCB33] placeholder-[#324498] text-sm font-bold rounded-lg focus:ring-[#324498] focus:border-[#324498] block w-full p-2.5">
                 <option value={QuestionType.Question}>Questions</option>
                 <option value={QuestionType.Assignment}>Assignment</option>
 
               </select>
 
             </div>
+
             <br />
 
             <hr />
             <br />
 
-            <div className="rounded-xl bg-white w-full flex flex-col gap-4">
+            <div className="rounded-xl bg-white w-full flex flex-col gap-4  overflow-y-scroll">
               {submissionList.map((submission: UserSubmissionWithQuestion, index: number) => {
                 return selectValue == submission.question.type && (
                   <div
                     key={submission.id}
-                    className="w-full bg-[#E6EBF0] h-fit min-h-fit py-2 flex flex-col md:flex-row justify-evenly md:justify-between items-start md:items-center rounded-xl md:px-4 px-1 md:pr-5 hover:shadow-xl duration-500  hover:translate-y-[-5px]"
+                    className="w-full bg-[#E6EBF0] h-fit min-h-fit py-2 flex flex-col md:flex-row justify-evenly md:justify-between items-start md:items-center gap-2 md:gap-0 rounded-xl md:px-4 px-1 md:pr-5 hover:shadow-xl duration-500 hover:translate-y-[-5px]"
                   >
                     {/* left part */}
-                    <div className="flex h-full items-center max-w-full w-full md:max-w-3/4 md:w-3/4 overflow-hidden gap-3 pl-2">
+                    <div className="flex h-full items-start  max-w-full w-full md:max-w-3/4 md:w-3/4  gap-3 pl-2  min-h-fit">
                       <span>{index + 1}.</span>
                       <a
                         style={{ textOverflow: "ellipsis" }}
                         href="#"
                         target="_blank"
-                        className="hover:text-[#324498] "
+                        className="hover:text-[#324498]  "
                       >
                         {submission?.question.title}
+                         
                       </a>
                     </div>
 
                     {/* right part */}
-                    <div className="flex h-full pl-3 md:pl-0 items-center gap-3">
+                    <div className="flex h-full pl-3 md:pl-0 items-center gap-3 mx-auto md:mx-0">
                       <a href={submission?.question.url} target="_blank" className="">
                         <button className="bg-[#324498] text-[#a7b4ee] border border-[#7087f0] border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group">
                           <span className="bg-[#324498] shadow-[#7087f0] absolute -top-[150%] left-0 inline-flex w-80 h-[5px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
