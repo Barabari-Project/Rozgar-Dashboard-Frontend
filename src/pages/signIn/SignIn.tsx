@@ -1,3 +1,6 @@
+import React, { useEffect } from "react";
+import styles from "./SignIn.module.scss";
+import { Lock, Phone } from "lucide-react";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { ISignInForm } from "../../utils/types/form";
 import { IValidationErrors } from "../../utils/types/error";
@@ -13,14 +16,10 @@ import { Action } from "../../enums/actionEnum";
 import restEndPoints from "../../constants/restEndPoints.json";
 import Loading from "../../components/loading/Loading";
 import Error from "../../components/error/Error";
-import Rozgar_Logo from "../../assets/barabari_logo.png";
-import { Link } from "react-router-dom";
-import { Mail, Lock } from "lucide-react";
+// import Rozgar_Logo from "../../assets/barabari_logo.png";  // not used
+// import { Link } from "react-router-dom"; // not used
 import { HOME } from "../../constants/routesEndpoints";
-
-const myStyle = {
-  background: "radial-gradient(circle, rgba(181,189,227,1) 0%, rgba(50,68,152,1) 40%)",
-};
+import Footer from '../signIn/Footer';
 
 const SignIn: React.FC = () => {
   const dispatch = useDispatch();
@@ -46,15 +45,14 @@ const SignIn: React.FC = () => {
       setFormErrors({});
       dispatch(setLoading(true));
       try {
-        const response = await axiosInstance.post(
-          restEndPoints.signIn,
-          { user: formData }
-        );
+        const response = await axiosInstance.post(restEndPoints.signIn, {
+          user: formData,
+        });
         toast.success(response.data.message);
         Cookies.set("token", response.data.token);
         dispatch(setUserDetails({ ...response.data.user }));
         navigate(HOME);
-        console.log(response)
+        console.log(response);
       } catch (error: any) {
         if (error.response) {
           dispatch(
@@ -75,170 +73,227 @@ const SignIn: React.FC = () => {
     }
   };
 
+  // css part
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    const circles = document.querySelectorAll(`.${styles.circle123}`);
+
+    const circleStyles = [
+      {
+        "--ani-duration": "1s",
+        "--back-color": "#334499",
+        "--ani-delay": "0s",
+        "--half-opacity": "0",
+        "--initial-width": "57.17vw",
+        "--initial-height": "57.17vw",
+        "--final-width": "63.61vw",
+        "--final-height": "63.61vw",
+        "--h-top": "-35.5vw",
+        "--v-right": "-8.46vw",
+      },
+      {
+        "--ani-duration": "0.5s",
+        "--ani-delay": "1s",
+        "--h-top": "-26.88vw",
+        "--v-right": "-5.85vw",
+        "--half-opacity": "0.5",
+        "--back-color": "rgba(255, 255, 255, 0.1)",
+        "--initial-width": "48.53vw",
+        "--initial-height": "48.53vw",
+        "--final-width": "54.98vw",
+        "--final-height": "54.98vw",
+      },
+      {
+        "--ani-duration": "0.5s",
+        "--ani-delay": "1.5s",
+        "--h-top": "-22.78vw",
+        "--v-right": "-6vw",
+        "--half-opacity": "0.5",
+        "--back-color": "rgba(255, 255, 255, 0.07)",
+        "--initial-width": "44.79vw",
+        "--initial-height": "44.79vw",
+        "--final-width": "51.24vw",
+        "--final-height": "51.24vw",
+      },
+    ];
+
+    circles.forEach((circle, index) => {
+      Object.entries(circleStyles[index]).forEach(([property, value]) => {
+        (circle as HTMLElement).style.setProperty(property, value);
+      });
+    });
+
+    const setDynamicImageSize = () => {
+      const screenWidth = window.innerWidth;
+      const screenHeight = window.innerHeight;
+      console.log(screenHeight, screenWidth);
+      const image = document.getElementById("dynamicImage") as HTMLImageElement;
+      const secondImage = document.getElementsByClassName(
+        styles.secondImage123
+      ) as HTMLCollectionOf<HTMLElement>;
+      const thirdImage = document.getElementsByClassName(
+        styles.thirdImage123
+      ) as HTMLCollectionOf<HTMLElement>;
+
+      if (image) {
+        image.style.width = `${screenWidth}px`;
+        image.style.height = `${screenWidth / 2 + screenWidth * 0.17}px`;
+      }
+      if (secondImage[0]) {
+        secondImage[0].style.width = `${(screenWidth * 417) / 1536}px`;
+        secondImage[0].style.height = `${(screenWidth * 374) / 1536}px`;
+      }
+      if (thirdImage[0]) {
+        thirdImage[0].style.width = `${(screenWidth * 417) / 1536}px`;
+        thirdImage[0].style.height = `${(screenWidth * 349) / 1536}px`;
+      }
+    };
+
+    setDynamicImageSize();
+    window.addEventListener("resize", setDynamicImageSize);
+
+    return () => {
+      window.removeEventListener("resize", setDynamicImageSize);
+    };
+  }, []);
+
   return (
-    <Loading>
-      <Error>
-        <section  style={{ height: 'calc(100vh - 60px)' }} className="flex items-start justify-center overflow-y-auto ">
-          <div style={{boxShadow: "0px 0px 15px #97a5e6"}} className="grid grid-cols-1 lg:grid-cols-2 m-5 rounded-2xl lg:overflow-hidden lg:shadow-xl">
-            {/* left */}
-            <div
-              style={myStyle}
-              className=" h-full text-white w-full hidden lg:flex flex-col justify-start items-center px-10 py-12"
-            >
-              {/* <img
-                className="mx-auto h-full w-full rounded-md object-cover p-5"
-                src="https://images.unsplash.com/photo-1630673245362-f69d2b93880e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
-                alt=""
-              /> */}
-              <h1 className="text-center text-white text-6xl font-bold mb-6">
-                Welcome to our Community
-              </h1>
-              <p className="text-center">
-                Lorem ipsum dolor sit amet consectetur.
-              </p>
-              <p className="text-center">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odit,
-                atque?
-              </p>
-              <div className="h-1/2 w-1/2 border border-black"></div>
-              <h2 className="text-4xl">Make your dreams</h2>
-              <h2 className="text-4xl">comes true</h2>
-              <p className="mt-4">Quality experience on all devices</p>
+    <>
+     {/* <Loading>
+        <Error> */}
+        <section className={styles.animationHeader123}>
+          <div className={styles.circle123}></div>
+          <div className={styles.circle123}></div>
+          <div className={styles.circle123}>
+            <div className={styles.content}>
+              <h1 className={styles.title}>India's open rozgaar program</h1>
+              <h3 className={styles.subTitle}>
+                Build your industry-ready portfolio with us
+              </h3>
             </div>
+          </div>
+          <div className={styles.headerImage123} style={{ zIndex: 15 }}>
+            <div className={styles.workerImg123}>
+              <img
+                src="/assets/images/home-11-vector-1.png"
+                id="dynamicImage"
+                className={styles.innerImage123}
+              />
+              <div className={styles.secondImageLoader123}>
+                <img
+                  src="/assets/images/home-11-vector-2.png"
+                  className={styles.secondImage123}
+                  style={{ zIndex: 16 }}
+                />
+              </div>
+              <div className={styles.thirdImageLoader123}>
+                <img
+                  src="/assets/images/home-11-vector-3.png"
+                  className={styles.thirdImage123}
+                  style={{ zIndex: 17 }}
+                />
+              </div>
+            </div>
+          </div>
 
-            {/* right */}
-            <div className="flex items-center justify-center px-4 py-1 sm:px-6 sm:py-4 lg:px-8 lg:py-10 ">
-              <div className="xl:mx-auto xl:w-full xl:max-w-md 2xl:max-w-lg rounded-xl px-6 py-6 md:py-8 ">
-                <div className="mb-2 flex justify-center">
-                  <img className="h-14" src={Rozgar_Logo} alt="Rozgar" />
-                </div>
-                <h2 className="text-center text-2xl font-bold leading-tight text-black">
-                  Sign in to Rozgar
-                </h2>
-                <p className="mt-2 text-center text-sm text-gray-600 ">
-                  Don&apos;t have an account?{" "}
-                  <Link
-                    to="/sign-up"
-                    title=""
-                    className="font-semibold text-black transition-all duration-200 hover:underline"
-                  >
-                    Create a free account
-                  </Link>
-                </p>
-                <form onSubmit={handleSubmit} className="sm:mt-6 md:mt-8">
-                  <div className="space-y-5">
-                    <div>
-                      <label
-                        htmlFor=""
-                        className="text-base font-medium text-gray-900"
-                      >
-                        {" "}
-                        Phone Number{" "}
-                      </label>
-                      <div className="mt-2">
-                        <div className="flex gap-1 rounded-md px-2 border border-gray-300 focus-within:border-blue-500 focus:ring-1 focus-within:ring-1 focus-within:ring-blue-500 focus-within:ring-offset-1">
-                          <span className="flex justify-center items-center gap-2">
-                            <Mail />
-                          </span>
-                          <input
-                            className="flex h-10 w-full bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
-                            type="tel"
-                            name="phoneNumber"
-                            placeholder="Email"
-                            value={formData.phoneNumber}
-                            onChange={handleChange}
-                          ></input>
-                        </div>
-                        {formErrors.phoenNumber && (
-                          <p className="text-red-400 mt-1 duration-500">
-                            {formErrors.phoenNumber}
-                          </p>
-                        )}
-                      </div>
-                    </div>
+          <div className={styles.sectionHeader}>
+            <h1 className={styles.title}>India's open rozgaar program</h1>
+            <h3 className={styles.subTitle}>
+              Build your industry-ready portfolio with us
+            </h3>
+          </div>
 
-                    <div>
-                      <div className="flex items-center justify-start">
-                        <label
-                          htmlFor=""
-                          className="text-base font-medium text-gray-900"
-                        >
-                          {" "}
-                          Password{" "}
-                        </label>
-                      </div>
-
-                      <div className="mt-2">
-                        <div className="flex gap-1 rounded-md px-2 border border-gray-300 focus-within:border-blue-500 focus:ring-1 focus-within:ring-1 focus-within:ring-blue-500 focus-within:ring-offset-1">
-                          <span className="flex justify-center items-center gap-2">
-                            <Lock />
-                          </span>
-                          <input
-                            className="flex h-10 w-full bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
-                            type="password"
-                            name="password"
-                            placeholder="Password"
-                            value={formData.password}
-                            onChange={handleChange}
-                          ></input>
-                        </div>
-                        {formErrors.password && (
-                          <p className="text-red-400 mt-1 duration-500">
-                            {formErrors.password}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="flex justify-end">
-                      <a
-                        href="#"
-                        title=""
-                        className="text-sm font-semibold text-black hover:underline hover:scale-105"
-                      >
-                        {" "}
-                        Forgot password?{" "}
-                      </a>
-                    </div>
-                    <div>
-                      <button
-                        onClick={handleSubmit}
-                        type="button"
-                        className="group inline-flex w-full items-center justify-center rounded-md bg-[#324498] px-3.5 py-2.5 font-semibold leading-7 text-white  duration-300 hover:scale-105"
-                      >
-                        Sign in
-                      </button>
-                    </div>
-                  </div>
-                </form>
-                <div className="mt-3 space-y-3">
-                  <button
-                    type="button"
-                    className="relative bg-[#FFCB33] inline-flex w-full items-center justify-center rounded-md border border-gray-400 bg-white px-3.5 py-2.5 font-semibold text-gray-700 transition-all hover:scale-105 duration-500 hover:text-black focus:bg-gray-100 focus:text-black focus:outline-none"
-                  >
-                    <span className="mr-2 inline-block">
-                      <svg
-                        className="h-6 w-6 text-black "
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                      >
-                        <path d="M20.283 10.356h-8.327v3.451h4.792c-.446 2.193-2.313 3.453-4.792 3.453a5.27 5.27 0 0 1-5.279-5.28 5.27 5.27 0 0 1 5.279-5.279c1.259 0 2.397.447 3.29 1.178l2.6-2.599c-1.584-1.381-3.615-2.233-5.89-2.233a8.908 8.908 0 0 0-8.934 8.934 8.907 8.907 0 0 0 8.934 8.934c4.467 0 8.529-3.249 8.529-8.934 0-.528-.081-1.097-.202-1.625z"></path>
-                      </svg>
+          {/* Left side form */}
+          <div className={styles.leftSideForm}>
+            <div className={styles.formContainer}>
+              <h2 className={styles.heading}>Sign in to Rozgar</h2>
+              <form className={styles.form} onSubmit={handleSubmit}>
+                <div className={styles.formGroup}>
+                  <label htmlFor="phoneNumber" className={styles.label}>
+                    Phone Number
+                  </label>
+                  <div className={styles.inputWrapper}>
+                    <span className={styles.iconWrapper}>
+                      <Phone className={styles.icon} />
                     </span>
-                    Sign in with Google
+                    <input
+                      id="phoneNumber"
+                      name="phoneNumber"
+                      type="tel"
+                      placeholder="Phone Number"
+                      className={styles.input}
+                      value={formData.phoneNumber}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  {formErrors.phoneNumber && (
+                    <p className="text-red-400 mt-1 duration-500">
+                      {formErrors.phoneNumber}
+                    </p>
+                  )}
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label htmlFor="password" className={styles.label}>
+                    Password
+                  </label>
+                  <div className={styles.inputWrapper}>
+                    <span className={styles.iconWrapper}>
+                      <Lock className={styles.icon} />
+                    </span>
+                    <input
+                      id="password"
+                      name="password"
+                      type="password"
+                      placeholder="Password"
+                      className={styles.input}
+                      value={formData.password}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  {formErrors.password && (
+                    <p className="text-red-400 mt-1 duration-500">
+                      {formErrors.password}
+                    </p>
+                  )}
+                </div>
+
+                <div className={styles.formGroup}>
+                  <a href="#" className="text-end px-4 hover:text-[#324498]">
+                    Forgot Password
+                  </a>
+                </div>
+
+                <div className={styles.actions}>
+                  <button type="submit" className={styles.submitButton}>
+                    Sign in
                   </button>
                 </div>
+              </form>
+              <div className={styles.googleSignIn}>
+                <button type="button" className={styles.googleButton}>
+                  <span className={styles.googleIcon}>
+                    <svg
+                      className={styles.icon}
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <path d="M20.283 10.356h-8.327v3.451h4.792c-.446 2.193-2.313 3.453-4.792 3.453a5.27 5.27 0 0 1-5.279-5.28 5.27 5.27 0 0 1 5.279-5.279c1.259 0 2.397.447 3.29 1.178l2.6-2.599c-1.584-1.381-3.615-2.233-5.89-2.233a8.908 8.908 0 0 0-8.934 8.934 8.907 8.907 0 0 0 8.934 8.934c4.467 0 8.529-3.249 8.529-8.934 0-.528-.081-1.097-.202-1.625z"></path>
+                    </svg>
+                  </span>
+                  Sign in with Google
+                </button>
               </div>
             </div>
           </div>
         </section>
-      </Error>
-    </Loading>
+
+        <Footer />
+      {/* </Error>
+    </Loading> */}
+  </>
   );
 };
 
 export default SignIn;
-
-// color - rgb(79,30,223)
-// right div - bg-[#FCFCFC]
