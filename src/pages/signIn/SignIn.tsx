@@ -159,8 +159,8 @@ const SignIn: React.FC = () => {
 
   return (
     <>
-     {/* <Loading>
-        <Error> */}
+     <Loading>
+        <Error>
         <section className={styles.animationHeader123}>
           <div className={styles.circle123}></div>
           <div className={styles.circle123}></div>
@@ -290,8 +290,8 @@ const SignIn: React.FC = () => {
         </section>
 
         <Footer />
-      {/* </Error>
-    </Loading> */}
+      </Error>
+    </Loading>
   </>
   );
 };
