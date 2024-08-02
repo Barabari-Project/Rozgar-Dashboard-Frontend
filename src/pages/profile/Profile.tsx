@@ -76,13 +76,11 @@ const Profile: FC = () => {
     try {
       const response = await axiosInstance.get(
         restEndPoints.signout
-        
       );
       toast.success(response.data.message);
       Cookies.remove("token");
       dispatch(setUserDetails({ ...response.data.user }));
       navigate(SIGNIN);
-      console.log(response)
     } catch (error: any) {
       if (error.response) {
         dispatch(
@@ -142,7 +140,7 @@ const Profile: FC = () => {
             </div>
             <div className="flex-1 flex flex-col items-center lg:items-end justify-end px-8 mt-2">
               <div className="flex items-center md:flex-wrap-reverse flex-row-reverse gap-[8px] space-x-4 mt-2">
-                <div className="flex items-center cursor-pointer bg-[#cf3131] hover:bg-[#cf4343] text-gray-100 px-4 py-2 rounded text-sm space-x-2 transition duration-100">Log out</div>
+                <div className="flex items-center cursor-pointer bg-[#cf3131] hover:bg-[#cf4343] text-gray-100 px-4 py-2 rounded text-sm space-x-2 transition duration-100" onClick={logout}>Log out</div>
                 <Link to={ASSIGNMENT} className="flex items-center bg-[#324498] hover:bg-[#293779] text-gray-100 px-4 py-2 rounded text-sm space-x-2 transition duration-100">
                   View Submission
                 </Link>
