@@ -15,9 +15,11 @@ import { Action } from "../../enums/actionEnum";
 import { setUserDetails } from "../../redux/slices/UserSlice";
 import { validateProfileForm } from "../../utils/validations/validateProfileForm";
 import { IValidationErrors } from "../../utils/types/error";
-import { Link } from "react-router-dom";
-import { ASSIGNMENT } from "../../constants/routesEndpoints";
+import { Link, useNavigate } from "react-router-dom";
+import { ASSIGNMENT, SIGNIN } from "../../constants/routesEndpoints";
 import { Gender } from "../../utils/enums/Gender";
+import Cookies from 'js-cookie';
+import { toast } from "react-toastify";
 
 const Profile: FC = () => {
   const { user } = useSelector((state: RootState) => state.user);
@@ -25,6 +27,7 @@ const Profile: FC = () => {
   const [formErrors, setFormErrors] = useState<IValidationErrors>({});
   const [data, setData] = useState<User>(user);
   const initials = `${user.firstName?.charAt(0) || ''}${user.lastName?.charAt(0) || ''}`.toUpperCase();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   console.log(user);
   const handleEdit = async () => {
@@ -69,6 +72,34 @@ const Profile: FC = () => {
 
   };
 
+  const logout = async() => {
+    try {
+      const response = await axiosInstance.get(
+        restEndPoints.signout
+        
+      );
+      toast.success(response.data.message);
+      Cookies.remove("token");
+      dispatch(setUserDetails({ ...response.data.user }));
+      navigate(SIGNIN);
+      console.log(response)
+    } catch (error: any) {
+      if (error.response) {
+        dispatch(
+          setError({
+            statusCode: error.response.status,
+            message: error.response.data.error,
+            action: Action.SIGNOUT,
+          })
+        );
+      } else {
+        alert("Server is Down");
+      }
+    } finally {
+      dispatch(setLoading(false));
+    }
+  }
+
   const handleFieldChange = (field: keyof User, value: string) => {
     setData((prevData) => ({ ...prevData, [field]: value }));
   };
@@ -76,7 +107,7 @@ const Profile: FC = () => {
   return (
     <Loading>
       <Error>
-        <div className="bg-gray-200 p-8 flex flex-col gap-4">
+        <div className=" p-8 flex flex-col gap-4">
           <div className="bg-white rounded-lg shadow-xl pb-8">
             <div className="w-full h-[250px]">
               <img
@@ -88,7 +119,7 @@ const Profile: FC = () => {
               <div className="w-40 h-40 border-4 border-white rounded-full bg-[#324498] text-center text-[68px] text-slate-100 py-6">{initials}</div>
               <div className="flex items-center space-x-2 mt-2">
                 <p className="text-xl capitalize">
-                  {user?.firstName || "Drumil"} {user?.lastName || "akenia"}
+                  {user?.firstName} {user?.lastName}
                 </p>
                 <span className="bg-[#324498] rounded-full p-1" title="Verified">
                   <svg
@@ -107,10 +138,11 @@ const Profile: FC = () => {
                   </svg>
                 </span>
               </div>
-              <p className="text-gray-700">Phone No.: {user?.phoneNumber || 123123}</p>
+              <p className="text-gray-700">Phone No.: {user?.phoneNumber}</p>
             </div>
             <div className="flex-1 flex flex-col items-center lg:items-end justify-end px-8 mt-2">
-              <div className="flex items-center space-x-4 mt-2">
+              <div className="flex items-center md:flex-wrap-reverse flex-row-reverse gap-[8px] space-x-4 mt-2">
+                <div className="flex items-center cursor-pointer bg-[#cf3131] hover:bg-[#cf4343] text-gray-100 px-4 py-2 rounded text-sm space-x-2 transition duration-100">Log out</div>
                 <Link to={ASSIGNMENT} className="flex items-center bg-[#324498] hover:bg-[#293779] text-gray-100 px-4 py-2 rounded text-sm space-x-2 transition duration-100">
                   View Submission
                 </Link>
@@ -222,7 +254,7 @@ const Profile: FC = () => {
               
             </div>
             <div className={styles.labelWrap}>
-                <div className="w-full px-3">
+                <div className="w-full md:w-1/2 px-3 md:mb-0">
                   <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 mt-2">
                     Gender
                   </label>
