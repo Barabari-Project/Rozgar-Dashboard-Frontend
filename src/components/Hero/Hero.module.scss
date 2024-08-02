@@ -2,8 +2,8 @@
 
 .animationHeader123 {
   width: 100%;
-  min-height: calc(100vh - 60px);
-  overflow-x: hidden;
+  height: calc(100vh - 60px);
+  overflow: hidden;
   position: relative;
   background-color: #ececec;
   @include md-max {
@@ -12,7 +12,7 @@
     flex-direction: column;
     gap: 1rem;
     align-items: center;
-    min-height: max-content;
+    height: max-content;
     padding-bottom: 1rem;
   }
 }
@@ -38,14 +38,14 @@
 
     .title {
       font-size: 1.7rem;
-      color: #fff;
+      color: #fcfcfc;
       font-weight: 800;
       text-align: center;
       text-transform: capitalize;
     }
     .subTitle {
       font-size: 1.1rem;
-      color: #fff;
+      color: #fcfcfc;
       font-weight: 600;
       text-align: center;
     }
@@ -209,13 +209,13 @@
   display: none;
   .title {
     font-size: 1.8rem;
-    color: #fff;
+    color: #fcfcfc;
     font-weight: 800;
     text-align: center;
   }
   .subTitle {
     font-size: 1.2rem;
-    color: #fff;
+    color: #fcfcfc;
     font-weight: 600;
     text-align: center;
   }
