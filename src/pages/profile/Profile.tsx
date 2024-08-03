@@ -12,7 +12,7 @@ import axiosInstance from "../../utils/axiosInstance";
 import restEndPoints from "../../constants/restEndPoints.json";
 import { setError, setLoading } from "../../redux/slices/StatusSlice";
 import { Action } from "../../enums/actionEnum";
-import { setUserDetails } from "../../redux/slices/UserSlice";
+import { clearUser, setUserDetails } from "../../redux/slices/UserSlice";
 import { validateProfileForm } from "../../utils/validations/validateProfileForm";
 import { IValidationErrors } from "../../utils/types/error";
 import { Link, useNavigate } from "react-router-dom";
@@ -26,7 +26,7 @@ const Profile: FC = () => {
   const [editClicked, setEditClicked] = useState<boolean>(false);
   const [formErrors, setFormErrors] = useState<IValidationErrors>({});
   const [data, setData] = useState<User>(user);
-  const initials = `${user.firstName?.charAt(0) || ''}${user.lastName?.charAt(0) || ''}`.toUpperCase();
+  const initials = `${user?.firstName?.charAt(0) || ''}${user?.lastName?.charAt(0) || ''}`.toUpperCase();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   console.log(user);
@@ -72,17 +72,15 @@ const Profile: FC = () => {
 
   };
 
-  const logout = async() => {
+  const logout = async () => {
     try {
       const response = await axiosInstance.get(
         restEndPoints.signout
-        
       );
       toast.success(response.data.message);
       Cookies.remove("token");
-      dispatch(setUserDetails({ ...response.data.user }));
+      dispatch(clearUser());
       navigate(SIGNIN);
-      console.log(response)
     } catch (error: any) {
       if (error.response) {
         dispatch(
@@ -142,7 +140,7 @@ const Profile: FC = () => {
             </div>
             <div className="flex-1 flex flex-col items-center lg:items-end justify-end px-8 mt-2">
               <div className="flex items-center md:flex-wrap-reverse flex-row-reverse gap-[8px] space-x-4 mt-2">
-                <div className="flex items-center cursor-pointer bg-[#cf3131] hover:bg-[#cf4343] text-gray-100 px-4 py-2 rounded text-sm space-x-2 transition duration-100">Log out</div>
+                <div className="flex items-center cursor-pointer bg-[#cf3131] hover:bg-[#cf4343] text-gray-100 px-4 py-2 rounded text-sm space-x-2 transition duration-100" onClick={logout}>Log out</div>
                 <Link to={ASSIGNMENT} className="flex items-center bg-[#324498] hover:bg-[#293779] text-gray-100 px-4 py-2 rounded text-sm space-x-2 transition duration-100">
                   View Submission
                 </Link>
@@ -251,30 +249,30 @@ const Profile: FC = () => {
                 />
                 {formErrors.region && <p className='text-red-500'>{formErrors.region}</p>}
               </div>
-              
+
             </div>
             <div className={styles.labelWrap}>
-                <div className="w-full md:w-1/2 px-3 md:mb-0">
-                  <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 mt-2">
-                    Gender
-                  </label>
-                  <select
-                    className={`appearance-none block w-full ${editClicked ? "" : "bg-gray-200"
-                      } text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white`}
-                    disabled={!editClicked}
-                    value={data.gender}
-                    onChange={(e) =>
-                      handleFieldChange("gender", e.target.value)
-                    }
-                  >
-                    <option value="">Select Gender</option>
-                    <option value={Gender.Male}>Male</option>
-                    <option value={Gender.Female}>Female</option>
-                    <option value={Gender.Other}>Others</option>
-                  </select>
-                  {formErrors.gender && <p className='text-red-500'>{formErrors.gender}</p>}
-                </div>
+              <div className="w-full md:w-1/2 px-3 md:mb-0">
+                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 mt-2">
+                  Gender
+                </label>
+                <select
+                  className={`appearance-none block w-full ${editClicked ? "" : "bg-gray-200"
+                    } text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white`}
+                  disabled={!editClicked}
+                  value={data.gender}
+                  onChange={(e) =>
+                    handleFieldChange("gender", e.target.value)
+                  }
+                >
+                  <option value="">Select Gender</option>
+                  <option value={Gender.Male}>Male</option>
+                  <option value={Gender.Female}>Female</option>
+                  <option value={Gender.Other}>Others</option>
+                </select>
+                {formErrors.gender && <p className='text-red-500'>{formErrors.gender}</p>}
               </div>
+            </div>
             <div className={styles.labelWrap}>
               <div className="w-full md:w-1/2 px-3 md:mb-0">
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 mt-2">

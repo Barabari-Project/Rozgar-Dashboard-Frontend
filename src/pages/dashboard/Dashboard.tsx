@@ -31,10 +31,11 @@ const Dashboard: FC = () => {
   }, []);
 
   const fetchData = async () => {
-    const courseId = '669bbc0b820a72940b3831bb';
+    const courseId = '66ade2067921724f6897a918';
     try {
       dispatch(setLoading(true));
       const response = await axiosInstance(`${restEndPoints.getCourseById}/${courseId}`);
+      console.log(response.data);
       dispatch(setCourseDetails(response.data));
     } catch (error: any) {
       console.log(error);

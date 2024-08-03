@@ -1,8 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Hero.module.scss";
 import { Lock, Phone } from "lucide-react";
+import 'animate.css';
+import { useNavigate } from "react-router-dom";
+import { HOME } from "../../constants/routesEndpoints";
 
 const Hero: React.FC = () => {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    phoneNumber: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const [errors, setErrors] = useState({
+    phoneNumber: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState("");
+
   useEffect(() => {
     window.scrollTo(0, 0);
     const circles = document.querySelectorAll(`.${styles.circle123}`);
@@ -86,6 +103,54 @@ const Hero: React.FC = () => {
     };
   }, []);
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const validateForm = () => {
+    const newErrors = { phoneNumber: "", password: "", confirmPassword: "" };
+    let isValid = true;
+
+    if (!formData.phoneNumber) {
+      newErrors.phoneNumber = "Phone number is required";
+      isValid = false;
+    }
+    if (!formData.password) {
+      newErrors.password = "Password is required";
+      isValid = false;
+    }
+    if (formData.password !== formData.confirmPassword) {
+      newErrors.confirmPassword = "Passwords do not match";
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!validateForm()) return;
+
+    setLoading(true);
+    try {
+      //TODO Api logic here
+      setSuccess("Sign up successful!");
+      setFormData({
+        phoneNumber: "",
+        password: "",
+        confirmPassword: "",
+      });
+      navigate(HOME);
+    } catch (error) {
+      setErrors({ ...errors});
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <section className={styles.animationHeader123}>
       <div className={styles.circle123}></div>
@@ -122,18 +187,18 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      <div className={styles.sectionHeader}>
-          <h1 className={styles.title}>India's open rozgaar program</h1>
-          <h3 className={styles.subTitle}>
-            Build your industry-ready portfolio with us
-          </h3>
-        </div>
+      <div className={`${styles.sectionHeader} animate__animated animate__bounceInDown`}>
+        <h1 className={styles.title}>India's open rozgaar program</h1>
+        <h3 className={styles.subTitle}>
+          Build your industry-ready portfolio with us
+        </h3>
+      </div>
 
       {/* Left side form */}
-      <div className={styles.leftSideForm}>
+      <div className={`${styles.leftSideForm} animate__animated animate__bounceInLeft`}>
         <div className={styles.formContainer}>
           <h2 className={styles.heading}>Sign up to Rozgar</h2>
-          <form className={styles.form}>
+          <form className={styles.form} onSubmit={handleSubmit}>
             <div className={styles.formGroup}>
               <label htmlFor="phoneNumber" className={styles.label}>
                 Phone Number
@@ -147,8 +212,11 @@ const Hero: React.FC = () => {
                   name="phoneNumber"
                   type="tel"
                   placeholder="Phone Number"
+                  value={formData.phoneNumber}
+                  onChange={handleChange}
                   className={styles.input}
                 />
+                {errors.phoneNumber && <p className={styles.error}>{errors.phoneNumber}</p>}
               </div>
             </div>
 
@@ -165,8 +233,11 @@ const Hero: React.FC = () => {
                   name="password"
                   type="password"
                   placeholder="Password"
+                  value={formData.password}
+                  onChange={handleChange}
                   className={styles.input}
                 />
+                {errors.password && <p className={styles.error}>{errors.password}</p>}
               </div>
             </div>
 
@@ -183,15 +254,19 @@ const Hero: React.FC = () => {
                   name="confirmPassword"
                   type="text"
                   placeholder="Confirm Password"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
                   className={styles.input}
                 />
+                {errors.confirmPassword && <p className={styles.error}>{errors.confirmPassword}</p>}
               </div>
             </div>
 
             <div className={styles.actions}>
-              <button type="submit" className={styles.submitButton}>
-                Sign in
+              <button type="submit" className={styles.submitButton} disabled={loading}>
+                {loading ? "Signing up..." : "Sign up"}
               </button>
+              {success && <p className={styles.success}>{success}</p>}
             </div>
           </form>
           <div className={styles.googleSignIn}>
@@ -206,7 +281,7 @@ const Hero: React.FC = () => {
                   <path d="M20.283 10.356h-8.327v3.451h4.792c-.446 2.193-2.313 3.453-4.792 3.453a5.27 5.27 0 0 1-5.279-5.28 5.27 5.27 0 0 1 5.279-5.279c1.259 0 2.397.447 3.29 1.178l2.6-2.599c-1.584-1.381-3.615-2.233-5.89-2.233a8.908 8.908 0 0 0-8.934 8.934 8.907 8.907 0 0 0 8.934 8.934c4.467 0 8.529-3.249 8.529-8.934 0-.528-.081-1.097-.202-1.625z"></path>
                 </svg>
               </span>
-              Sign in with Google
+              Sign up with Google
             </button>
           </div>
         </div>

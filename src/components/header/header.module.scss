@@ -27,11 +27,14 @@ header {
             -webkit-text-fill-color: transparent;
     }
   }
+  .logoContainer :hover{
+    cursor: pointer
+  }
   .profileContainer{
     @include flex-gap(8px);
     cursor: pointer;    
     div{
-        padding: 7px 0;
+        padding: 5px 0;
         border-radius: 50%;
         width: 40px;
         height: 40px;

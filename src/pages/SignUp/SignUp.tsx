@@ -17,7 +17,7 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Rozgar_Logo from "../../assets/barabari_logo.png";
 import { Phone, BookA, Mail, Lock } from 'lucide-react';
-import { HOME, SIGNIN } from '../../constants/routesEndpoints';
+import { SIGNIN } from '../../constants/routesEndpoints';
 
 
 const Signup: React.FC = () => {
@@ -74,7 +74,8 @@ const Signup: React.FC = () => {
         toast.success(response.data.message);
         Cookies.set('token', response.data.token);
         dispatch(setUserDetails({ ...response.data.user }));
-        navigate(HOME);
+        navigate('/dashboard');
+
       } catch (error: any) {
         dispatch(setError({
           statusCode: error.response.status,

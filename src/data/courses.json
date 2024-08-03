@@ -1,0 +1,169 @@
+[
+  {
+    "Title": "WebDev",
+    "Modules": [
+      {
+        "Title": "Building a Product Launch Page Website with HTML & CSS",
+        "Topics": [
+          "Basics and Structure",
+          "Text and Formatting",
+          "Links and Navigation",
+          "Images and Media",
+          "Tables",
+          "Forms and Input Elements",
+          "Semantic Elements (header, footer, article, section, etc.)",
+          "Multimedia (audio, video)",
+          "Meta Information (meta, title, base)",
+          "Introduction to CSS",
+          "Selectors and Combinators",
+          "CSS Box Model (margin, border, padding, content)",
+          "CSS Units and Values (px, em, rem, percentages)",
+          "Typography (font-family, font-size, font-weight, line-height, text-align, etc.)",
+          "Colors and Backgrounds (color, background-color, gradients)",
+          "Borders, Margins, and Padding",
+          "Display and Positioning (inline, block, float, display, position, z-index)",
+          "Flexbox and Grid Layout",
+          "Responsive Design and Media Queries",
+          "CSS Transitions and Animations"
+        ]
+      },
+      {
+        "Title": "Building a Receipt Automation Tool with HTML, CSS & JS",
+        "Topics": [
+          "HTML5 New Features (canvas, svg, etc.)",
+          "Accessibility (aria-* attributes, semantic markup)",
+          "Pseudo-classes and Pseudo-elements",
+          "CSS Variables and Custom Properties",
+          "CSS Frameworks and Preprocessors (Bootstrap, Sass, etc.)",
+          "Basics and Syntax",
+          "Variables and Data Types",
+          "Operators",
+          "Control Structures",
+          "Functions",
+          "Objects",
+          "Arrays",
+          "Strings",
+          "Events and Event Handling",
+          "DOM Manipulation",
+          "Error Handling and Debugging",
+          "Asynchronous JavaScript (Callbacks, Promises, Async/Await)",
+          "JSON (JavaScript Object Notation)",
+          "Modules and Imports/Exports",
+          "JavaScript in the Browser (BOM, DOM)",
+          "APIs and Fetch",
+          "ES6 and Beyond (New Syntax and Features)",
+          "Best Practices and Coding Standards",
+          "Testing and Debugging"
+        ]
+      },
+      {
+        "Title": "Building an Ed-Tech Company Dashboard with MERN STACK",
+        "Topics": [
+          "MongoDB Basics",
+          "Express.js Setup and Routing",
+          "React Components and Hooks",
+          "Node.js and Asynchronous Programming",
+          "RESTful API Development",
+          "Full-Stack Integration",
+          "Authentication and Security",
+          "State Management",
+          "Deployment and DevOps",
+          "Testing and Debugging"
+        ]
+      }
+    ]
+  },
+  {
+    "Title": "Design",
+    "Modules": [
+      {
+        "Title": "Building an Organisation's Social Media Page with Canva",
+        "Topics": [
+          "Branding and Visual Identity",
+          "Content Planning and Calendar",
+          "Creating Social Media Graphics",
+          "Using Canva's Tools and Elements",
+          "Designing Videos and Animations",
+          "Team Collaboration and Design Sharing",
+          "Scheduling and Publishing Content",
+          "Analyzing Engagement and Performance",
+          "Adapting to Social Media Trends",
+          "Legal and Ethical Considerations"
+        ]
+      },
+      {
+        "Title": "Building a School Website using Wix/WordPress",
+        "Topics": [
+          "Choosing a Wix Template",
+          "Customizing the Website Layout",
+          "Adding and Editing Pages",
+          "Designing a Homepage",
+          "Creating and Managing Menus",
+          "Adding Text, Images, and Media",
+          "Incorporating Forms and Contact Information",
+          "Setting Up a Blog or News Section",
+          "Adding Calendars and Event Listings",
+          "Implementing SEO Best Practices",
+          "Mobile Optimization",
+          "Integrating Social Media Links",
+          "Setting Up User Accounts and Permissions",
+          "Utilizing Wix Apps and Add-ons",
+          "Publishing and Maintaining the Website"
+        ]
+      },
+      {
+        "Title": "Creating an E-commerce App design using Figma",
+        "Topics": [
+          "Defining App Objectives and User Personas",
+          "Creating Wireframes and Mockups",
+          "Designing User Flows and Navigation",
+          "Developing Visual Design Elements",
+          "Designing Product Pages and Listings",
+          "Creating Shopping Cart and Checkout Interfaces",
+          "Incorporating Payment Gateways",
+          "Designing User Account and Profile Sections",
+          "Prototyping and User Testing",
+          "Collaborating with Developers",
+          "Using Design Systems and Components",
+          "Feedback and Iteration",
+          "Exporting Assets for Development"
+        ]
+      }
+    ]
+  },
+  {
+    "Title": "DataTools",
+    "Modules": [
+      {
+        "Title": "Doing Stock Market Analysis Using Advanced Excel",
+        "Topics": [
+          "Data Import and Management",
+          "Data Analysis Techniques",
+          "Financial Metrics and Ratios",
+          "Technical Analysis",
+          "Charting and Visualization",
+          "Forecasting and Modeling",
+          "Scenario and Sensitivity Analysis",
+          "Portfolio Management",
+          "Automating Reports and Dashboards",
+          "Integrating with External Tools"
+        ]
+      },
+      {
+        "Title": "Building a Business ChatBot with WhatsApp Business APIs",
+        "Topics": [
+          "Setting Up WhatsApp Business API",
+          "Creating and Configuring a Chatbot",
+          "Integrating the Chatbot with WhatsApp",
+          "Designing Conversational Flows",
+          "Handling User Input and Responses",
+          "Implementing Natural Language Processing (NLP)",
+          "Managing WhatsApp Templates and Messages",
+          "Handling Notifications and Alerts",
+          "Tracking and Analyzing Chatbot Performance",
+          "Ensuring Compliance and Data Privacy"
+        ]
+      }
+    ]
+  }
+]

@@ -6,7 +6,7 @@ import SignIn from "../pages/signIn/SignIn";
 import DashboardMobile from "../pages/dashboard/dashboardMobile/DashboardMobile";
 import useMediaQuery from "../utils/hooks/useMediaQuery";
 import Lecture from '../pages/lecture/Lecture';
-import { HOME, SIGNIN, PROFILE, ASSIGNMENT } from "../constants/routesEndpoints";
+import { HOME, SIGNIN, PROFILE, ASSIGNMENT, DASHBOARD } from "../constants/routesEndpoints";
 import Profile from "../pages/profile/Profile";
 import ProtectedRoute from "../components/ProtectedRoute";
 import RestrictedRoute from "../components/RestrictedRoute";
@@ -26,7 +26,7 @@ const Route: React.FC = () => {
           element: <Home />
         },
         {
-          path: HOME,
+          path: DASHBOARD,
           element: <ProtectedRoute>{isMobile ? <DashboardMobile /> : <Dashboard />}</ProtectedRoute>,
         }, {
           path: SIGNIN,
