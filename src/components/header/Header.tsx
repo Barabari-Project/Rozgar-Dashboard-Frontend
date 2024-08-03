@@ -1,16 +1,20 @@
 import styles from "./header.module.scss";
 import logo from "../../assets/barabari_logo.png";
-import { useNavigate } from "react-router-dom";
-import { ASSIGNMENT, SIGNIN } from "../../constants/routesEndpoints";
-import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { ASSIGNMENT, HOME, PROFILE, SIGNIN } from "../../constants/routesEndpoints";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
 const Header = () => {
   const navigate = useNavigate();
-  const [isLogin, setIsLogin] = useState(false);
+  const { user } = useSelector((state: RootState) => state.user);
+  const location = useLocation();
+  console.log(location.pathname);
+  console.log(location.pathname == SIGNIN);
 
   return (
     <header>
-      <div className={styles.logoContainer}>
+      <div className={styles.logoContainer} onClick={() => navigate(HOME)} >
         <div className={styles.img}>
           <img src={logo} alt="logo-barabari" />
         </div>
@@ -19,19 +23,20 @@ const Header = () => {
 
       <div className={styles.btnContainer}>
         <button className={styles.signUp} onClick={() => navigate(ASSIGNMENT)}>
-          {!isLogin ? ("Submission") : ("Donation")}
+          {user ? ("Submission") : ("Donation")}
         </button>
-        {!isLogin ? (
+        {user ? (
           <div
             className={styles.profileContainer}
-            onClick={() => navigate("/profile")}
+            onClick={() => navigate(PROFILE)}
           >
             <div>UN</div>
           </div>
         ) : (
-          
-          <button className={styles.signIn} onClick={() => navigate(SIGNIN)}>
-            Sign In
+
+          <button className={styles.signIn} onClick={() => navigate(location.pathname == HOME ? SIGNIN : HOME)}>
+            {location.pathname == HOME && "Sign In"}
+            {location.pathname == SIGNIN && "Sign Up"}
           </button>
         )}
       </div>

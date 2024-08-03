@@ -14,12 +14,9 @@ import { setUserDetails } from "../../redux/slices/UserSlice";
 import { useNavigate } from "react-router-dom";
 import { Action } from "../../enums/actionEnum";
 import restEndPoints from "../../constants/restEndPoints.json";
-import Loading from "../../components/loading/Loading";
-import Error from "../../components/error/Error";
-// import Rozgar_Logo from "../../assets/barabari_logo.png";  // not used
-// import { Link } from "react-router-dom"; // not used
 import { HOME } from "../../constants/routesEndpoints";
 import Footer from '../signIn/Footer';
+import Error from "../../components/error/Error";
 
 const SignIn: React.FC = () => {
   const dispatch = useDispatch();
@@ -51,8 +48,8 @@ const SignIn: React.FC = () => {
         toast.success(response.data.message);
         Cookies.set("token", response.data.token);
         dispatch(setUserDetails({ ...response.data.user }));
+
         navigate(HOME);
-        console.log(response);
       } catch (error: any) {
         if (error.response) {
           dispatch(
@@ -159,8 +156,8 @@ const SignIn: React.FC = () => {
 
   return (
     <>
-     {/* <Loading>
-        <Error> */}
+      {/* <Loading> */}
+      <Error>
         <section className={styles.animationHeader123}>
           <div className={styles.circle123}></div>
           <div className={styles.circle123}></div>
@@ -288,11 +285,10 @@ const SignIn: React.FC = () => {
             </div>
           </div>
         </section>
-
         <Footer />
-      {/* </Error>
-    </Loading> */}
-  </>
+      </Error>
+      {/* </Loading> */}
+    </>
   );
 };
 

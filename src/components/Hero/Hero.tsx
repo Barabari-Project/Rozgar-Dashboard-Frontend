@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import styles from "./Hero.module.scss";
 import { Lock, Phone } from "lucide-react";
 import 'animate.css';
+import { useNavigate } from "react-router-dom";
+import { HOME } from "../../constants/routesEndpoints";
 
 const Hero: React.FC = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     phoneNumber: "",
     password: "",
@@ -140,6 +143,7 @@ const Hero: React.FC = () => {
         password: "",
         confirmPassword: "",
       });
+      navigate(HOME);
     } catch (error) {
       setErrors({ ...errors});
     } finally {

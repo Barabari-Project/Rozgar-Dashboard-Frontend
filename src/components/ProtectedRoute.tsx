@@ -11,7 +11,7 @@ interface ProtectedRouteProps {
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
     const { user } = useSelector((state: RootState) => state.user);
     const location = useLocation();
-
+    
     if (!user) {
         return <Navigate to={SIGNIN} state={{ from: location }} replace />;
     }

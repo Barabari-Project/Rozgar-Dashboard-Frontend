@@ -27,6 +27,9 @@ header {
             -webkit-text-fill-color: transparent;
     }
   }
+  .logoContainer :hover{
+    cursor: pointer
+  }
   .profileContainer{
     @include flex-gap(8px);
     cursor: pointer;    
