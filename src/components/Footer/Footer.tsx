@@ -38,17 +38,17 @@ const Footer: React.FC = () => {
             <div className="another-navigation">
               <ul>
                 <li>
-                  <Link style={{ color: "white" }} to="/faqs">
+                  <Link style={{ color: "white" }} to="#">
                     FAQs
                   </Link>
                 </li>
                 <li>
-                  <Link style={{ color: "white" }} to="/terms">
+                  <Link style={{ color: "white" }} to="#">
                     Terms of Use
                   </Link>
                 </li>
                 <li>
-                  <Link style={{ color: "white" }} to="/privacy-policy">
+                  <Link style={{ color: "white" }} to="#">
                     Privacy Policy
                   </Link>
                 </li>

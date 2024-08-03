@@ -32,19 +32,16 @@ const PagesName: React.FC = () => {
           </Link>
         </li>
         <li>
-          <Link to="/course-details">Courses</Link>
+          <Link to="#">Courses</Link>
         </li>
         <li>
-          <Link to="/values">About Us</Link>
+          <Link to="#">About Us</Link>
         </li>
         <li>
-          <Link to="/contact" onClick={scrollToTop}>
+          <Link to="#" onClick={scrollToTop}>
             Contact Us
           </Link>
         </li>
-        {/* <li>
-          <Link to="/faqs" onClick={scrollToTop}>FAQs</Link>
-        </li> */}
       </ul>
     </div>
   );
