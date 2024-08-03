@@ -156,8 +156,8 @@ const SignIn: React.FC = () => {
 
   return (
     <>
-      {/* <Loading> */}
-      <Error>
+     {/* <Loading>
+        <Error> */}
         <section className={styles.animationHeader123}>
           <div className={styles.circle123}></div>
           <div className={styles.circle123}></div>
@@ -255,11 +255,11 @@ const SignIn: React.FC = () => {
                   )}
                 </div>
 
-                <div className={styles.formGroup}>
+                {/* <div className={styles.formGroup}>
                   <a href="#" className="text-end px-4 hover:text-[#324498]">
                     Forgot Password
                   </a>
-                </div>
+                </div> */}
 
                 <div className={styles.actions}>
                   <button type="submit" className={styles.submitButton}>
@@ -286,9 +286,9 @@ const SignIn: React.FC = () => {
           </div>
         </section>
         <Footer />
-      </Error>
-      {/* </Loading> */}
-    </>
+      {/* </Error>
+    </Loading> */}
+  </>
   );
 };
 
