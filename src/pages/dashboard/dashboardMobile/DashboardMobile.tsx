@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { FC, useEffect, useState, useRef } from "react";
+import { FC, useEffect, useState, useRef } from "react";
 import styles from "./dashboardMobile.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { CaretDown, CheckCircle } from "@phosphor-icons/react";
@@ -17,7 +17,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
 
-function SampleNextArrow(props:any) {
+function SampleNextArrow(props: any) {
   const { className, style, onClick } = props;
   return (
     <div
@@ -33,7 +33,7 @@ function SampleNextArrow(props:any) {
   );
 }
 
-function SamplePrevArrow(props:any) {
+function SamplePrevArrow(props: any) {
   const { className, style, onClick } = props;
   return (
     <div
@@ -79,7 +79,7 @@ const DashboardMobile: FC = () => {
   }, []);
 
   const fetchData = async () => {
-    const courseId = "669bbc0b820a72940b3831bb";
+    const courseId = "66ade2067921724f6897a918";
     try {
       dispatch(setLoading(true));
       const response = await axiosInstance(
@@ -119,9 +119,8 @@ const DashboardMobile: FC = () => {
       if (expandedSections[moduleId]) {
         wrapperRefs.current[moduleId]!.style.height = "0px";
       } else {
-        wrapperRefs.current[moduleId]!.style.height = `${
-          listRefs.current[moduleId]!.scrollHeight
-        }px`;
+        wrapperRefs.current[moduleId]!.style.height = `${listRefs.current[moduleId]!.scrollHeight
+          }px`;
       }
     }
   };
@@ -177,11 +176,10 @@ const DashboardMobile: FC = () => {
                         size={20}
                         style={{
                           cursor: "pointer",
-                          transform: `${
-                            expandedSections[module._id]
+                          transform: `${expandedSections[module._id]
                               ? "rotate(180deg)"
                               : "rotate(0deg)"
-                          }`,
+                            }`,
                           transition: "transform 0.3s ease",
                         }}
                       />

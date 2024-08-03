@@ -11,7 +11,7 @@ interface RestrictedRouteProps {
 const RestrictedRoute: React.FC<RestrictedRouteProps> = ({ children }) => {
     const { user } = useSelector((state: RootState) => state.user);
     const location = useLocation();
-
+    console.log(user);
     if (user) {
         return <Navigate to={HOME} state={{ from: location }} replace />;
     }
