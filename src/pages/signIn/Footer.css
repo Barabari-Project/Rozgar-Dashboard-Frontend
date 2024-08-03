@@ -13,7 +13,7 @@
   .marquee-content {
     display: inline-block;
     white-space: nowrap;
-    animation: marquee 18s linear infinite;
+    animation: marquee 20s linear infinite;
     animation-play-state: running; 
   }
   

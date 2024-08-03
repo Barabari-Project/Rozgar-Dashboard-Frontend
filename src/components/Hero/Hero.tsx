@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Hero.module.scss";
 import { Lock, Phone } from "lucide-react";
-import 'animate.css';
+// import 'animate.css';
 import { useNavigate } from "react-router-dom";
 import { HOME } from "../../constants/routesEndpoints";
 
