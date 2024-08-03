@@ -15,7 +15,7 @@
     "animate.css": "^4.1.1",
     "axios": "^1.7.2",
     "clsx": "^2.1.1",
-    "framer-motion": "^11.3.4",
+    "framer-motion": "^11.3.21",
     "js-cookie": "^3.0.5",
     "lucide-react": "^0.407.0",
     "nanoid": "^5.0.7",
@@ -29,7 +29,8 @@
     "react-toastify": "^10.0.5",
     "sass": "^1.77.6",
     "slick-carousel": "^1.8.1",
-    "tailwind-merge": "^2.4.0"
+    "tailwind-merge": "^2.4.0",
+    "typewriter-effect": "^2.21.0"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.6",

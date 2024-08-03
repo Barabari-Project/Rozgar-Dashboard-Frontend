@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Hero.module.scss";
 import { Lock, Phone } from "lucide-react";
-// import 'animate.css';
+import "animate.css";
 import { useNavigate } from "react-router-dom";
 import { HOME } from "../../constants/routesEndpoints";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
+import Typewriter from "typewriter-effect";
 
 const Hero: React.FC = () => {
   const navigate = useNavigate();
+  const { user } = useSelector((state: RootState) => state.user);
   const [formData, setFormData] = useState({
     phoneNumber: "",
     password: "",
@@ -145,9 +149,16 @@ const Hero: React.FC = () => {
       });
       navigate(HOME);
     } catch (error) {
-      setErrors({ ...errors});
+      setErrors({ ...errors });
     } finally {
       setLoading(false);
+    }
+  };
+
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -187,105 +198,147 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      <div className={`${styles.sectionHeader} animate__animated animate__bounceInDown`}>
+      <div
+        className={`${styles.sectionHeader} animate__animated animate__bounceInDown`}
+      >
         <h1 className={styles.title}>India's open rozgaar program</h1>
         <h3 className={styles.subTitle}>
           Build your industry-ready portfolio with us
         </h3>
       </div>
 
-      {/* Left side form */}
-      <div className={`${styles.leftSideForm} animate__animated animate__bounceInLeft`}>
-        <div className={styles.formContainer}>
-          <h2 className={styles.heading}>Sign up to Rozgar</h2>
-          <form className={styles.form} onSubmit={handleSubmit}>
-            <div className={styles.formGroup}>
-              <label htmlFor="phoneNumber" className={styles.label}>
-                Phone Number
-              </label>
-              <div className={styles.inputWrapper}>
-                <span className={styles.iconWrapper}>
-                  <Phone className={styles.icon} />
-                </span>
-                <input
-                  id="phoneNumber"
-                  name="phoneNumber"
-                  type="tel"
-                  placeholder="Phone Number"
-                  value={formData.phoneNumber}
-                  onChange={handleChange}
-                  className={styles.input}
+      {!user ? (
+        <div className={styles.leftSideText}>
+          <h1 className={styles.textHeader}>
+            Build a strong portfolio via paid industry projects Explore industry
+            oriented learning pathways in{" "}
+            <span>
+              {
+                <Typewriter
+                  options={{
+                    strings: ["WebDev.", "Design.", "Data Tools."],
+                    autoStart: true,
+                    loop: true,
+                  }}
                 />
-                {errors.phoneNumber && <p className={styles.error}>{errors.phoneNumber}</p>}
+              }
+            </span>
+          </h1>
+          <h3 className={styles.textSubtitle}>
+            Build a strong portfolio via paid industry projects
+          </h3>
+          <button
+            onClick={() => scrollToSection("curriculumSection")}
+            className={styles.coursesBtn}
+          >
+            Our Courses
+          </button>
+        </div>
+      ) : (
+        <div
+          className={`${styles.leftSideForm} animate__animated animate__bounceInLeft`}
+        >
+          <div className={styles.formContainer}>
+            <h2 className={styles.heading}>Sign up to Rozgar</h2>
+            <form className={styles.form} onSubmit={handleSubmit}>
+              <div className={styles.formGroup}>
+                <label htmlFor="phoneNumber" className={styles.label}>
+                  Phone Number
+                </label>
+                <div className={styles.inputWrapper}>
+                  <span className={styles.iconWrapper}>
+                    <Phone className={styles.icon} />
+                  </span>
+                  <input
+                    id="phoneNumber"
+                    name="phoneNumber"
+                    type="tel"
+                    placeholder="Phone Number"
+                    value={formData.phoneNumber}
+                    onChange={handleChange}
+                    className={styles.input}
+                  />
+                  {errors.phoneNumber && (
+                    <p className={styles.error}>{errors.phoneNumber}</p>
+                  )}
+                </div>
               </div>
-            </div>
 
-            <div className={styles.formGroup}>
-              <label htmlFor="password" className={styles.label}>
-                Password
-              </label>
-              <div className={styles.inputWrapper}>
-                <span className={styles.iconWrapper}>
-                  <Lock className={styles.icon} />
-                </span>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  placeholder="Password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  className={styles.input}
-                />
-                {errors.password && <p className={styles.error}>{errors.password}</p>}
+              <div className={styles.formGroup}>
+                <label htmlFor="password" className={styles.label}>
+                  Password
+                </label>
+                <div className={styles.inputWrapper}>
+                  <span className={styles.iconWrapper}>
+                    <Lock className={styles.icon} />
+                  </span>
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    placeholder="Password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    className={styles.input}
+                  />
+                  {errors.password && (
+                    <p className={styles.error}>{errors.password}</p>
+                  )}
+                </div>
               </div>
-            </div>
 
-            <div className={styles.formGroup}>
-              <label htmlFor="confirmPassword" className={styles.label}>
-                Confirm Password
-              </label>
-              <div className={styles.inputWrapper}>
-                <span className={styles.iconWrapper}>
-                  <Lock className={styles.icon} />
-                </span>
-                <input
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  type="text"
-                  placeholder="Confirm Password"
-                  value={formData.confirmPassword}
-                  onChange={handleChange}
-                  className={styles.input}
-                />
-                {errors.confirmPassword && <p className={styles.error}>{errors.confirmPassword}</p>}
+              <div className={styles.formGroup}>
+                <label htmlFor="confirmPassword" className={styles.label}>
+                  Confirm Password
+                </label>
+                <div className={styles.inputWrapper}>
+                  <span className={styles.iconWrapper}>
+                    <Lock className={styles.icon} />
+                  </span>
+                  <input
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    type="text"
+                    placeholder="Confirm Password"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    className={styles.input}
+                  />
+                  {errors.confirmPassword && (
+                    <p className={styles.error}>{errors.confirmPassword}</p>
+                  )}
+                </div>
               </div>
-            </div>
 
-            <div className={styles.actions}>
-              <button type="submit" className={styles.submitButton} disabled={loading}>
-                {loading ? "Signing up..." : "Sign up"}
-              </button>
-              {success && <p className={styles.success}>{success}</p>}
-            </div>
-          </form>
-          <div className={styles.googleSignIn}>
-            <button type="button" className={styles.googleButton}>
-              <span className={styles.googleIcon}>
-                <svg
-                  className={styles.icon}
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
+              <div className={styles.actions}>
+                <button
+                  type="submit"
+                  className={styles.submitButton}
+                  disabled={loading}
                 >
-                  <path d="M20.283 10.356h-8.327v3.451h4.792c-.446 2.193-2.313 3.453-4.792 3.453a5.27 5.27 0 0 1-5.279-5.28 5.27 5.27 0 0 1 5.279-5.279c1.259 0 2.397.447 3.29 1.178l2.6-2.599c-1.584-1.381-3.615-2.233-5.89-2.233a8.908 8.908 0 0 0-8.934 8.934 8.907 8.907 0 0 0 8.934 8.934c4.467 0 8.529-3.249 8.529-8.934 0-.528-.081-1.097-.202-1.625z"></path>
-                </svg>
-              </span>
-              Sign up with Google
-            </button>
+                  {loading ? "Signing up..." : "Sign up"}
+                </button>
+                {success && <p className={styles.success}>{success}</p>}
+              </div>
+            </form>
+            <div className={styles.googleSignIn}>
+              <button type="button" className={styles.googleButton}>
+                <span className={styles.googleIcon}>
+                  <svg
+                    className={styles.icon}
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M20.283 10.356h-8.327v3.451h4.792c-.446 2.193-2.313 3.453-4.792 3.453a5.27 5.27 0 0 1-5.279-5.28 5.27 5.27 0 0 1 5.279-5.279c1.259 0 2.397.447 3.29 1.178l2.6-2.599c-1.584-1.381-3.615-2.233-5.89-2.233a8.908 8.908 0 0 0-8.934 8.934 8.907 8.907 0 0 0 8.934 8.934c4.467 0 8.529-3.249 8.529-8.934 0-.528-.081-1.097-.202-1.625z"></path>
+                  </svg>
+                </span>
+                Sign up with Google
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </section>
   );
 };

@@ -1,3 +1,5 @@
+@import "/src/styles/_mixins";
+
 .curriculumSection {
   width: 100%;
   display: flex;
@@ -32,8 +34,9 @@
       grid-gap: 1rem;
       width: 100%;
       max-width: 1200px;
-      position: sticky;
-      top: 0;
+      @include md-max {
+        grid-gap: 0;
+      }
       .coursesTitle {
         display: flex;
         justify-content: center;
@@ -41,6 +44,9 @@
         cursor: pointer;
         padding: 1rem 0;
         border-radius: 2px;
+        @include sm-max {
+          padding-top: 0;
+        }
         .titleBox {
           display: flex;
           width: 100%;
@@ -50,8 +56,20 @@
           align-items: center;
           padding: 1rem;
           background-color: #fff;
+          @include xsm-max {
+            justify-content: center;
+            min-height: 120px;
+          }
           h2 {
             font-size: 1.2rem;
+            text-align: center;
+
+            @include sm-max {
+              font-size: 1rem;
+            }
+            @include xsm-max {
+              font-size: 0.9rem;
+            }
           }
 
           .selectiveCircle {
@@ -62,6 +80,10 @@
             height: 2rem;
             border-radius: 50%;
             border: 1px solid #000;
+            @include sm-max {
+              width: 1.2rem;
+              height: 1.2rem;
+            }
           }
         }
         &.active {
@@ -78,6 +100,10 @@
                 height: 1.5rem;
                 background-color: #387ef7;
                 border-radius: 50%;
+                @include sm-max {
+                  width: 0.8rem;
+                  height: 0.8rem;
+                }
               }
             }
           }
@@ -101,6 +127,10 @@
         flex-direction: column;
         gap: 1rem;
         max-width: 500px;
+        @include md-max {
+          max-width: 100%;
+          width: 100%;
+        }
 
         .moduleTitle {
           font-size: 1.1rem;
@@ -108,13 +138,32 @@
           padding: 1.4rem 0.5rem;
           border-radius: 0.4rem;
           border-left: 4px solid transparent;
+          overflow: hidden;
 
           &.active {
             background-color: #387ef7;
             color: #fff;
             border-left: 4px solid #ffd500;
           }
+
+          .moduleHeading {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            align-items: center;
+
+            .expandedIcon {
+              transform: rotate(180deg);
+            }
+          }
         }
+      }
+
+      .expandedContent {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
       }
 
       .activeModuleDetails {
@@ -122,28 +171,36 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        @include md-max {
+          display: none;
+        }
+      }
+      .topicList {
+        background-color: #387ef7;
+        width: 100%;
+        max-width: 500px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 2rem 1rem;
+        color: #fff;
+        list-style: circle;
+        list-style-position: inside;
+        border-radius: 0.5rem;
 
-        .topicList {
-          background-color: #387ef7;
-          width: 100%;
-          max-width: 500px;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          padding: 2rem 1rem;
-          color: #fff;
-          list-style: circle;
-          list-style-position: inside;
-          border-radius: 0.5rem;
+        &.expanded {
+          max-width: 100%;
+          background-color: transparent;
+          overflow: hidden;
+        }
 
-          h3 {
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-          }
+        h3 {
+          margin-bottom: 0.5rem;
+          font-size: 1rem;
+        }
 
-          .topicDetail {
-            margin-left: 1rem;
-          }
+        .topicDetail {
+          margin-left: 1rem;
         }
       }
     }

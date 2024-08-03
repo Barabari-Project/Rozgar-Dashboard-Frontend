@@ -1,8 +1,31 @@
 import React, { useState } from "react";
 import styles from "./Curriculum.module.scss";
 import coursesData from "../../data/courses.json";
+import useMediaQuery from "../../utils/hooks/useMediaQuery";
+import { ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+
+interface Topic {
+  Title: string;
+  Topics: string[];
+}
+
+interface Course {
+  Title: string;
+  Modules: Topic[];
+}
+
+interface ModuleProps {
+  activeModule: number;
+  onClick: () => void;
+  index: number;
+  module: Topic;
+  isSmallDevice: boolean;
+  selectedCourse: Course | undefined;
+}
 
 const Curriculum: React.FC = () => {
+  const isSmallDevice = useMediaQuery(1023);
   const [activeCourse, setActiveCourse] = useState<string>("WebDev");
   const [activeModule, setActiveModule] = useState<number>(0);
 
@@ -18,8 +41,9 @@ const Curriculum: React.FC = () => {
   const handleModuleClick = (idx: number) => {
     setActiveModule(idx);
   };
+
   return (
-    <div className={styles.curriculumSection}>
+    <div className={styles.curriculumSection} id="curriculumSection">
       <div className={styles.curriculum}>
         <h2 className={styles.sectionTitle}>
           <strong>Curriculum</strong> is designed to make you a{" "}
@@ -77,15 +101,15 @@ const Curriculum: React.FC = () => {
         <div className={styles.courseDetails}>
           <div className={styles.ModuleTitles}>
             {selectedCourse?.Modules.map((module, index) => (
-              <div
+              <Module
                 key={index}
-                className={`${styles.moduleTitle} ${
-                  index === activeModule ? styles.active : ""
-                }`}
+                activeModule={activeModule}
                 onClick={() => handleModuleClick(index)}
-              >
-                {module.Title}
-              </div>
+                index={index}
+                module={module}
+                isSmallDevice={isSmallDevice}
+                selectedCourse={selectedCourse}
+              />
             ))}
           </div>
 
@@ -100,11 +124,67 @@ const Curriculum: React.FC = () => {
                   </li>
                 )
               )}
-              
             </ul>
           </div>
         </div>
       </div>
+    </div>
+  );
+};
+
+const Module: React.FC<ModuleProps> = ({
+  activeModule,
+  onClick,
+  index,
+  module,
+  isSmallDevice,
+  selectedCourse,
+}) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleLesson = () => {
+    setIsExpanded((prev) => !prev);
+  };
+
+  return (
+    <div
+      className={`${styles.moduleTitle} ${
+        index === activeModule ? styles.active : ""
+      }`}
+      onClick={onClick}
+    >
+      <div
+        className={`${styles.moduleHeading} ${
+          isSmallDevice ? "cursor-pointer" : ""
+        }`}
+        onClick={toggleLesson}
+      >
+        {module.Title}
+        {isSmallDevice ? (
+          <span className={isExpanded ? styles.expandedIcon : ""}>
+            <ChevronDown />
+          </span>
+        ) : null}
+      </div>
+      <AnimatePresence>
+        {isSmallDevice && isExpanded && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className={styles.expandedContent}
+          >
+            <ul className={`${styles.topicList} ${styles.expanded}`}>
+              {selectedCourse?.Modules[index]?.Topics.map((topic, idx) => (
+                <li key={idx} className={styles.topicDetail}>
+                  {topic}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
