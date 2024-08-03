@@ -63,13 +63,14 @@ import { useState } from "react";
 const Header = () => {
   const navigate = useNavigate();
   const { user } = useSelector((state: RootState) => state.user);
+  const initials = `${user?.firstName?.charAt(0) || ''}${user?.lastName?.charAt(0) || ''}`.toUpperCase();
   const location = useLocation();
   const [hamburgerOpen, setHamburgerOpen] = useState<boolean>(false);
 
   return (
     <
       div className=" sticky top-0 z-50" // comment this line for non sticky header
-      >
+    >
       <header
         id="2nd"
         className={`flex justify-between items-center shadow-md p-2.5 bg-gray-50 h-15`}
@@ -105,7 +106,7 @@ const Header = () => {
               onClick={() => navigate(PROFILE)}
             >
               <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[rgb(50,68,152)] text-white text-xl">
-                UN
+                {initials}
               </div>
             </div>
           ) : (
