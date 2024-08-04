@@ -210,7 +210,7 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      {!user ? (
+      {user ? (
         <div className={styles.leftSideText}>
           <h1 className={styles.textHeader}>
             Explore industry oriented learning pathways in{" "}
