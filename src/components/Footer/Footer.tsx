@@ -60,7 +60,7 @@ const Footer: React.FC = () => {
             </a>
             <a
               title="Anchit Julaniya"
-              href="https://www.linkedin.com/in/mayank-gupta-752328173/"
+              href="https://www.linkedin.com/in/anchit-julaniya-b13632175/"
               target="_blank"
               rel="noopener noreferrer"
               className="developer anchit"
