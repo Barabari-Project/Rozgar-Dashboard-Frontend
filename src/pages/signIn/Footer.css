@@ -1,24 +1,25 @@
-.marquee {
-    width: 100%;
+.logos {
     overflow: hidden;
     white-space: nowrap;
     box-sizing: border-box;
     display: flex;
     align-items: center;
     background-color: white; 
-    position: relative;
+    width: 100%;
   }
   
-  .marquee-content {
-    display: inline-block;
-    white-space: nowrap;
-    animation: marquee 20s linear infinite;
+  .logos-slide {
+    display: flex ;
+    animation: logos 22s linear infinite;
     animation-play-state: running; 
   }
-  
 
-  
-  @keyframes marquee {
+  .logos-slide img{
+    display: inline-block;
+    margin : 0 40px;
+  }
+    
+  @keyframes logos-slide {
     0% {
       transform: translateX(-100%);
     }
@@ -27,6 +28,6 @@
     }
   }
 
-    /* .marquee-content:hover {
+    /* .logos-slide:hover {
     animation-play-state: paused; 
-  } */
+    } */
