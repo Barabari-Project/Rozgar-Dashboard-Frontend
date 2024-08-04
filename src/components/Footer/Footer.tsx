@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
     <footer>
       <div className="footer">
         <div className="credits">
-          <h2>This platform is built by students of <br /> the same program!</h2>
+          <h2>This platform is built by students of <br /> our program!</h2>
           <div className="developerImageContainer">
             <a
               title="Trisha Das"

@@ -162,9 +162,14 @@ const Hero: React.FC = () => {
       <div className={styles.circle123}>
         <div className={styles.content}>
           <h1 className={styles.title}>India's open rozgaar program</h1>
-          <h3 className={styles.subTitle}>
-            Build your industry-ready portfolio with us
-          </h3>
+          <div className={styles.points}>
+            <h3 className={styles.subTitle}>
+              Curriculum designed by domain experts.
+            </h3>
+            <h3 className={styles.subTitle}>
+              Create your doubts via personalized mentorship.
+            </h3>
+          </div>
         </div>
       </div>
       <div className={styles.headerImage123} style={{ zIndex: 15 }}>
@@ -195,16 +200,20 @@ const Hero: React.FC = () => {
         className={`${styles.sectionHeader} animate__animated animate__bounceInDown`}
       >
         <h1 className={styles.title}>India's open rozgaar program</h1>
-        <h3 className={styles.subTitle}>
-          Build your industry-ready portfolio with us
-        </h3>
+        <div className={styles.points}>
+          <h3 className={styles.subTitle}>
+            Curriculum designed by domain experts.
+          </h3>
+          <h3 className={styles.subTitle}>
+            Create your doubts via personalized mentorship.
+          </h3>
+        </div>
       </div>
 
-      {user ? (
+      {!user ? (
         <div className={styles.leftSideText}>
           <h1 className={styles.textHeader}>
-            Build a strong portfolio via paid industry projects Explore industry
-            oriented learning pathways in{" "}
+            Explore industry oriented learning pathways in{" "}
             <span>
               {
                 <Typewriter
@@ -221,7 +230,7 @@ const Hero: React.FC = () => {
             Build a strong portfolio via paid industry projects
           </h3>
           <button
-            onClick={()=>navigate(DASHBOARD)}
+            onClick={() => navigate(DASHBOARD)}
             className={styles.coursesBtn}
           >
             Our Courses
