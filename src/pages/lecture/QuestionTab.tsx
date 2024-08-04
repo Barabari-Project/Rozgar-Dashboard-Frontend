@@ -8,9 +8,9 @@ import { UserSubmission } from "../../utils/types/user";
 
 interface QuestionTabProps {
   topic: ITopic | null;
-  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
-  link: IAssignmentLink | null;
-  selectedQuestion: IQuestion | null;
+  // setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+  // link: IAssignmentLink | null;
+  // selectedQuestion: IQuestion | null;
 }
 
 const QuestionTab: React.FC<QuestionTabProps> = ({ topic }) => {

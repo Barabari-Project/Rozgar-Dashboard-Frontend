@@ -3,7 +3,7 @@ import styles from "./Hero.module.scss";
 import { Lock, Phone } from "lucide-react";
 import "animate.css";
 import { useNavigate } from "react-router-dom";
-import { HOME } from "../../constants/routesEndpoints";
+import { DASHBOARD, HOME } from "../../constants/routesEndpoints";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import Typewriter from "typewriter-effect";
@@ -207,7 +207,7 @@ const Hero: React.FC = () => {
         </h3>
       </div>
 
-      {!user ? (
+      {user ? (
         <div className={styles.leftSideText}>
           <h1 className={styles.textHeader}>
             Build a strong portfolio via paid industry projects Explore industry
@@ -228,7 +228,8 @@ const Hero: React.FC = () => {
             Build a strong portfolio via paid industry projects
           </h3>
           <button
-            onClick={() => scrollToSection("curriculumSection")}
+            // onClick={() => scrollToSection("curriculumSection")}
+            onClick={()=>navigate(DASHBOARD)}
             className={styles.coursesBtn}
           >
             Our Courses

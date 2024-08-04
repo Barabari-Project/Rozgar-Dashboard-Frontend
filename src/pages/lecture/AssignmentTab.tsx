@@ -9,9 +9,9 @@ import QuestionType from "../../utils/enums/QuestionType";
 
 interface AssignmentTabProps {
   topic: ITopic | null;
-  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
-  link: IAssignmentLink
-  selectedQuestion: IQuestion
+  // setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+  // link: IAssignmentLink
+  // selectedQuestion: IQuestion
 }
 
 const AssignmentTab: React.FC<AssignmentTabProps> = ({ topic }) => {

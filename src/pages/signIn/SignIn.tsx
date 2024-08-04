@@ -285,7 +285,7 @@ const SignIn: React.FC = () => {
             </div>
           </div>
         </section>
-        <Footer />
+        
       {/* </Error>
     </Loading> */}
   </>

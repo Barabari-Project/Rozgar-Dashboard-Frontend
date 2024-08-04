@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
             >
               <img src="/assets/developer/mayank.jpg" alt="mayank" />
             </a>
-            <a
+            {/* <a
               title="Anchit Julaniya"
               href="https://www.linkedin.com/in/mayank-gupta-752328173/"
               target="_blank"
@@ -37,7 +37,7 @@ const Footer: React.FC = () => {
               className="developer mayank"
             >
               <img src="/assets/developer/anchit.jpg" alt="mayank" />
-            </a>
+            </a> */}
           </div>
         </div>
         <div className="information">
