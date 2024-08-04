@@ -1,7 +1,7 @@
 
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import { ITopic, IAssignmentLink, IQuestion } from "../../utils/types/course";
+import { ITopic, IQuestion } from "../../utils/types/course";
 import { UserSubmission } from "../../utils/types/user";
 import Modal from "./Modal";
 import { useState } from 'react'

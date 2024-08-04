@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ITopic, IAssignmentLink, IQuestion } from "../../utils/types/course";
+import { ITopic, IQuestion } from "../../utils/types/course";
 import Modal from "./Modal";
 import QuestionType from "../../utils/enums/QuestionType";
 import { useSelector } from "react-redux";
