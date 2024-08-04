@@ -46,9 +46,9 @@ const Curriculum: React.FC = () => {
     <div className={styles.curriculumSection} id="curriculumSection">
       <div className={styles.curriculum}>
         <h2 className={styles.sectionTitle}>
-          <strong>Curriculum</strong> is designed to make you a{" "}
+          <strong>Curriculum</strong> designed to make you{" "}
           <span>
-            <strong>solid engineer</strong>
+            <strong>industry read</strong>
           </span>
         </h2>
         <div className={styles.coursesTitleGrid}>
