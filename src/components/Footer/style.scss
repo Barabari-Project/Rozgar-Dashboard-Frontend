@@ -38,13 +38,18 @@ footer {
       background-color: #1e1e1e;
       border-radius: 1rem;
       margin-bottom: 2rem;
+
       h2 {
         font-size: 1.8rem;
         text-align: center;
         max-width: 550px;
       }
+
       .developerImageContainer {
         width: max-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         position: relative;
 
         .developer {
@@ -52,9 +57,11 @@ footer {
           height: 70px;
           border-radius: 50%;
           overflow: hidden;
+          position: relative;
+
           img {
-            width: 65px;
-            height: 65px;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
             border: 2px solid transparent;
             transition: all 0.2s ease-in-out;
@@ -65,21 +72,27 @@ footer {
               transform: scale(1.05);
             }
           }
-        }
-        .drumil {
-          position: relative;
-          right: 1.8rem;
-          z-index: 2;
-        }
-        .mayank {
-          position: absolute;
-          top: 0;
-          right: -1.5rem;
-          z-index: 1;
-          transition: all 0.2s ease-in-out;
 
-          &:hover {
+          &.trisha {
             z-index: 3;
+          }
+
+          &.mayank {
+            z-index: 2;
+            right: 2rem;
+
+            &:hover {
+              z-index: 4;
+            }
+          }
+
+          &.anchit {
+            z-index: 1;
+            right: 4rem;
+
+            &:hover {
+              z-index: 4;
+            }
           }
         }
       }
@@ -100,10 +113,7 @@ footer {
         display: flex;
         align-items: center;
         margin-top: 1.5rem;
-        // flex-direction: column;
-        // justify-content: space-between;
         gap: 1rem;
-        // align-items: flex-start;
 
         a {
           display: flex;
@@ -164,24 +174,22 @@ footer {
           display: flex;
           justify-content: center;
           align-items: center;
-          // width: 10rem;
           margin-bottom: 2rem;
           font-size: 1.5rem;
           font-weight: 800;
-          // letter-spacing: 2px;
           cursor: pointer;
 
           img {
             height: 60px;
             border-radius: 100%;
             margin-right: 10px;
+
             @include md-max {
               height: 40px;
             }
           }
 
           @include sm-max {
-            // width: 15rem;
             margin-bottom: 1rem;
           }
         }
@@ -234,12 +242,6 @@ footer {
         margin-top: 1.1rem;
 
         .another-navigation {
-          // display: flex;
-          // flex-direction: column;
-          // // justify-content: space-between;
-          // gap: 0.5rem;
-          // align-items: flex-start;
-
           @include sm-max {
             display: flex;
             flex-direction: column;
@@ -271,7 +273,8 @@ footer {
               gap: 1rem;
             }
 
-            li, a {
+            li,
+            a {
               display: flex;
               gap: 0.625rem;
               list-style: none;

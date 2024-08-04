@@ -1,10 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./style.scss";
 import PagesName from "./PagesName";
 import ContactInfo from "./ContactInfo";
 import { Link } from "react-router-dom";
 
 const Footer: React.FC = () => {
+  useEffect(() => {
+    const anchitElement = document.querySelector('.developer.anchit') as HTMLElement;
+    const trishaElement = document.querySelector('.developer.trisha') as HTMLElement;
+
+    const handleMouseEnter = () => {
+      if (trishaElement) {
+        trishaElement.style.zIndex = '1';
+      }
+    };
+
+    const handleMouseLeave = () => {
+      if (trishaElement) {
+        trishaElement.style.zIndex = '3';
+      }
+    };
+
+    if (anchitElement) {
+      anchitElement.addEventListener('mouseenter', handleMouseEnter);
+      anchitElement.addEventListener('mouseleave', handleMouseLeave);
+    }
+
+    return () => {
+      if (anchitElement) {
+        anchitElement.removeEventListener('mouseenter', handleMouseEnter);
+        anchitElement.removeEventListener('mouseleave', handleMouseLeave);
+      }
+    };
+  }, []);
+
   return (
     <footer>
       <div className="footer">
@@ -12,13 +41,13 @@ const Footer: React.FC = () => {
           <h2>This platform is built by students of <br /> the same program!</h2>
           <div className="developerImageContainer">
             <a
-              title="Drumil Akhenia"
-              href="https://www.linkedin.com/in/drumil-akhenia/"
+              title="Trisha Das"
+              href="https://www.linkedin.com/in/trisha-das1308/"
               target="_blank"
               rel="noopener noreferrer"
-              className="developer drumil"
+              className="developer trisha"
             >
-              <img src="/assets/developer/drumil.jpg" alt="drumil" />
+              <img src="/assets/developer/trisha.jpg" alt="trisha" />
             </a>
             <a
               title="Mayank Gupta"
@@ -29,15 +58,15 @@ const Footer: React.FC = () => {
             >
               <img src="/assets/developer/mayank.jpg" alt="mayank" />
             </a>
-            {/* <a
+            <a
               title="Anchit Julaniya"
               href="https://www.linkedin.com/in/mayank-gupta-752328173/"
               target="_blank"
               rel="noopener noreferrer"
-              className="developer mayank"
+              className="developer anchit"
             >
               <img src="/assets/developer/anchit.jpg" alt="mayank" />
-            </a> */}
+            </a>
           </div>
         </div>
         <div className="information">

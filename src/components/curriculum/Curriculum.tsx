@@ -149,8 +149,12 @@ const Module: React.FC<ModuleProps> = ({
   return (
     <div
       className={`${styles.moduleTitle} ${
-        index === activeModule ? styles.active : ""
+        (index === activeModule && !isSmallDevice) ? styles.active : ""
+      }
+      ${
+        (isSmallDevice && isExpanded) ? styles.active : ""
       }`}
+      
       onClick={onClick}
     >
       <div

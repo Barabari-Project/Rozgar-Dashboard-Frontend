@@ -155,13 +155,6 @@ const Hero: React.FC = () => {
     }
   };
 
-  const scrollToSection = (sectionId: string) => {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <section className={styles.animationHeader123}>
       <div className={styles.circle123}></div>
@@ -228,7 +221,6 @@ const Hero: React.FC = () => {
             Build a strong portfolio via paid industry projects
           </h3>
           <button
-            // onClick={() => scrollToSection("curriculumSection")}
             onClick={()=>navigate(DASHBOARD)}
             className={styles.coursesBtn}
           >
