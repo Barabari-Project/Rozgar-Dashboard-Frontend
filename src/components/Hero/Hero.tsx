@@ -4,25 +4,37 @@ import { Lock, Phone } from "lucide-react";
 import "animate.css";
 import { useNavigate } from "react-router-dom";
 import { DASHBOARD, HOME } from "../../constants/routesEndpoints";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import Typewriter from "typewriter-effect";
+import { validateSignUpForm } from "../../utils/validations/validateSignUpForm";
+import { IValidationErrors } from "../../utils/types/error";
+import { toast } from "react-toastify";
+import axiosInstance from "../../utils/axiosInstance";
+import restEndPoints from "../../constants/restEndPoints.json";
+import Cookies from 'js-cookie';
+import { setUserDetails } from "../../redux/slices/UserSlice";
+import { setError } from "../../redux/slices/StatusSlice";
+import { Action } from "../../enums/actionEnum";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Hero: React.FC = () => {
+  const { loginWithRedirect,user:auth0User } = useAuth0();
+  console.log(auth0User);
   const navigate = useNavigate();
   const { user } = useSelector((state: RootState) => state.user);
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     phoneNumber: "",
     password: "",
     confirmPassword: "",
   });
-  const [errors, setErrors] = useState({
+  const [errors, setErrors] = useState<IValidationErrors>({
     phoneNumber: "",
     password: "",
     confirmPassword: "",
   });
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState("");
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -112,46 +124,42 @@ const Hero: React.FC = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const validateForm = () => {
-    const newErrors = { phoneNumber: "", password: "", confirmPassword: "" };
-    let isValid = true;
-
-    if (!formData.phoneNumber) {
-      newErrors.phoneNumber = "Phone number is required";
-      isValid = false;
-    }
-    if (!formData.password) {
-      newErrors.password = "Password is required";
-      isValid = false;
-    }
-    if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = "Passwords do not match";
-      isValid = false;
-    }
-
-    setErrors(newErrors);
-    return isValid;
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!validateForm()) return;
-
-    setLoading(true);
-    try {
-      //TODO Api logic here
-      setSuccess("Sign up successful!");
-      setFormData({
-        phoneNumber: "",
-        password: "",
-        confirmPassword: "",
-      });
-      navigate(HOME);
-    } catch (error) {
-      setErrors({ ...errors });
-    } finally {
-      setLoading(false);
+    const tempErrors: IValidationErrors = validateSignUpForm(formData);
+    if (Object.keys(tempErrors).length === 0) {
+      setLoading(true);
+      try {
+        const response = await axiosInstance.post(restEndPoints.signUp, { user: formData });
+        toast.success(response.data.message);
+        Cookies.set('token', response.data.token);
+        dispatch(setUserDetails({ ...response.data.user }));
+        toast.success(response.data.message);
+        setFormData({
+          phoneNumber: "",
+          password: "",
+          confirmPassword: "",
+        });
+        navigate(HOME);
+        setFormData({
+          phoneNumber: "",
+          password: "",
+          confirmPassword: "",
+        });
+        navigate(HOME);
+      } catch (error: any) {
+        console.log(error);
+        dispatch(setError({
+          statusCode: error.response.status,
+          message: error.response.data.error,
+          action: Action.SIGNUP
+        }));
+      } finally {
+        setLoading(false);
+      }
+    } else {
+      setErrors(tempErrors);
     }
   };
 
@@ -320,11 +328,10 @@ const Hero: React.FC = () => {
                 >
                   {loading ? "Signing up..." : "Sign up"}
                 </button>
-                {success && <p className={styles.success}>{success}</p>}
               </div>
             </form>
             <div className={styles.googleSignIn}>
-              <button type="button" className={styles.googleButton}>
+              <button type="button" className={styles.googleButton} onClick={() => loginWithRedirect()}>
                 <span className={styles.googleIcon}>
                   <svg
                     className={styles.icon}

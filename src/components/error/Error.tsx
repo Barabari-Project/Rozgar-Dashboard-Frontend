@@ -16,9 +16,7 @@ const Error: React.FC<ErrorProps> = ({ children }) => {
     const error: IBackEndError = useSelector((state: RootState) => state.status.error);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
     useEffect(() => {
-        console.log(error);
         if (error) {
             toast.error(error.message);
             if (401 == error.statusCode) {

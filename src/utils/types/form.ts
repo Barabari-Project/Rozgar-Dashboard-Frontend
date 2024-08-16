@@ -1,11 +1,11 @@
 export interface ISignUpForm {
     phoneNumber: string;
-    firstName: string;
-    lastName: string;
-    email: string;
+    // firstName: string;
+    // lastName: string;
+    // email: string;
     password: string;
     confirmPassword: string;
-    address: IAddress;
+    // address: IAddress;
 }
 
 export interface IAddress {
