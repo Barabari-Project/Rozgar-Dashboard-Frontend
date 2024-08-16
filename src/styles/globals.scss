@@ -19,6 +19,12 @@ body{
     background-color: $background_color;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 a {
   text-decoration: none;
 }
