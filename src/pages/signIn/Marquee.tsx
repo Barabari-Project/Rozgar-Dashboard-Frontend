@@ -15,14 +15,16 @@ const Footer: React.FC = () => {
 
   const logos = [logo1, logo2, logo3, logo4, logo5, logo6, logo7];
   return (
-    <div className='flex items-center h-[200px] lg:h-[250px] w-[98%] overflow-hidden'>
+    <div className='flex gap-5 items-center h-[200px] lg:h-[250px] w-[98%] overflow-hidden'>
      <Marquee
-     speed={50} play={true} direction='left' autoFill='true' pauseOnHover='true' pauseOnClick='false' delay={0}  
+     speed={100} play={true} direction='left' autoFill='true' pauseOnHover='true' pauseOnClick='false' delay={0}  
      >
        {logos.map((logo, index) => (
          <img key={index} src={logo} alt="" className='h-[90px] mr-[80px]' />
        ))}
      </Marquee>
+
+     
     </div>
   );
 };
