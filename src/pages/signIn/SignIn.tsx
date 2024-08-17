@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { Action } from "../../enums/actionEnum";
 import restEndPoints from "../../constants/restEndPoints.json";
 import { HOME } from "../../constants/routesEndpoints";
-import Footer from '../signIn/Footer';
+import Footer from './Marquee';
 import Error from "../../components/error/Error";
 
 const SignIn: React.FC = () => {
