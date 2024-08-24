@@ -1,23 +1,68 @@
 import { ITopic } from "../../utils/types/course";
+import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm'
+import "./lecture.css";
+
 
 interface VideoTabProps {
   topic: ITopic | null;
 }
 
 const VideoTab: React.FC<VideoTabProps> = ({ topic }) => {
-  // console.log(topic);
+  const markdown = `# React Notes with Markdown Features
+
+This document includes various elements like Google links, images, YouTube thumbnails, and markdown styling for React-based apps.
+
+## Links
+- [Google Search](https://www.google.com)
+
+## Large Image
+![Large Image](https://via.placeholder.com/1200x600 "Sample Large Image")
+
+## YouTube Thumbnail Link
+[![YouTube Video](https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+
+## Markdown Features
+
+### Headings
+# H1
+## H2
+### H3
+
+### Emphasis  
+- *Italic*
+- **Bold**
+- ***Bold and Italic***
+
+### Lists
+
+#### Unordered List
+- Item 1
+- Item 2
+  - Sub-item 1
+  - Sub-item 2
+
+#### Ordered List
+1. First item
+2. Second item
+
+### Blockquote
+> This is a blockquote.
+
+### Inline Code
+Here is some 
+
+### Code Block
+javascript
+function helloWorld() {
+  console.log("Hello, World!");
+}
+
+`
+
   return (
-    <div id="VideoDiv" className="w-full flex justify-center py-4 md:px-5">
-      <iframe
-        className="rounded-xl w-[98%] mx-auto aspect-[16/9] shadow-xl"
-        // src={topic?.url}
-        src={topic?.url != "abc" ? topic?.url : "https://www.youtube.com/embed/6nv3qy3oNkc?si=KMZ9nqDLNavw6jIl"}
-        title="YouTube video player"
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerPolicy="strict-origin-when-cross-origin"
-        allowFullScreen
-      ></iframe>
+    <div id="VideoDiv" className="w-full py-4 md:px-5">
+      <Markdown remarkPlugins={[remarkGfm]}>{markdown}</Markdown>
     </div>
   )
 }

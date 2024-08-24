@@ -60,7 +60,7 @@ const LectureDashboard: React.FC = () => {
             {/* tab */}
             <div
               id="tabs"
-              className="tab-container flex items-center w-full h-[40px] mt-2 pb-1 border-b-2 rounded-xl border-gray-400 px-1 overflow-hidden"
+              className="tab-container flex items-center w-full h-[40px] mt-2 pb-1 border-b-2 border-gray-400 px-1 overflow-hidden"
             >
               <div
                 className={`${
