@@ -47,16 +47,16 @@ const Pathway = ()=>{
                     </div>
                 </div>
             </div>
-            
-            <div className='w-full rounded-xl shadow-lg bg-white flex overflow-hidden pl-3 pt-3 pb-3 '>
+
+            <div className='w-full rounded-xl shadow-lg bg-white flex overflow-hidden'>
                 <div className='w-2/5'>
                     <img className='w-full h-full' src={css} />
                 </div>
                 <div className='w-3/5 mx-auto flex flex-col justify-between p-3 md:p-5'>
                     <div className='flex flex-col justify-between'>
                         <div className='flex items-center justify-between'>
-                            <h1 className='text-center text-2xl md:text-4xl lg:text-5xl font-semibold text-[#324498]'>HTML</h1>
-                            <span id="rating">⭐ 5.0</span>
+                            <h1 className='text-center text-2xl md:text-4xl lg:text-5xl font-semibold text-[#324498]'>CSS</h1>
+                            <span id="rating">⭐ 4.8</span>
                         </div>
                         <p className='text-[10px] md:text-sm md:mt-8 mb-2 '>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates quisquam in laborum dignissimos nesciunt laudantium!</p>
                     </div>
@@ -81,8 +81,8 @@ const Pathway = ()=>{
                 <div className='w-3/5 mx-auto flex flex-col justify-between p-3 md:p-5'>
                     <div className='flex flex-col justify-between'>
                         <div className='flex items-center justify-between'>
-                            <h1 className='text-center text-2xl md:text-4xl lg:text-5xl font-semibold text-[#324498]'>HTML</h1>
-                            <span id="rating">⭐ 5.0</span>
+                            <h1 className='text-center text-2xl md:text-4xl lg:text-5xl font-semibold text-[#324498]'>Javascript</h1>
+                            <span id="rating">⭐ 4.85</span>
                         </div>
                         <p className='text-[10px] md:text-sm md:mt-8 mb-2 '>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates quisquam in laborum dignissimos nesciunt laudantium!</p>
                     </div>
