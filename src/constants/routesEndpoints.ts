@@ -4,3 +4,4 @@ export const HOME: string = '/';
 export const DASHBOARD: string = '/dashboard';
 export const PROFILE: string = '/profile';
 export const ASSIGNMENT: string = '/assignment';
+export const PATHWAY: string = '/pathway';

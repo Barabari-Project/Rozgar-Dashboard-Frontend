@@ -35,6 +35,7 @@ const SignIn: React.FC = () => {
       [name]: value,
     }));
   };
+  
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const tempErrors: IValidationErrors = validateSignInForm(formData);
