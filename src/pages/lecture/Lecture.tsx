@@ -23,7 +23,8 @@ const LectureDashboard: React.FC = () => {
   const [tab, setTab] = useState<LecturePageTab>(LecturePageTab.Video);
 
   const [activeTopic, setActiveTopic] = useState<ITopic | null>(null);
-
+  console.log(activeTopic)
+  console.log(course);
   useEffect(() => {
     if (course) {
       const selectedSection = course.sections.find(
@@ -32,13 +33,14 @@ const LectureDashboard: React.FC = () => {
       const selectedModule = selectedSection?.modules.find(
         (module) => module._id === moduleId
       );
-
+      console.log(selectedModule)
       if (selectedModule) {
         setModule(selectedModule);
 
         const topic = selectedModule.topics.find(
           (topic) => topic._id === topicId
         );
+        console.log(topic);
         setActiveTopic(topic ?? null);
       }
     }
@@ -63,41 +65,37 @@ const LectureDashboard: React.FC = () => {
               className="tab-container flex items-center w-full h-[40px] mt-2 pb-1 border-b-2 border-gray-400 px-1 overflow-hidden"
             >
               <div
-                className={`${
-                  tab === LecturePageTab.Video
-                    ? "bg-[#fee496] text-black"
-                    : "text-[#595959]"
-                } px-5 h-full flex items-center hover:cursor-pointer duration-500 rounded-xl`}
+                className={`${tab === LecturePageTab.Video
+                  ? "bg-[#fee496] text-black"
+                  : "text-[#595959]"
+                  } px-5 h-full flex items-center hover:cursor-pointer duration-500 rounded-xl`}
                 onClick={() => setTab(LecturePageTab.Video)}
               >
                 Lecture
               </div>
               <div
-                className={`${
-                  tab === LecturePageTab.Question
-                    ? "bg-[#fee496] text-black"
-                    : "text-[#595959]"
-                } px-5 h-full flex items-center hover:cursor-pointer duration-500 rounded-xl`}
+                className={`${tab === LecturePageTab.Question
+                  ? "bg-[#fee496] text-black"
+                  : "text-[#595959]"
+                  } px-5 h-full flex items-center hover:cursor-pointer duration-500 rounded-xl`}
                 onClick={() => setTab(LecturePageTab.Question)}
               >
                 Problems
               </div>
               <div
-                className={`${
-                  tab === LecturePageTab.Assignment
-                    ? "bg-[#fee496] text-black"
-                    : "text-[#595959]"
-                } px-5 h-full flex items-center hover:cursor-pointer duration-500 rounded-xl`}
+                className={`${tab === LecturePageTab.Assignment
+                  ? "bg-[#fee496] text-black"
+                  : "text-[#595959]"
+                  } px-5 h-full flex items-center hover:cursor-pointer duration-500 rounded-xl`}
                 onClick={() => setTab(LecturePageTab.Assignment)}
               >
                 Assignments
               </div>
               <div
-                className={`${
-                  tab === LecturePageTab.Notes
-                    ? "bg-[#fee496] text-black"
-                    : "text-[#595959]"
-                } px-5 h-full flex items-center hover:cursor-pointer duration-500 rounded-xl`}
+                className={`${tab === LecturePageTab.Notes
+                  ? "bg-[#fee496] text-black"
+                  : "text-[#595959]"
+                  } px-5 h-full flex items-center hover:cursor-pointer duration-500 rounded-xl`}
                 onClick={() => setTab(LecturePageTab.Notes)}
               >
                 Notes
@@ -145,9 +143,8 @@ const LectureDashboard: React.FC = () => {
                     setActiveTopic(topic);
                   }}
                   key={topic._id}
-                  className={`${
-                    topic._id === activeTopic?._id ? "bg-[#ffecb3]" : ""
-                  } flex gap-4 w-full items-center px-4 py-5 border-grey-300 border-t-[1px] border-b-[1px] hover:bg-[#ffecb3] hover:cursor-pointer duration-300`}
+                  className={`${topic._id === activeTopic?._id ? "bg-[#ffecb3]" : ""
+                    } flex gap-4 w-full items-center px-4 py-5 border-grey-300 border-t-[1px] border-b-[1px] hover:bg-[#ffecb3] hover:cursor-pointer duration-300`}
                 >
                   <div className="flex items-center gap-3">
                     <label className="text-white">

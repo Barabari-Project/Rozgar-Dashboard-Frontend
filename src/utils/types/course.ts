@@ -11,7 +11,8 @@ export interface IQuestion {
 export interface ITopic {
     _id: string;
     title: string;
-    url: string;
+    // url: string;
+    markdown: string;
     questions: IQuestion[];
 }
 
