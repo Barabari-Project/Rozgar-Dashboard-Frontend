@@ -24,10 +24,10 @@ const VideoTab: React.FC<VideoTabProps> = ({ topic }) => {
 
   ## Markdown Features
 
-  ### Headings
-  # H1
-  ## H2
-  ### H3
+### Headings
+# H1
+## H2
+### H3
 
   ### Emphasis  
   - *Italic*
