@@ -17,6 +17,7 @@ body{
     font-size: 14px;
     color: $font_color;
     background-color: $background_color;
+    list-style-type: disc;
 }
 
 #root {
@@ -24,9 +25,26 @@ body{
   flex-direction: column;
   min-height: 100vh;
 }
-
+ul{
+  list-style: disc;
+}
+ol{
+  list-style:lower-roman;
+}
+h1{
+  font-size: 24px;
+  font-weight: 700;
+}
+h2{
+  font-size: 18px;
+  font-weight: 600;
+}
+h3{
+  font-size: 16px;
+  font-weight: 500;
+}
 a {
-  text-decoration: none;
+  // text-decoration: none;
 }
 ::-webkit-scrollbar {
   width: 8px;
