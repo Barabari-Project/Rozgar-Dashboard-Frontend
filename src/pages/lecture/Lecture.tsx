@@ -4,7 +4,7 @@ import { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import LecturePageTab from "../../utils/enums/LecturePageTab";
-import VideoTab from "./VideoTab";
+// import VideoTab from "./VideoTab";
 import AssignmentTab from "./AssignmentTab";
 import QuestionTab from "./QuestionTab";
 import NotesTab from "./NotesTab";
@@ -71,9 +71,9 @@ const LectureDashboard: React.FC = () => {
                   } px-5 h-full flex items-center hover:cursor-pointer duration-500 rounded-xl`}
                 onClick={() => setTab(LecturePageTab.Video)}
               >
-                Lecture
+                Notes
               </div>
-              <div
+              {/* <div
                 className={`${tab === LecturePageTab.Question
                   ? "bg-[#fee496] text-black"
                   : "text-[#595959]"
@@ -81,7 +81,7 @@ const LectureDashboard: React.FC = () => {
                 onClick={() => setTab(LecturePageTab.Question)}
               >
                 Problems
-              </div>
+              </div> */}
               <div
                 className={`${tab === LecturePageTab.Assignment
                   ? "bg-[#fee496] text-black"
@@ -91,7 +91,7 @@ const LectureDashboard: React.FC = () => {
               >
                 Assignments
               </div>
-              <div
+              {/* <div
                 className={`${tab === LecturePageTab.Notes
                   ? "bg-[#fee496] text-black"
                   : "text-[#595959]"
@@ -99,12 +99,12 @@ const LectureDashboard: React.FC = () => {
                 onClick={() => setTab(LecturePageTab.Notes)}
               >
                 Notes
-              </div>
+              </div> */}
             </div>
 
             <div className="max-h-[90%] overflow-scroll overflow-y-auto duration-500">
               {tab === LecturePageTab.Video ? (
-                <VideoTab topic={activeTopic} />
+                <NotesTab topic={activeTopic} />
               ) : tab === LecturePageTab.Assignment ? (
                 <AssignmentTab topic={activeTopic} />
               ) : tab === LecturePageTab.Question ? (
