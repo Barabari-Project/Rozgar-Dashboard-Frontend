@@ -71,7 +71,7 @@ const LectureDashboard: React.FC = () => {
                   } px-5 h-full flex items-center hover:cursor-pointer duration-500 rounded-xl`}
                 onClick={() => setTab(LecturePageTab.Video)}
               >
-                Notes
+                Lecture
               </div>
               {/* <div
                 className={`${tab === LecturePageTab.Question
