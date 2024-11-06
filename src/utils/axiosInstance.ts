@@ -1,6 +1,6 @@
 // axiosInstance.js
 import axios from 'axios';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 
 // Create an instance of axios
 const axiosInstance = axios.create({
@@ -9,7 +9,8 @@ const axiosInstance = axios.create({
 
 // Request interceptor to add the JWT token to the Authorization header
 axiosInstance.interceptors.request.use((config) => {
-    const token = Cookies.get('token'); // Assuming you store the token in localStorage
+    // const token = Cookies.get('token'); // Assuming you store the token in localStorage
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OWY0ZjI2ZjNjZjVhNmEyOWQ5M2IzMSIsImlhdCI6MTcyOTkyMTUxNiwiZXhwIjoxNzYxNDU3NTE2fQ.LKnLFdgY24qxW5KGOi3hwW4vzgCwvkxNcs-oW4IqUBo';
     if (token) {
         config.headers.Authorization = `Bearer ${token}`;
     }
