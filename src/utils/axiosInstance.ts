@@ -4,7 +4,7 @@ import axios from 'axios';
 
 // Create an instance of axios
 const axiosInstance = axios.create({
-    baseURL: `${import.meta.env.VITE_BACKEND_BASE_URL}`, // Replace with your backend API base URL
+    baseURL: `${import.meta.env.VITE_BACKEND_BASE_URL}/rozgar`, // Replace with your backend API base URL
 });
 
 // Request interceptor to add the JWT token to the Authorization header
